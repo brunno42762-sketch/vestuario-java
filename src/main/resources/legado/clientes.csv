@@ -1,0 +1,800 @@
+id_cliente;faixa_etaria;genero;cidade;estado;canal_preferido;cliente_fidelidade
+2;55+;Outro;Niterói;RJ;E-commerce;Não
+3;35-44;Masculino;Londrina;PR;Loja Física;Não
+4;45-54;Outro;Curitiba;PR;Marketplace;Não
+5;45-54;Feminino;Belo Horizonte;MG;Loja Física;Não
+6;35-44;Feminino;Niterói;RJ;E-commerce;Não
+7;55+;Masculino;Florianópolis;SC;Loja Física;Sim
+8;45-54;Outro;Caxias do Sul;RS;Loja Física;Não
+9;45-54;Masculino;Caxias do Sul;RS;Loja Física;Não
+10;25-34;Feminino;Niterói;RJ;Marketplace;Não
+11;45-54;Outro;Londrina;PR;Marketplace;Não
+12;35-44;Feminino;Uberlândia;MG;E-commerce;Sim
+13;25-34;Feminino;Santo André;SP;Loja Física;Sim
+14;45-54;Feminino;Rio de Janeiro;RJ;Marketplace;Não
+15;35-44;Masculino;São Paulo;SP;E-commerce;Sim
+16;55+;Masculino;Belo Horizonte;MG;E-commerce;Sim
+17;35-44;Outro;Santo André;SP;Loja Física;Não
+18;55+;Feminino;São Paulo;SP;E-commerce;Não
+19;25-34;Masculino;Londrina;PR;E-commerce;Não
+20;45-54;Feminino;São Paulo;SP;Loja Física;Sim
+21;55+;Feminino;Rio de Janeiro;RJ;Loja Física;Sim
+22;45-54;Outro;Santo André;SP;Marketplace;Sim
+23;45-54;Feminino;Feira de Santana;BA;E-commerce;Não
+24;55+;Outro;Belo Horizonte;MG;Loja Física;Sim
+25;35-44;Outro;Porto Alegre;RS;Loja Física;Sim
+26;55+;Masculino;Rio de Janeiro;RJ;Loja Física;Sim
+27;55+;Feminino;Londrina;PR;E-commerce;Sim
+28;35-44;Outro;Niterói;RJ;E-commerce;Sim
+29;35-44;Outro;Porto Alegre;RS;Marketplace;Sim
+30;55+;Masculino;Curitiba;PR;Marketplace;Sim
+31;18-24;Masculino;Belo Horizonte;MG;Loja Física;Não
+32;45-54;Masculino;Joinville;SC;E-commerce;Não
+33;35-44;Outro;Caxias do Sul;RS;Marketplace;Não
+34;55+;Masculino;Curitiba;PR;E-commerce;Não
+35;18-24;Masculino;Joinville;SC;Loja Física;Sim
+36;55+;Masculino;Feira de Santana;BA;Loja Física;Não
+37;35-44;Masculino;Joinville;SC;Marketplace;Não
+38;18-24;Feminino;Caxias do Sul;RS;E-commerce;Não
+39;18-24;Masculino;Uberlândia;MG;E-commerce;Não
+40;35-44;Outro;Caxias do Sul;RS;E-commerce;Sim
+41;35-44;Feminino;Curitiba;PR;E-commerce;Sim
+42;55+;Masculino;Feira de Santana;BA;Marketplace;Não
+43;25-34;Outro;Curitiba;PR;E-commerce;Não
+44;18-24;Masculino;Caxias do Sul;RS;E-commerce;Sim
+45;45-54;Masculino;Uberlândia;MG;Loja Física;Sim
+46;35-44;Outro;Porto Alegre;RS;Loja Física;Não
+47;18-24;Feminino;São Paulo;SP;Loja Física;Sim
+48;55+;Outro;Londrina;PR;E-commerce;Não
+49;45-54;Masculino;Feira de Santana;BA;E-commerce;Sim
+50;55+;Outro;Curitiba;PR;Marketplace;Sim
+51;35-44;Feminino;Salvador;BA;E-commerce;Não
+52;35-44;Outro;Salvador;BA;E-commerce;Não
+53;45-54;Outro;Salvador;BA;E-commerce;Não
+54;45-54;Feminino;Uberlândia;MG;Loja Física;Sim
+55;25-34;Feminino;Joinville;SC;Loja Física;Não
+56;45-54;Feminino;Caxias do Sul;RS;Marketplace;Sim
+57;25-34;Outro;Curitiba;PR;Marketplace;Não
+58;45-54;Masculino;Salvador;BA;Marketplace;Não
+59;25-34;Feminino;Santo André;SP;Marketplace;Sim
+60;35-44;Feminino;Campinas;SP;Marketplace;Não
+61;35-44;Outro;Porto Alegre;RS;Marketplace;Não
+62;55+;Masculino;Uberlândia;MG;Marketplace;Sim
+63;25-34;Outro;Niterói;RJ;Loja Física;Não
+64;18-24;Feminino;Santo André;SP;Loja Física;Não
+65;35-44;Masculino;São Paulo;SP;E-commerce;Não
+66;25-34;Masculino;Uberlândia;MG;Marketplace;Não
+67;25-34;Masculino;Florianópolis;SC;Loja Física;Não
+68;45-54;Outro;Florianópolis;SC;Loja Física;Sim
+69;45-54;Feminino;Londrina;PR;Marketplace;Sim
+70;35-44;Outro;Feira de Santana;BA;Marketplace;Sim
+71;35-44;Outro;Campinas;SP;E-commerce;Não
+72;45-54;Feminino;Caxias do Sul;RS;Loja Física;Não
+73;18-24;Masculino;Feira de Santana;BA;E-commerce;Não
+74;35-44;Masculino;Joinville;SC;Marketplace;Não
+75;55+;Outro;Belo Horizonte;MG;Marketplace;Sim
+76;35-44;Masculino;Joinville;SC;Marketplace;Não
+77;55+;Feminino;Rio de Janeiro;RJ;Marketplace;Sim
+78;18-24;Feminino;Porto Alegre;RS;E-commerce;Sim
+79;25-34;Masculino;Joinville;SC;E-commerce;Não
+80;25-34;Masculino;Caxias do Sul;RS;Loja Física;Não
+81;25-34;Feminino;Joinville;SC;E-commerce;Não
+82;18-24;Feminino;Caxias do Sul;RS;Loja Física;Sim
+83;45-54;Outro;Salvador;BA;E-commerce;Sim
+84;18-24;Feminino;Feira de Santana;BA;Marketplace;Sim
+85;35-44;Outro;Londrina;PR;E-commerce;Não
+86;25-34;Feminino;Santo André;SP;Loja Física;Não
+87;18-24;Outro;Florianópolis;SC;E-commerce;Não
+88;18-24;Masculino;Caxias do Sul;RS;Loja Física;Sim
+89;18-24;Masculino;Uberlândia;MG;Loja Física;Sim
+90;35-44;Outro;Londrina;PR;Marketplace;Não
+91;45-54;Outro;Florianópolis;SC;Loja Física;Não
+92;35-44;Masculino;Joinville;SC;Marketplace;Não
+93;45-54;Masculino;Niterói;RJ;E-commerce;Sim
+94;55+;Outro;Caxias do Sul;RS;E-commerce;Sim
+95;25-34;Masculino;Londrina;PR;E-commerce;Sim
+96;55+;Masculino;Porto Alegre;RS;Loja Física;Não
+97;55+;Masculino;Rio de Janeiro;RJ;Loja Física;Sim
+98;25-34;Feminino;Florianópolis;SC;Loja Física;Sim
+99;25-34;Outro;Belo Horizonte;MG;E-commerce;Sim
+100;18-24;Masculino;Santo André;SP;Loja Física;Não
+101;55+;Feminino;Salvador;BA;Loja Física;Sim
+102;25-34;Outro;Belo Horizonte;MG;E-commerce;Sim
+103;45-54;Feminino;Porto Alegre;RS;E-commerce;Sim
+104;55+;Masculino;Curitiba;PR;Marketplace;Não
+105;18-24;Feminino;Curitiba;PR;E-commerce;Não
+106;45-54;Outro;Porto Alegre;RS;E-commerce;Sim
+107;55+;Masculino;Campinas;SP;Loja Física;Sim
+108;45-54;Outro;Uberlândia;MG;Marketplace;Não
+109;18-24;Outro;Londrina;PR;Loja Física;Sim
+110;25-34;Feminino;Londrina;PR;E-commerce;Não
+111;18-24;Feminino;Londrina;PR;E-commerce;Não
+112;35-44;Masculino;Caxias do Sul;RS;Marketplace;Não
+113;18-24;Masculino;São Paulo;SP;E-commerce;Sim
+114;25-34;Outro;Caxias do Sul;RS;Loja Física;Não
+115;45-54;Feminino;Porto Alegre;RS;Marketplace;Não
+116;35-44;Outro;Salvador;BA;E-commerce;Não
+117;55+;Masculino;Santo André;SP;Loja Física;Não
+118;35-44;Outro;Rio de Janeiro;RJ;E-commerce;Sim
+119;55+;Masculino;Feira de Santana;BA;E-commerce;Sim
+120;18-24;Masculino;Joinville;SC;E-commerce;Não
+121;18-24;Masculino;Uberlândia;MG;Loja Física;Não
+122;18-24;Masculino;São Paulo;SP;Marketplace;Sim
+123;45-54;Feminino;Londrina;PR;Loja Física;Não
+124;55+;Outro;Uberlândia;MG;Loja Física;Sim
+125;55+;Masculino;Rio de Janeiro;RJ;Marketplace;Sim
+126;45-54;Feminino;Uberlândia;MG;Marketplace;Não
+127;25-34;Outro;Londrina;PR;Loja Física;Não
+128;35-44;Outro;Curitiba;PR;Marketplace;Não
+129;18-24;Masculino;Joinville;SC;E-commerce;Sim
+130;35-44;Masculino;São Paulo;SP;Loja Física;Não
+131;18-24;Masculino;Uberlândia;MG;E-commerce;Não
+132;45-54;Outro;Rio de Janeiro;RJ;Marketplace;Sim
+133;18-24;Feminino;Joinville;SC;Marketplace;Sim
+134;45-54;Masculino;Curitiba;PR;E-commerce;Não
+135;45-54;Feminino;Joinville;SC;Loja Física;Não
+136;25-34;Outro;Campinas;SP;E-commerce;Não
+137;18-24;Masculino;Campinas;SP;E-commerce;Não
+138;45-54;Feminino;Florianópolis;SC;Marketplace;Não
+139;25-34;Masculino;Niterói;RJ;Marketplace;Sim
+140;35-44;Feminino;Florianópolis;SC;Marketplace;Sim
+141;25-34;Feminino;Rio de Janeiro;RJ;Loja Física;Sim
+142;18-24;Masculino;Florianópolis;SC;Marketplace;Não
+143;55+;Outro;Londrina;PR;Marketplace;Não
+144;25-34;Feminino;Feira de Santana;BA;Loja Física;Não
+145;35-44;Outro;Londrina;PR;Loja Física;Não
+146;35-44;Feminino;Florianópolis;SC;E-commerce;Sim
+147;35-44;Masculino;Campinas;SP;Marketplace;Sim
+148;45-54;Outro;Joinville;SC;Marketplace;Sim
+149;35-44;Outro;Curitiba;PR;E-commerce;Sim
+150;18-24;Feminino;Campinas;SP;Marketplace;Sim
+151;18-24;Masculino;Florianópolis;SC;Marketplace;Não
+152;35-44;Feminino;Curitiba;PR;E-commerce;Não
+153;55+;Masculino;Londrina;PR;Marketplace;Não
+154;18-24;Outro;Campinas;SP;Marketplace;Não
+155;55+;Masculino;Uberlândia;MG;E-commerce;Sim
+156;35-44;Feminino;Florianópolis;SC;Marketplace;Não
+157;35-44;Outro;Rio de Janeiro;RJ;E-commerce;Não
+158;55+;Masculino;Salvador;BA;Marketplace;Não
+159;18-24;Feminino;Joinville;SC;E-commerce;Sim
+160;45-54;Masculino;Niterói;RJ;Loja Física;Sim
+161;35-44;Masculino;Rio de Janeiro;RJ;Marketplace;Sim
+162;55+;Masculino;Caxias do Sul;RS;Marketplace;Não
+163;25-34;Outro;Rio de Janeiro;RJ;Marketplace;Sim
+164;18-24;Feminino;Caxias do Sul;RS;E-commerce;Sim
+165;45-54;Masculino;Londrina;PR;Marketplace;Sim
+166;25-34;Feminino;Uberlândia;MG;Marketplace;Não
+167;45-54;Outro;Londrina;PR;Marketplace;Não
+168;55+;Masculino;Rio de Janeiro;RJ;E-commerce;Sim
+169;35-44;Outro;Caxias do Sul;RS;Loja Física;Sim
+170;25-34;Feminino;Belo Horizonte;MG;E-commerce;Sim
+171;18-24;Masculino;Feira de Santana;BA;E-commerce;Não
+172;18-24;Feminino;Campinas;SP;Marketplace;Não
+173;18-24;Feminino;Niterói;RJ;Loja Física;Sim
+174;35-44;Masculino;Belo Horizonte;MG;Loja Física;Sim
+175;25-34;Outro;Uberlândia;MG;E-commerce;Não
+176;18-24;Masculino;Florianópolis;SC;E-commerce;Sim
+177;55+;Outro;Salvador;BA;Marketplace;Não
+178;25-34;Feminino;Campinas;SP;Loja Física;Sim
+179;55+;Feminino;Niterói;RJ;Loja Física;Sim
+180;55+;Outro;Feira de Santana;BA;Loja Física;Sim
+181;35-44;Feminino;Porto Alegre;RS;Loja Física;Não
+182;25-34;Outro;Niterói;RJ;Marketplace;Sim
+183;18-24;Outro;Joinville;SC;Marketplace;Sim
+184;18-24;Outro;Londrina;PR;E-commerce;Não
+185;35-44;Masculino;Belo Horizonte;MG;E-commerce;Sim
+186;55+;Outro;Porto Alegre;RS;E-commerce;Sim
+187;55+;Feminino;Campinas;SP;Marketplace;Sim
+188;45-54;Outro;Feira de Santana;BA;Loja Física;Sim
+189;45-54;Masculino;Santo André;SP;E-commerce;Sim
+190;18-24;Feminino;São Paulo;SP;E-commerce;Não
+191;35-44;Masculino;Feira de Santana;BA;Marketplace;Sim
+192;18-24;Outro;Uberlândia;MG;E-commerce;Não
+193;45-54;Feminino;Campinas;SP;Marketplace;Não
+194;25-34;Feminino;Londrina;PR;Marketplace;Não
+195;18-24;Outro;Uberlândia;MG;E-commerce;Sim
+196;55+;Feminino;Curitiba;PR;E-commerce;Sim
+197;35-44;Feminino;Campinas;SP;E-commerce;Não
+198;35-44;Feminino;Niterói;RJ;Loja Física;Não
+199;35-44;Outro;Joinville;SC;Loja Física;Sim
+200;35-44;Outro;Caxias do Sul;RS;Marketplace;Sim
+201;55+;Outro;São Paulo;SP;E-commerce;Sim
+202;25-34;Outro;Rio de Janeiro;RJ;E-commerce;Não
+203;55+;Masculino;Curitiba;PR;Marketplace;Não
+204;45-54;Masculino;Uberlândia;MG;Marketplace;Sim
+205;45-54;Feminino;Joinville;SC;Marketplace;Não
+206;18-24;Outro;Rio de Janeiro;RJ;Loja Física;Não
+207;55+;Masculino;Joinville;SC;E-commerce;Não
+208;25-34;Outro;Caxias do Sul;RS;E-commerce;Não
+209;25-34;Masculino;Rio de Janeiro;RJ;E-commerce;Sim
+210;18-24;Outro;Caxias do Sul;RS;E-commerce;Não
+211;55+;Outro;Porto Alegre;RS;E-commerce;Não
+212;25-34;Feminino;Salvador;BA;Marketplace;Sim
+213;25-34;Masculino;São Paulo;SP;E-commerce;Sim
+214;45-54;Outro;Uberlândia;MG;Loja Física;Sim
+215;45-54;Outro;Campinas;SP;Marketplace;Não
+216;45-54;Outro;Joinville;SC;Loja Física;Sim
+217;45-54;Feminino;Belo Horizonte;MG;Marketplace;Não
+218;25-34;Feminino;Rio de Janeiro;RJ;Marketplace;Sim
+219;55+;Masculino;Salvador;BA;E-commerce;Sim
+220;25-34;Feminino;Niterói;RJ;Marketplace;Não
+221;35-44;Masculino;Salvador;BA;Marketplace;Não
+222;55+;Outro;Niterói;RJ;Loja Física;Sim
+223;25-34;Outro;Florianópolis;SC;Marketplace;Não
+224;18-24;Masculino;Salvador;BA;Loja Física;Não
+225;55+;Feminino;Porto Alegre;RS;Marketplace;Sim
+226;35-44;Feminino;Londrina;PR;Loja Física;Não
+227;18-24;Outro;Uberlândia;MG;Loja Física;Sim
+228;45-54;Feminino;Londrina;PR;Loja Física;Não
+229;35-44;Outro;Florianópolis;SC;E-commerce;Não
+230;35-44;Outro;Curitiba;PR;Marketplace;Sim
+231;45-54;Masculino;Belo Horizonte;MG;E-commerce;Não
+232;18-24;Masculino;Rio de Janeiro;RJ;E-commerce;Não
+233;25-34;Masculino;Feira de Santana;BA;E-commerce;Não
+234;45-54;Outro;Rio de Janeiro;RJ;E-commerce;Não
+235;18-24;Masculino;Uberlândia;MG;E-commerce;Não
+236;55+;Feminino;Rio de Janeiro;RJ;Loja Física;Sim
+237;55+;Outro;Uberlândia;MG;Marketplace;Não
+238;18-24;Feminino;Belo Horizonte;MG;Loja Física;Não
+239;45-54;Feminino;Caxias do Sul;RS;Loja Física;Não
+240;55+;Masculino;Santo André;SP;E-commerce;Não
+241;55+;Feminino;Campinas;SP;Marketplace;Não
+242;25-34;Masculino;Salvador;BA;E-commerce;Não
+243;55+;Feminino;Feira de Santana;BA;Loja Física;Sim
+244;55+;Masculino;Joinville;SC;Loja Física;Sim
+245;45-54;Outro;Niterói;RJ;E-commerce;Sim
+246;35-44;Outro;Florianópolis;SC;E-commerce;Sim
+247;55+;Feminino;Londrina;PR;Marketplace;Não
+248;45-54;Masculino;Caxias do Sul;RS;E-commerce;Não
+249;45-54;Outro;Porto Alegre;RS;E-commerce;Sim
+250;35-44;Outro;Joinville;SC;Marketplace;Sim
+251;55+;Feminino;Porto Alegre;RS;Loja Física;Não
+252;18-24;Outro;Rio de Janeiro;RJ;Marketplace;Sim
+253;45-54;Feminino;Rio de Janeiro;RJ;E-commerce;Sim
+254;45-54;Outro;Curitiba;PR;Marketplace;Não
+255;25-34;Outro;Salvador;BA;Loja Física;Não
+256;55+;Feminino;Caxias do Sul;RS;E-commerce;Sim
+257;55+;Feminino;Londrina;PR;Marketplace;Não
+258;25-34;Masculino;Joinville;SC;E-commerce;Não
+259;35-44;Outro;Niterói;RJ;Loja Física;Não
+260;35-44;Outro;Uberlândia;MG;Marketplace;Não
+261;55+;Outro;Belo Horizonte;MG;Marketplace;Não
+262;25-34;Feminino;Londrina;PR;Loja Física;Não
+263;35-44;Feminino;Porto Alegre;RS;Marketplace;Não
+264;25-34;Masculino;Caxias do Sul;RS;Marketplace;Não
+265;25-34;Masculino;Joinville;SC;Marketplace;Sim
+266;55+;Masculino;Rio de Janeiro;RJ;Marketplace;Sim
+267;45-54;Feminino;São Paulo;SP;Marketplace;Não
+268;25-34;Masculino;Santo André;SP;Marketplace;Sim
+269;45-54;Outro;Londrina;PR;Loja Física;Não
+270;18-24;Masculino;Uberlândia;MG;Marketplace;Sim
+271;25-34;Feminino;Florianópolis;SC;Loja Física;Sim
+272;45-54;Masculino;Feira de Santana;BA;Marketplace;Não
+273;35-44;Outro;São Paulo;SP;Marketplace;Sim
+274;45-54;Outro;Uberlândia;MG;Marketplace;Não
+275;35-44;Masculino;Niterói;RJ;Loja Física;Não
+276;35-44;Outro;Niterói;RJ;Loja Física;Sim
+277;35-44;Outro;Caxias do Sul;RS;Marketplace;Sim
+278;45-54;Outro;Niterói;RJ;E-commerce;Sim
+279;25-34;Masculino;Curitiba;PR;E-commerce;Não
+280;35-44;Feminino;Rio de Janeiro;RJ;Loja Física;Não
+281;35-44;Feminino;Feira de Santana;BA;Marketplace;Sim
+282;25-34;Masculino;Uberlândia;MG;Marketplace;Sim
+283;25-34;Feminino;Londrina;PR;Marketplace;Não
+284;35-44;Feminino;Porto Alegre;RS;Marketplace;Sim
+285;45-54;Masculino;Rio de Janeiro;RJ;E-commerce;Não
+286;55+;Outro;Londrina;PR;Loja Física;Sim
+287;55+;Feminino;Porto Alegre;RS;Marketplace;Não
+288;18-24;Masculino;Santo André;SP;Marketplace;Sim
+289;25-34;Feminino;Florianópolis;SC;Marketplace;Não
+290;25-34;Outro;Santo André;SP;Marketplace;Não
+291;45-54;Masculino;Santo André;SP;E-commerce;Sim
+292;45-54;Outro;Joinville;SC;Loja Física;Não
+293;18-24;Feminino;Caxias do Sul;RS;E-commerce;Sim
+294;55+;Masculino;Porto Alegre;RS;Loja Física;Não
+295;55+;Masculino;Belo Horizonte;MG;Loja Física;Não
+296;45-54;Masculino;Campinas;SP;Loja Física;Não
+297;45-54;Feminino;Uberlândia;MG;E-commerce;Sim
+298;35-44;Masculino;Porto Alegre;RS;Loja Física;Não
+299;25-34;Masculino;Florianópolis;SC;Loja Física;Não
+300;55+;Feminino;Londrina;PR;Loja Física;Sim
+301;25-34;Feminino;Londrina;PR;Loja Física;Sim
+302;45-54;Outro;Santo André;SP;Loja Física;Sim
+303;18-24;Outro;Rio de Janeiro;RJ;Loja Física;Não
+304;25-34;Outro;Florianópolis;SC;Loja Física;Não
+305;55+;Masculino;Curitiba;PR;Loja Física;Sim
+306;25-34;Outro;Joinville;SC;Marketplace;Não
+307;25-34;Feminino;Joinville;SC;Loja Física;Sim
+308;35-44;Masculino;Londrina;PR;Marketplace;Sim
+309;55+;Feminino;Caxias do Sul;RS;Loja Física;Não
+310;55+;Feminino;Caxias do Sul;RS;Marketplace;Não
+311;35-44;Feminino;Curitiba;PR;Loja Física;Não
+312;35-44;Outro;Rio de Janeiro;RJ;Loja Física;Não
+313;45-54;Feminino;Santo André;SP;Marketplace;Sim
+314;35-44;Masculino;Curitiba;PR;E-commerce;Sim
+315;18-24;Outro;Londrina;PR;Marketplace;Sim
+316;45-54;Outro;Campinas;SP;Marketplace;Sim
+317;25-34;Outro;Salvador;BA;Marketplace;Sim
+318;35-44;Feminino;Curitiba;PR;Loja Física;Sim
+319;45-54;Masculino;Rio de Janeiro;RJ;Marketplace;Sim
+320;55+;Feminino;Curitiba;PR;E-commerce;Não
+321;35-44;Feminino;Londrina;PR;E-commerce;Não
+322;45-54;Feminino;Curitiba;PR;Loja Física;Não
+323;18-24;Outro;Uberlândia;MG;Loja Física;Sim
+324;55+;Outro;Campinas;SP;Marketplace;Não
+325;25-34;Feminino;Belo Horizonte;MG;Loja Física;Não
+326;45-54;Outro;Florianópolis;SC;Marketplace;Não
+327;45-54;Feminino;Uberlândia;MG;Loja Física;Não
+328;55+;Feminino;Rio de Janeiro;RJ;Loja Física;Sim
+329;18-24;Outro;Florianópolis;SC;Loja Física;Sim
+330;25-34;Masculino;Curitiba;PR;Marketplace;Sim
+331;55+;Feminino;São Paulo;SP;E-commerce;Sim
+332;45-54;Masculino;Joinville;SC;Loja Física;Não
+333;55+;Outro;São Paulo;SP;E-commerce;Não
+334;45-54;Masculino;Santo André;SP;Loja Física;Sim
+335;25-34;Masculino;Florianópolis;SC;Marketplace;Não
+336;35-44;Feminino;Feira de Santana;BA;Loja Física;Não
+337;55+;Masculino;Londrina;PR;Marketplace;Sim
+338;18-24;Masculino;Belo Horizonte;MG;E-commerce;Não
+339;18-24;Outro;Londrina;PR;Loja Física;Sim
+340;45-54;Outro;Campinas;SP;E-commerce;Sim
+341;25-34;Masculino;Florianópolis;SC;Marketplace;Não
+342;18-24;Outro;Belo Horizonte;MG;E-commerce;Sim
+343;18-24;Masculino;Niterói;RJ;Marketplace;Sim
+344;18-24;Feminino;Feira de Santana;BA;Loja Física;Sim
+345;55+;Feminino;Joinville;SC;E-commerce;Sim
+346;55+;Outro;Salvador;BA;E-commerce;Sim
+347;25-34;Masculino;Campinas;SP;E-commerce;Não
+348;18-24;Outro;Feira de Santana;BA;E-commerce;Não
+349;35-44;Outro;Curitiba;PR;E-commerce;Não
+350;18-24;Outro;Niterói;RJ;E-commerce;Sim
+351;18-24;Feminino;Porto Alegre;RS;Loja Física;Não
+352;45-54;Feminino;Porto Alegre;RS;E-commerce;Sim
+353;35-44;Feminino;São Paulo;SP;E-commerce;Não
+354;18-24;Masculino;São Paulo;SP;E-commerce;Não
+355;18-24;Masculino;Joinville;SC;Loja Física;Não
+356;55+;Outro;Florianópolis;SC;E-commerce;Não
+357;45-54;Feminino;Campinas;SP;Loja Física;Sim
+358;45-54;Masculino;Florianópolis;SC;Loja Física;Não
+359;45-54;Masculino;Uberlândia;MG;Loja Física;Sim
+360;45-54;Feminino;Londrina;PR;E-commerce;Sim
+361;25-34;Outro;Uberlândia;MG;Marketplace;Não
+362;45-54;Masculino;Florianópolis;SC;Loja Física;Não
+363;35-44;Outro;Campinas;SP;E-commerce;Não
+364;45-54;Outro;Londrina;PR;Marketplace;Sim
+365;55+;Outro;Uberlândia;MG;Loja Física;Não
+366;45-54;Feminino;Belo Horizonte;MG;E-commerce;Não
+367;35-44;Feminino;Florianópolis;SC;E-commerce;Não
+368;55+;Masculino;Belo Horizonte;MG;Marketplace;Sim
+369;45-54;Outro;Porto Alegre;RS;Loja Física;Não
+370;18-24;Feminino;Feira de Santana;BA;Marketplace;Não
+371;25-34;Feminino;Niterói;RJ;Marketplace;Sim
+372;45-54;Masculino;Caxias do Sul;RS;E-commerce;Não
+373;55+;Outro;Joinville;SC;Marketplace;Não
+374;35-44;Outro;Florianópolis;SC;Marketplace;Sim
+375;35-44;Masculino;São Paulo;SP;Marketplace;Sim
+376;35-44;Feminino;Joinville;SC;Loja Física;Sim
+377;25-34;Outro;Campinas;SP;Marketplace;Sim
+378;45-54;Feminino;Londrina;PR;Marketplace;Sim
+379;45-54;Masculino;Belo Horizonte;MG;E-commerce;Não
+380;25-34;Feminino;São Paulo;SP;E-commerce;Não
+381;55+;Feminino;Curitiba;PR;E-commerce;Não
+382;45-54;Feminino;Campinas;SP;Loja Física;Não
+383;18-24;Masculino;Santo André;SP;E-commerce;Sim
+384;25-34;Outro;Porto Alegre;RS;Loja Física;Sim
+385;45-54;Masculino;Uberlândia;MG;E-commerce;Sim
+386;45-54;Masculino;Niterói;RJ;Marketplace;Sim
+387;45-54;Masculino;Londrina;PR;Marketplace;Sim
+388;18-24;Outro;Niterói;RJ;Loja Física;Sim
+389;25-34;Feminino;Uberlândia;MG;Loja Física;Não
+390;55+;Outro;Caxias do Sul;RS;E-commerce;Não
+391;55+;Masculino;Joinville;SC;E-commerce;Não
+392;55+;Masculino;Feira de Santana;BA;Marketplace;Não
+393;25-34;Feminino;Florianópolis;SC;Loja Física;Sim
+394;25-34;Feminino;Belo Horizonte;MG;Marketplace;Sim
+395;45-54;Outro;Joinville;SC;Loja Física;Não
+396;45-54;Outro;Curitiba;PR;Marketplace;Sim
+397;45-54;Feminino;Florianópolis;SC;Loja Física;Sim
+398;55+;Masculino;Uberlândia;MG;E-commerce;Sim
+399;25-34;Feminino;Curitiba;PR;Marketplace;Não
+400;45-54;Outro;Londrina;PR;E-commerce;Não
+401;55+;Masculino;Rio de Janeiro;RJ;Loja Física;Não
+402;25-34;Outro;Campinas;SP;E-commerce;Sim
+403;55+;Outro;Feira de Santana;BA;E-commerce;Sim
+404;35-44;Outro;Florianópolis;SC;E-commerce;Sim
+405;55+;Masculino;Feira de Santana;BA;E-commerce;Sim
+406;35-44;Masculino;Porto Alegre;RS;E-commerce;Não
+407;45-54;Masculino;Belo Horizonte;MG;Loja Física;Sim
+408;55+;Outro;Feira de Santana;BA;E-commerce;Sim
+409;25-34;Masculino;Florianópolis;SC;Loja Física;Não
+410;55+;Outro;Joinville;SC;Loja Física;Não
+411;35-44;Outro;Caxias do Sul;RS;E-commerce;Sim
+412;18-24;Feminino;Niterói;RJ;Marketplace;Sim
+413;25-34;Masculino;Porto Alegre;RS;Marketplace;Não
+414;45-54;Feminino;Salvador;BA;Loja Física;Não
+415;45-54;Feminino;Caxias do Sul;RS;Loja Física;Sim
+416;35-44;Feminino;Londrina;PR;E-commerce;Não
+417;18-24;Outro;Florianópolis;SC;E-commerce;Não
+418;55+;Feminino;Salvador;BA;Loja Física;Não
+419;45-54;Feminino;Salvador;BA;E-commerce;Não
+420;55+;Feminino;Belo Horizonte;MG;E-commerce;Sim
+421;45-54;Masculino;São Paulo;SP;Loja Física;Sim
+422;18-24;Feminino;Londrina;PR;Loja Física;Sim
+423;25-34;Feminino;Caxias do Sul;RS;Loja Física;Não
+424;35-44;Outro;Belo Horizonte;MG;Marketplace;Sim
+425;35-44;Outro;Campinas;SP;Marketplace;Sim
+426;18-24;Masculino;Curitiba;PR;Loja Física;Não
+427;55+;Masculino;São Paulo;SP;Marketplace;Não
+428;35-44;Masculino;São Paulo;SP;E-commerce;Sim
+429;25-34;Feminino;Curitiba;PR;Loja Física;Sim
+430;35-44;Feminino;Campinas;SP;Loja Física;Não
+431;25-34;Masculino;Salvador;BA;Marketplace;Sim
+432;45-54;Feminino;Florianópolis;SC;Marketplace;Sim
+433;45-54;Outro;Porto Alegre;RS;Marketplace;Não
+434;18-24;Masculino;Salvador;BA;Loja Física;Sim
+435;35-44;Feminino;Joinville;SC;E-commerce;Sim
+436;18-24;Masculino;Niterói;RJ;Marketplace;Não
+437;35-44;Masculino;Salvador;BA;Marketplace;Sim
+438;35-44;Outro;Caxias do Sul;RS;Loja Física;Sim
+439;18-24;Masculino;Londrina;PR;E-commerce;Sim
+440;35-44;Feminino;Florianópolis;SC;Loja Física;Não
+441;35-44;Outro;Feira de Santana;BA;Marketplace;Sim
+442;18-24;Masculino;Feira de Santana;BA;Marketplace;Sim
+443;25-34;Masculino;Campinas;SP;Loja Física;Não
+444;55+;Feminino;Joinville;SC;E-commerce;Não
+445;55+;Outro;Santo André;SP;Marketplace;Sim
+446;35-44;Masculino;Belo Horizonte;MG;Marketplace;Sim
+447;55+;Feminino;Salvador;BA;E-commerce;Sim
+448;25-34;Masculino;Uberlândia;MG;Loja Física;Sim
+449;45-54;Outro;Curitiba;PR;Marketplace;Sim
+450;18-24;Masculino;Belo Horizonte;MG;Marketplace;Sim
+451;25-34;Feminino;Porto Alegre;RS;E-commerce;Não
+452;25-34;Outro;Niterói;RJ;E-commerce;Sim
+453;35-44;Feminino;Salvador;BA;E-commerce;Sim
+454;45-54;Feminino;Belo Horizonte;MG;Marketplace;Não
+455;55+;Masculino;Campinas;SP;E-commerce;Sim
+456;55+;Outro;Belo Horizonte;MG;Marketplace;Sim
+457;18-24;Masculino;Rio de Janeiro;RJ;Loja Física;Sim
+458;45-54;Masculino;Londrina;PR;Loja Física;Sim
+459;25-34;Feminino;Joinville;SC;Loja Física;Não
+460;35-44;Masculino;Caxias do Sul;RS;Marketplace;Não
+461;18-24;Masculino;Santo André;SP;Loja Física;Sim
+462;45-54;Feminino;Curitiba;PR;E-commerce;Não
+463;45-54;Masculino;Santo André;SP;E-commerce;Sim
+464;55+;Masculino;Uberlândia;MG;E-commerce;Não
+465;25-34;Outro;Joinville;SC;Marketplace;Sim
+466;45-54;Masculino;Rio de Janeiro;RJ;Loja Física;Não
+467;35-44;Masculino;Porto Alegre;RS;Marketplace;Não
+468;18-24;Masculino;Feira de Santana;BA;Marketplace;Sim
+469;18-24;Masculino;Londrina;PR;Marketplace;Não
+470;25-34;Outro;São Paulo;SP;E-commerce;Não
+471;55+;Masculino;Curitiba;PR;Marketplace;Sim
+472;18-24;Outro;Caxias do Sul;RS;Marketplace;Sim
+473;25-34;Feminino;Curitiba;PR;E-commerce;Não
+474;35-44;Feminino;Feira de Santana;BA;E-commerce;Não
+475;25-34;Masculino;Rio de Janeiro;RJ;Marketplace;Sim
+476;25-34;Feminino;Rio de Janeiro;RJ;E-commerce;Não
+477;55+;Feminino;Curitiba;PR;Loja Física;Não
+478;35-44;Masculino;Uberlândia;MG;Loja Física;Sim
+479;55+;Masculino;Feira de Santana;BA;Loja Física;Não
+480;25-34;Feminino;Rio de Janeiro;RJ;E-commerce;Sim
+481;35-44;Masculino;Caxias do Sul;RS;Loja Física;Não
+482;55+;Outro;Feira de Santana;BA;Marketplace;Sim
+483;18-24;Masculino;Campinas;SP;Loja Física;Sim
+484;25-34;Masculino;São Paulo;SP;E-commerce;Não
+485;55+;Outro;Porto Alegre;RS;E-commerce;Sim
+486;25-34;Outro;São Paulo;SP;E-commerce;Sim
+487;18-24;Masculino;Campinas;SP;E-commerce;Sim
+488;45-54;Feminino;Niterói;RJ;Loja Física;Não
+489;25-34;Feminino;Caxias do Sul;RS;Loja Física;Sim
+490;45-54;Masculino;Uberlândia;MG;Loja Física;Sim
+491;45-54;Feminino;Caxias do Sul;RS;Marketplace;Não
+492;35-44;Feminino;São Paulo;SP;Loja Física;Não
+493;55+;Masculino;Rio de Janeiro;RJ;E-commerce;Não
+494;35-44;Outro;Londrina;PR;Marketplace;Não
+495;25-34;Masculino;Londrina;PR;E-commerce;Sim
+496;18-24;Feminino;Campinas;SP;Marketplace;Não
+497;25-34;Masculino;Salvador;BA;Loja Física;Sim
+498;25-34;Outro;Belo Horizonte;MG;E-commerce;Não
+499;25-34;Masculino;Salvador;BA;Marketplace;Não
+500;55+;Masculino;Feira de Santana;BA;Marketplace;Não
+501;55+;Masculino;Florianópolis;SC;E-commerce;Não
+502;18-24;Masculino;Niterói;RJ;Loja Física;Sim
+503;18-24;Outro;Florianópolis;SC;E-commerce;Sim
+504;25-34;Feminino;Belo Horizonte;MG;Marketplace;Sim
+505;18-24;Masculino;Feira de Santana;BA;Loja Física;Sim
+506;55+;Feminino;Salvador;BA;Loja Física;Não
+507;55+;Masculino;Caxias do Sul;RS;E-commerce;Não
+508;25-34;Outro;Belo Horizonte;MG;E-commerce;Não
+509;25-34;Outro;Caxias do Sul;RS;Marketplace;Não
+510;45-54;Feminino;Rio de Janeiro;RJ;Marketplace;Não
+511;18-24;Outro;Rio de Janeiro;RJ;Marketplace;Não
+512;25-34;Outro;Salvador;BA;E-commerce;Sim
+513;45-54;Masculino;Porto Alegre;RS;E-commerce;Sim
+514;35-44;Masculino;Niterói;RJ;Marketplace;Sim
+515;45-54;Masculino;Feira de Santana;BA;E-commerce;Sim
+516;35-44;Feminino;Rio de Janeiro;RJ;Loja Física;Sim
+517;45-54;Outro;Campinas;SP;E-commerce;Sim
+518;45-54;Feminino;Londrina;PR;Marketplace;Não
+519;55+;Outro;Campinas;SP;Marketplace;Sim
+520;18-24;Masculino;Niterói;RJ;E-commerce;Sim
+521;18-24;Masculino;Uberlândia;MG;E-commerce;Sim
+522;18-24;Outro;Curitiba;PR;Loja Física;Não
+523;18-24;Feminino;Joinville;SC;Marketplace;Sim
+524;25-34;Masculino;Joinville;SC;Loja Física;Não
+525;45-54;Outro;Rio de Janeiro;RJ;Marketplace;Não
+526;35-44;Masculino;Caxias do Sul;RS;Loja Física;Sim
+527;25-34;Masculino;Londrina;PR;E-commerce;Sim
+528;35-44;Outro;Curitiba;PR;Marketplace;Não
+529;18-24;Masculino;Rio de Janeiro;RJ;Loja Física;Não
+530;18-24;Feminino;Campinas;SP;E-commerce;Não
+531;18-24;Outro;Londrina;PR;Marketplace;Não
+532;45-54;Feminino;Niterói;RJ;Loja Física;Não
+533;45-54;Feminino;Campinas;SP;E-commerce;Sim
+534;55+;Masculino;Feira de Santana;BA;Loja Física;Sim
+535;35-44;Outro;Santo André;SP;E-commerce;Sim
+536;45-54;Outro;Florianópolis;SC;E-commerce;Não
+537;45-54;Feminino;Florianópolis;SC;Loja Física;Não
+538;55+;Outro;Salvador;BA;Marketplace;Sim
+539;25-34;Masculino;Campinas;SP;Loja Física;Sim
+540;45-54;Masculino;Rio de Janeiro;RJ;Marketplace;Não
+541;55+;Feminino;Rio de Janeiro;RJ;E-commerce;Sim
+542;55+;Feminino;Campinas;SP;Marketplace;Não
+543;55+;Feminino;Feira de Santana;BA;Loja Física;Não
+544;25-34;Masculino;Campinas;SP;Marketplace;Sim
+545;18-24;Feminino;Santo André;SP;Marketplace;Não
+546;45-54;Outro;Londrina;PR;E-commerce;Não
+547;35-44;Feminino;São Paulo;SP;Loja Física;Não
+548;35-44;Outro;Campinas;SP;Loja Física;Sim
+549;35-44;Feminino;Caxias do Sul;RS;Loja Física;Não
+550;35-44;Feminino;Feira de Santana;BA;E-commerce;Sim
+551;25-34;Feminino;Salvador;BA;Marketplace;Não
+552;35-44;Outro;Feira de Santana;BA;E-commerce;Sim
+553;25-34;Feminino;Niterói;RJ;Marketplace;Não
+554;18-24;Outro;Feira de Santana;BA;Loja Física;Sim
+555;25-34;Outro;Uberlândia;MG;Marketplace;Sim
+556;25-34;Masculino;Rio de Janeiro;RJ;Loja Física;Sim
+557;35-44;Outro;Curitiba;PR;Loja Física;Não
+558;55+;Feminino;Uberlândia;MG;Marketplace;Sim
+559;25-34;Feminino;Porto Alegre;RS;E-commerce;Não
+560;55+;Outro;Niterói;RJ;E-commerce;Não
+561;18-24;Feminino;Niterói;RJ;Loja Física;Não
+562;55+;Masculino;São Paulo;SP;Loja Física;Sim
+563;35-44;Outro;Porto Alegre;RS;E-commerce;Sim
+564;45-54;Masculino;Salvador;BA;Marketplace;Sim
+565;25-34;Feminino;Florianópolis;SC;Marketplace;Não
+566;45-54;Feminino;Caxias do Sul;RS;E-commerce;Não
+567;45-54;Feminino;Belo Horizonte;MG;Marketplace;Não
+568;18-24;Outro;Florianópolis;SC;Marketplace;Não
+569;35-44;Outro;Joinville;SC;Loja Física;Não
+570;35-44;Outro;Campinas;SP;E-commerce;Não
+571;25-34;Masculino;Uberlândia;MG;Marketplace;Sim
+572;45-54;Outro;Santo André;SP;E-commerce;Sim
+573;45-54;Feminino;Porto Alegre;RS;E-commerce;Não
+574;18-24;Outro;Londrina;PR;Marketplace;Sim
+575;55+;Outro;Belo Horizonte;MG;E-commerce;Não
+576;25-34;Outro;Joinville;SC;Marketplace;Sim
+577;45-54;Masculino;Belo Horizonte;MG;Marketplace;Não
+578;35-44;Outro;Porto Alegre;RS;Loja Física;Sim
+579;35-44;Feminino;Belo Horizonte;MG;E-commerce;Não
+580;45-54;Masculino;Uberlândia;MG;E-commerce;Sim
+581;45-54;Masculino;Salvador;BA;Marketplace;Sim
+582;55+;Feminino;Feira de Santana;BA;E-commerce;Sim
+583;25-34;Masculino;Salvador;BA;E-commerce;Não
+584;25-34;Feminino;Joinville;SC;Marketplace;Sim
+585;45-54;Feminino;Salvador;BA;Marketplace;Sim
+586;18-24;Feminino;Belo Horizonte;MG;E-commerce;Sim
+587;55+;Masculino;Salvador;BA;E-commerce;Sim
+588;45-54;Feminino;Niterói;RJ;E-commerce;Não
+589;18-24;Outro;Curitiba;PR;Loja Física;Não
+590;55+;Masculino;Campinas;SP;Loja Física;Sim
+591;25-34;Outro;Porto Alegre;RS;E-commerce;Não
+592;45-54;Outro;Rio de Janeiro;RJ;Marketplace;Não
+593;18-24;Feminino;Rio de Janeiro;RJ;E-commerce;Não
+594;45-54;Outro;Caxias do Sul;RS;Loja Física;Não
+595;25-34;Masculino;Londrina;PR;E-commerce;Sim
+596;25-34;Masculino;Rio de Janeiro;RJ;Marketplace;Sim
+597;18-24;Feminino;Florianópolis;SC;Marketplace;Sim
+598;55+;Outro;Londrina;PR;Loja Física;Sim
+599;18-24;Masculino;Porto Alegre;RS;Marketplace;Sim
+600;45-54;Masculino;Londrina;PR;Marketplace;Não
+601;25-34;Outro;Curitiba;PR;Marketplace;Sim
+602;18-24;Outro;Uberlândia;MG;Marketplace;Não
+603;45-54;Masculino;Florianópolis;SC;Marketplace;Sim
+604;18-24;Feminino;Belo Horizonte;MG;Loja Física;Sim
+605;55+;Masculino;Feira de Santana;BA;E-commerce;Não
+606;18-24;Outro;Belo Horizonte;MG;E-commerce;Sim
+607;35-44;Masculino;Caxias do Sul;RS;Loja Física;Sim
+608;18-24;Outro;Porto Alegre;RS;Marketplace;Não
+609;55+;Masculino;Rio de Janeiro;RJ;Marketplace;Sim
+610;45-54;Feminino;Belo Horizonte;MG;E-commerce;Não
+611;25-34;Masculino;São Paulo;SP;E-commerce;Não
+612;45-54;Outro;Feira de Santana;BA;Loja Física;Sim
+613;18-24;Masculino;Salvador;BA;Marketplace;Sim
+614;45-54;Outro;Uberlândia;MG;E-commerce;Sim
+615;25-34;Masculino;Uberlândia;MG;E-commerce;Não
+616;45-54;Outro;Londrina;PR;E-commerce;Não
+617;18-24;Masculino;Porto Alegre;RS;Marketplace;Sim
+618;18-24;Feminino;Salvador;BA;Marketplace;Não
+619;25-34;Outro;Feira de Santana;BA;E-commerce;Não
+620;25-34;Feminino;Florianópolis;SC;E-commerce;Sim
+621;18-24;Masculino;Londrina;PR;E-commerce;Não
+622;55+;Outro;Santo André;SP;Marketplace;Sim
+623;55+;Outro;Caxias do Sul;RS;Marketplace;Sim
+624;45-54;Feminino;Curitiba;PR;Marketplace;Não
+625;18-24;Outro;Rio de Janeiro;RJ;Loja Física;Não
+626;25-34;Masculino;Feira de Santana;BA;E-commerce;Não
+627;35-44;Masculino;Niterói;RJ;Marketplace;Sim
+628;45-54;Masculino;Joinville;SC;Loja Física;Não
+629;18-24;Feminino;Londrina;PR;E-commerce;Não
+630;18-24;Masculino;Campinas;SP;E-commerce;Não
+631;55+;Masculino;Santo André;SP;Loja Física;Não
+632;45-54;Feminino;Florianópolis;SC;E-commerce;Sim
+633;45-54;Feminino;Salvador;BA;Marketplace;Não
+634;45-54;Masculino;Caxias do Sul;RS;Loja Física;Sim
+635;35-44;Outro;Campinas;SP;E-commerce;Não
+636;18-24;Masculino;Porto Alegre;RS;E-commerce;Sim
+637;18-24;Feminino;Feira de Santana;BA;Marketplace;Sim
+638;45-54;Masculino;Rio de Janeiro;RJ;E-commerce;Sim
+639;18-24;Feminino;Caxias do Sul;RS;Loja Física;Sim
+640;45-54;Outro;Feira de Santana;BA;Marketplace;Sim
+641;55+;Outro;Curitiba;PR;Loja Física;Não
+642;55+;Masculino;Feira de Santana;BA;Marketplace;Sim
+643;18-24;Feminino;Porto Alegre;RS;Marketplace;Não
+644;45-54;Outro;Joinville;SC;Marketplace;Sim
+645;35-44;Feminino;Uberlândia;MG;E-commerce;Sim
+646;55+;Outro;Niterói;RJ;Marketplace;Não
+647;55+;Outro;Feira de Santana;BA;Loja Física;Sim
+648;35-44;Outro;Niterói;RJ;Loja Física;Sim
+649;18-24;Feminino;Joinville;SC;Marketplace;Não
+650;55+;Feminino;Joinville;SC;E-commerce;Sim
+651;18-24;Feminino;Florianópolis;SC;Loja Física;Sim
+652;25-34;Feminino;Porto Alegre;RS;Loja Física;Não
+653;25-34;Masculino;Caxias do Sul;RS;Marketplace;Não
+654;35-44;Feminino;Rio de Janeiro;RJ;Loja Física;Sim
+655;25-34;Outro;Caxias do Sul;RS;Marketplace;Não
+656;45-54;Feminino;Porto Alegre;RS;E-commerce;Não
+657;18-24;Outro;Florianópolis;SC;E-commerce;Sim
+658;25-34;Outro;Joinville;SC;Marketplace;Não
+659;25-34;Feminino;Salvador;BA;E-commerce;Sim
+660;25-34;Masculino;Porto Alegre;RS;Marketplace;Sim
+661;45-54;Feminino;Curitiba;PR;Marketplace;Não
+662;55+;Feminino;Rio de Janeiro;RJ;Loja Física;Não
+663;18-24;Masculino;Curitiba;PR;E-commerce;Sim
+664;45-54;Outro;Feira de Santana;BA;Marketplace;Não
+665;35-44;Outro;Santo André;SP;Loja Física;Sim
+666;55+;Masculino;Florianópolis;SC;E-commerce;Não
+667;25-34;Masculino;Campinas;SP;Marketplace;Não
+668;35-44;Masculino;Uberlândia;MG;Marketplace;Não
+669;18-24;Outro;Florianópolis;SC;E-commerce;Não
+670;18-24;Outro;Rio de Janeiro;RJ;E-commerce;Não
+671;45-54;Feminino;Salvador;BA;Marketplace;Não
+672;35-44;Outro;Santo André;SP;Marketplace;Não
+673;35-44;Outro;Curitiba;PR;Loja Física;Não
+674;18-24;Masculino;Florianópolis;SC;Marketplace;Sim
+675;25-34;Outro;Porto Alegre;RS;Marketplace;Sim
+676;18-24;Masculino;Feira de Santana;BA;Marketplace;Não
+677;25-34;Masculino;Porto Alegre;RS;E-commerce;Não
+678;18-24;Masculino;São Paulo;SP;Loja Física;Não
+679;55+;Masculino;Florianópolis;SC;E-commerce;Não
+680;45-54;Feminino;Londrina;PR;E-commerce;Sim
+681;55+;Masculino;Curitiba;PR;Marketplace;Sim
+682;18-24;Feminino;Salvador;BA;Marketplace;Sim
+683;55+;Masculino;Uberlândia;MG;E-commerce;Não
+684;18-24;Feminino;Londrina;PR;Loja Física;Sim
+685;55+;Feminino;Niterói;RJ;Marketplace;Sim
+686;18-24;Outro;Uberlândia;MG;Marketplace;Sim
+687;18-24;Outro;São Paulo;SP;Marketplace;Não
+688;35-44;Masculino;Florianópolis;SC;Marketplace;Não
+689;55+;Masculino;Niterói;RJ;Loja Física;Sim
+690;25-34;Masculino;Niterói;RJ;Loja Física;Sim
+691;55+;Masculino;Feira de Santana;BA;E-commerce;Sim
+692;25-34;Outro;Belo Horizonte;MG;Marketplace;Não
+693;25-34;Outro;Uberlândia;MG;Marketplace;Sim
+694;55+;Masculino;Campinas;SP;Loja Física;Não
+695;35-44;Outro;Londrina;PR;Marketplace;Não
+696;55+;Outro;Porto Alegre;RS;E-commerce;Não
+697;18-24;Feminino;Curitiba;PR;Loja Física;Sim
+698;35-44;Feminino;Caxias do Sul;RS;Loja Física;Não
+699;45-54;Feminino;Londrina;PR;E-commerce;Não
+700;25-34;Outro;Florianópolis;SC;Marketplace;Sim
+701;25-34;Outro;Feira de Santana;BA;Loja Física;Não
+702;18-24;Masculino;Porto Alegre;RS;Marketplace;Sim
+703;55+;Masculino;Feira de Santana;BA;Loja Física;Não
+704;25-34;Feminino;Joinville;SC;E-commerce;Sim
+705;25-34;Feminino;Feira de Santana;BA;Marketplace;Sim
+706;55+;Masculino;Londrina;PR;Marketplace;Sim
+707;55+;Masculino;Salvador;BA;E-commerce;Sim
+708;45-54;Feminino;Rio de Janeiro;RJ;Loja Física;Sim
+709;25-34;Masculino;Feira de Santana;BA;E-commerce;Não
+710;25-34;Outro;Rio de Janeiro;RJ;E-commerce;Não
+711;18-24;Masculino;Londrina;PR;Marketplace;Não
+712;55+;Outro;Santo André;SP;E-commerce;Não
+713;45-54;Outro;Florianópolis;SC;E-commerce;Não
+714;55+;Feminino;Florianópolis;SC;E-commerce;Sim
+715;35-44;Feminino;Joinville;SC;E-commerce;Não
+716;55+;Masculino;Florianópolis;SC;E-commerce;Sim
+717;55+;Outro;Rio de Janeiro;RJ;E-commerce;Sim
+718;25-34;Feminino;Rio de Janeiro;RJ;Marketplace;Sim
+719;45-54;Feminino;Porto Alegre;RS;Marketplace;Sim
+720;45-54;Masculino;Londrina;PR;Marketplace;Sim
+721;18-24;Masculino;Caxias do Sul;RS;Loja Física;Sim
+722;25-34;Outro;Florianópolis;SC;Marketplace;Sim
+723;18-24;Masculino;Florianópolis;SC;E-commerce;Sim
+724;55+;Outro;Joinville;SC;Marketplace;Sim
+725;18-24;Masculino;Caxias do Sul;RS;E-commerce;Não
+726;25-34;Masculino;Feira de Santana;BA;E-commerce;Sim
+727;55+;Outro;Salvador;BA;Marketplace;Não
+728;45-54;Outro;Niterói;RJ;Marketplace;Sim
+729;45-54;Masculino;Niterói;RJ;Loja Física;Sim
+730;25-34;Outro;Niterói;RJ;Loja Física;Sim
+731;55+;Outro;Curitiba;PR;Loja Física;Sim
+732;55+;Outro;Curitiba;PR;Loja Física;Não
+733;35-44;Masculino;Joinville;SC;Marketplace;Não
+734;45-54;Feminino;Niterói;RJ;Marketplace;Sim
+735;35-44;Feminino;Curitiba;PR;Loja Física;Sim
+736;35-44;Masculino;Uberlândia;MG;Loja Física;Sim
+737;55+;Masculino;Florianópolis;SC;E-commerce;Sim
+738;45-54;Feminino;Caxias do Sul;RS;Loja Física;Sim
+739;35-44;Outro;Londrina;PR;E-commerce;Não
+740;45-54;Masculino;Joinville;SC;E-commerce;Não
+741;55+;Outro;Niterói;RJ;E-commerce;Não
+742;45-54;Outro;Uberlândia;MG;Loja Física;Sim
+743;45-54;Outro;Porto Alegre;RS;Loja Física;Sim
+744;35-44;Outro;Niterói;RJ;Marketplace;Sim
+745;18-24;Masculino;Niterói;RJ;Loja Física;Não
+746;18-24;Masculino;Joinville;SC;E-commerce;Sim
+747;55+;Masculino;Belo Horizonte;MG;Marketplace;Não
+748;55+;Masculino;Londrina;PR;Loja Física;Não
+749;25-34;Outro;Curitiba;PR;Marketplace;Não
+750;55+;Outro;Rio de Janeiro;RJ;Marketplace;Sim
+751;18-24;Feminino;Florianópolis;SC;Loja Física;Sim
+752;35-44;Feminino;Rio de Janeiro;RJ;E-commerce;Não
+753;55+;Masculino;Curitiba;PR;Marketplace;Sim
+754;35-44;Outro;Santo André;SP;Marketplace;Não
+755;25-34;Outro;Uberlândia;MG;Loja Física;Não
+756;35-44;Masculino;Curitiba;PR;E-commerce;Sim
+757;55+;Feminino;Florianópolis;SC;E-commerce;Sim
+758;55+;Outro;Feira de Santana;BA;E-commerce;Não
+759;25-34;Feminino;Londrina;PR;E-commerce;Não
+760;45-54;Masculino;Florianópolis;SC;E-commerce;Sim
+761;25-34;Feminino;Curitiba;PR;E-commerce;Não
+762;35-44;Masculino;Florianópolis;SC;E-commerce;Sim
+763;18-24;Outro;Londrina;PR;Loja Física;Não
+764;25-34;Outro;Uberlândia;MG;E-commerce;Sim
+765;45-54;Outro;Porto Alegre;RS;Loja Física;Sim
+766;35-44;Masculino;Porto Alegre;RS;Loja Física;Sim
+767;55+;Feminino;Salvador;BA;Loja Física;Sim
+768;45-54;Outro;São Paulo;SP;Loja Física;Sim
+769;35-44;Outro;Feira de Santana;BA;E-commerce;Não
+770;45-54;Masculino;Joinville;SC;Marketplace;Não
+771;55+;Masculino;Curitiba;PR;Loja Física;Não
+772;55+;Feminino;Curitiba;PR;E-commerce;Sim
+773;55+;Feminino;Curitiba;PR;E-commerce;Sim
+774;25-34;Feminino;Santo André;SP;Marketplace;Sim
+775;55+;Feminino;Uberlândia;MG;Loja Física;Não
+776;45-54;Outro;Niterói;RJ;E-commerce;Não
+777;45-54;Masculino;Niterói;RJ;E-commerce;Não
+778;35-44;Feminino;Uberlândia;MG;Loja Física;Sim
+779;18-24;Outro;Florianópolis;SC;E-commerce;Sim
+780;45-54;Masculino;Joinville;SC;Loja Física;Sim
+781;25-34;Feminino;Curitiba;PR;E-commerce;Sim
+782;45-54;Feminino;Feira de Santana;BA;E-commerce;Sim
+783;25-34;Masculino;Curitiba;PR;Loja Física;Não
+784;45-54;Outro;Curitiba;PR;E-commerce;Não
+785;55+;Outro;Uberlândia;MG;E-commerce;Não
+786;18-24;Feminino;Campinas;SP;Marketplace;Sim
+787;35-44;Feminino;Florianópolis;SC;E-commerce;Não
+788;18-24;Feminino;Feira de Santana;BA;Marketplace;Não
+789;25-34;Outro;Curitiba;PR;E-commerce;Não
+790;18-24;Masculino;Caxias do Sul;RS;Loja Física;Não
+791;35-44;Outro;Niterói;RJ;E-commerce;Não
+792;35-44;Feminino;Joinville;SC;E-commerce;Não
+793;25-34;Masculino;Curitiba;PR;Loja Física;Sim
+794;18-24;Masculino;Caxias do Sul;RS;Loja Física;Não
+795;18-24;Feminino;São Paulo;SP;Marketplace;Sim
+796;55+;Masculino;Campinas;SP;Loja Física;Não
+797;18-24;Outro;Florianópolis;SC;E-commerce;Não
+798;35-44;Feminino;Rio de Janeiro;RJ;Marketplace;Sim
+799;18-24;Masculino;Rio de Janeiro;RJ;Marketplace;Não
+800;45-54;Feminino;Feira de Santana;BA;Marketplace;Não

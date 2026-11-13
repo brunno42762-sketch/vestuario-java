@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clientes</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Changa+One:ital@0;1&family=Special+Gothic+Condensed+One&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe" crossorigin="anonymous">
+    <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-1a/pXj49ZQ1aHEmrJ+gMw1otqoVsYwlEnlD8mIfY2TV03r20Y0CN7uqx1tQogjPL" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/mensagens.css}">
+</head>
+<body>
+<nav class="navbar sm:navbar-expand bg-1 fg-2">
+  <div class="container-fluid">
+    <a class="navbar-brand" th:href="@{/}">Vestuário</a>
+    <button class="btn-icon navbar-toggler" type="button" data-bs-toggle="drawer" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon" aria-hidden="true"></span>
+    </button>
+    <dialog class="drawer drawer-end" tabindex="-1" id="navbarNav" aria-labelledby="navbarNavLabel">
+      <div class="drawer-header">
+        <h5 class="drawer-title" id="navbarNavLabel">Menu</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="drawer" aria-label="Close"></button>
+      </div>
+      <div class="drawer-body">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/admin}">Painel</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/admin/clientes/novo}">Criar</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" th:href="@{/admin/clientes}">Listar</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/admin/pedidos}">Pedidos</a>
+          </li>
+        </ul>
+      </div>
+    </dialog>
+  </div>
+</nav>
+
+<main class="container">
+    <div class="cabecalho-pagina">
+        <h2 class="titulo-cabecalho-cartao">Lista de clientes</h2>
+
+        <nav class="alternar-tipo" aria-label="Tipo de lista">
+            <a th:href="@{/admin/produtos}">Produto</a>
+            <a th:href="@{/admin/clientes}" aria-current="page">Cliente</a>
+        </nav>
+    </div>
+
+    <div class="alerta alerta-sucesso" th:if="${sucesso}" th:text="${sucesso}">Cliente criado.</div>
+    <div class="alerta alerta-erro" th:if="${erro}" th:text="${erro}">Erro</div>
+
+    <div class="cartao-lista">
+        <table class="lista">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Faixa etária</th>
+                    <th scope="col">Gênero</th>
+                    <th scope="col">Cidade / UF</th>
+                    <th scope="col">Canal preferido</th>
+                    <th scope="col">Fidelidade</th>
+                    <th scope="col">Entrega</th>
+                    <th scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="cliente : ${clientes}">
+                    <td th:text="${cliente.idCliente}">1</td>
+                    <td th:text="${cliente.faixaEtaria}">25-34</td>
+                    <td th:text="${cliente.genero}">Feminino</td>
+                    <td th:text="|${cliente.cidade} / ${cliente.estado}|">Curitiba / PR</td>
+                    <td th:text="${cliente.canalPreferido?.nome}">E-commerce</td>
+                    <td th:text="${cliente.clienteFidelidade} ? 'Sim' : 'Não'">Sim</td>
+                    <td th:text="${cliente.entrega != null} ? |${cliente.entrega.cidadeEntrega} / ${cliente.entrega.estadoEntrega}| : '—'">Curitiba / PR</td>
+                    <td class="acoes">
+                        <a class="action-btn" th:href="@{/admin/clientes/{id}/editar(id=${cliente.idCliente})}">Editar</a>
+                        <form class="form-inline" method="post"
+                              th:action="@{/admin/clientes/{id}/excluir(id=${cliente.idCliente})}"
+                              onsubmit="return confirm('Excluir este cliente?')">
+                            <button type="submit" class="action-btn botao-link">Remover</button>
+                        </form>
+                    </td>
+                </tr>
+                <tr th:if="${#lists.isEmpty(clientes)}">
+                    <td colspan="8">Nenhum cliente cadastrado.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+</body>
+</html>

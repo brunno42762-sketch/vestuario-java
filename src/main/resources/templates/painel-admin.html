@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel do administrador</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Changa+One:ital@0;1&family=Special+Gothic+Condensed+One&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe" crossorigin="anonymous">
+    <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-1a/pXj49ZQ1aHEmrJ+gMw1otqoVsYwlEnlD8mIfY2TV03r20Y0CN7uqx1tQogjPL" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/mensagens.css}">
+</head>
+<body>
+<nav class="navbar sm:navbar-expand bg-1 fg-2">
+  <div class="container-fluid">
+    <a class="navbar-brand" th:href="@{/}">Vestuário</a>
+    <button class="btn-icon navbar-toggler" type="button" data-bs-toggle="drawer" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon" aria-hidden="true"></span>
+    </button>
+    <dialog class="drawer drawer-end" tabindex="-1" id="navbarNav" aria-labelledby="navbarNavLabel">
+      <div class="drawer-header">
+        <h5 class="drawer-title" id="navbarNavLabel">Menu</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="drawer" aria-label="Close"></button>
+      </div>
+      <div class="drawer-body">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" th:href="@{/admin}">Painel</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/admin/produtos}">Produtos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/admin/clientes}">Clientes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/admin/pedidos}">Pedidos</a>
+          </li>
+        </ul>
+      </div>
+    </dialog>
+  </div>
+</nav>
+
+<main class="container">
+    <div class="cabecalho-pagina">
+        <h2 class="titulo-cabecalho-cartao">Painel do administrador</h2>
+        <a class="link-loja" th:href="@{/}">Ver a loja</a>
+    </div>
+
+    <!-- Um cartão por área: total cadastrado + atalhos -->
+    <section class="painel-grade" aria-label="Resumo">
+        <article class="painel-cartao">
+            <h3 class="painel-titulo">Produtos</h3>
+            <p class="painel-numero" th:text="${totalProdutos}">12</p>
+            <p class="painel-legenda">cadastrados</p>
+            <div class="painel-acoes">
+                <a class="botao-primario" th:href="@{/admin/produtos}">Ver lista</a>
+                <a class="botao-secundario" th:href="@{/admin/produtos/novo}">Novo produto</a>
+            </div>
+        </article>
+
+        <article class="painel-cartao">
+            <h3 class="painel-titulo">Clientes</h3>
+            <p class="painel-numero" th:text="${totalClientes}">8</p>
+            <p class="painel-legenda">cadastrados</p>
+            <div class="painel-acoes">
+                <a class="botao-primario" th:href="@{/admin/clientes}">Ver lista</a>
+                <a class="botao-secundario" th:href="@{/admin/clientes/novo}">Novo cliente</a>
+            </div>
+        </article>
+
+        <article class="painel-cartao">
+            <h3 class="painel-titulo">Pedidos</h3>
+            <p class="painel-numero" th:text="${#numbers.formatInteger(totalPedidos, 1, 'POINT')}">5.999</p>
+            <ul class="painel-status">
+                <li th:each="item : ${pedidosPorStatus}">
+                    <!-- Cada status leva à lista de pedidos já filtrada -->
+                    <a class="link-status" th:href="@{/admin/pedidos(status=${item.key})}">
+                        <span class="status" th:classappend="|status-${item.key}|" th:text="${item.key.nome}">Concluído</span>
+                    </a>
+                    <span th:text="${#numbers.formatInteger(item.value, 1, 'POINT')}">2</span>
+                </li>
+            </ul>
+            <div class="painel-acoes">
+                <a class="botao-primario" th:href="@{/admin/pedidos}">Ver pedidos</a>
+            </div>
+        </article>
+    </section>
+
+    <!-- Regra de negócio: produtos com estoque atual <= estoque mínimo -->
+    <section class="cartao-lista painel-repor" aria-labelledby="titulo-repor">
+        <h3 class="painel-titulo" id="titulo-repor">Produtos para repor</h3>
+
+        <p th:if="${#lists.isEmpty(produtosParaRepor)}">Nenhum produto abaixo do estoque mínimo.</p>
+
+        <table class="lista" th:unless="${#lists.isEmpty(produtosParaRepor)}">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Produto</th>
+                    <th scope="col">Estoque atual</th>
+                    <th scope="col">Estoque mínimo</th>
+                    <th scope="col">Reposição</th>
+                    <th scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="produto : ${produtosParaRepor}">
+                    <td th:text="${produto.idProduto}">3</td>
+                    <td th:text="|${produto.categoria} ${produto.subcategoria} – ${produto.cor}|">Moletom Com capuz – Cinza</td>
+                    <td th:text="${produto.estoqueAtual}">6</td>
+                    <td th:text="${produto.estoqueMinimo}">12</td>
+                    <td th:text="|${produto.tempoReposicaoDias} dias (${produto.fornecedor})|">25 dias (Malharia Serra)</td>
+                    <td class="acoes">
+                        <a class="action-btn" th:href="@{/admin/produtos/{id}/editar(id=${produto.idProduto})}">Editar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
+</body>
+</html>

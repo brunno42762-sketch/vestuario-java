@@ -1,0 +1,530 @@
+@import url('https://fonts.google.com');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  scrollbar-gutter: auto;
+}
+
+.container{
+  font-family: "Special Gothic Condensed One", sans-serif;
+  letter-spacing: 1px;
+  font-weight: 200;
+  color: white;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+body {
+  background-color: #6D72C3;
+}
+
+.navbar {
+  background-color: #031926;
+  width: 100%;
+}
+
+.navbar-brand {
+  font-family: 'Changa One';
+  padding-left: 5px;
+  font-size: 25px;
+  margin-right: 15px;
+}
+
+.nav-item {
+  color: white;
+  margin-right: 20px;
+}
+
+.navbar .nav-link.active {
+  text-decoration: underline;
+  text-decoration-color: #FF9770;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 8px;
+}
+
+#navbarNav {
+  background-color: #031926;
+}
+
+.titulo-cabecalho-cartao {
+  font-size: 30px;
+  color:#E0F2E9;
+  font-family: 'Changa one';
+  max-width: 90%;
+  margin-top: 40px;
+  margin-bottom: 1%;
+  margin-left: auto;
+  margin-right: auto;
+  
+}
+
+.cartao-cabecalho {
+  color: #6D72C3;
+}
+
+header {
+  background-color: white;
+  margin-bottom: 20px;
+  
+}
+
+h1 {
+  color: #FF9770;
+}
+
+ul {
+  color: white;
+}
+
+li a {
+  color: white;
+  text-decoration: none;
+}
+
+li a:visited {
+  color: white;
+  text-decoration: none;
+}
+
+h1 {
+  font-size: 30px;
+}
+
+form, .cartao-lista {
+  padding: 30px;
+  background-color: #E0F2E9;
+  gap: 10px 15px;
+  max-width: 90%;
+  margin: 0 auto;
+  font-size: 15px;
+  color: black;
+  border-radius: 12px;
+  margin-bottom: 5%;
+}
+
+fieldset {
+  border: 0;
+  border-top: 2px solid #6D72C359;
+}
+
+legend {
+  font-family: 'Changa One';
+  float: none;
+  width: auto;
+  margin: 0;
+  padding: 0 12px 0 0;
+  font-size: 22px;
+  color: #4A4F9E;
+}
+
+.campos {
+  display: grid;
+  grid-template-columns: 1fr; 
+  gap: 4px;
+  color: #031926;
+  padding: 5px;
+}
+
+.btn-criar {
+  color: #031926;
+  font-family: 'Changa One';
+  font-size: 20px;
+  background-color: #FF9770;
+  border-radius: 8px;
+  width: 10%;
+  height: 60px;
+  margin-top: 10px;
+  border-style: solid;
+  border: none;
+}
+
+form button {
+  grid-column: 1 / -1;
+}
+
+label {
+  padding-left: 5px;
+}
+
+input, select {
+  background-color: white;
+  color:#031926;
+  border-color: #6D72C3;
+  border-width: 2px;
+  outline: none;
+  box-shadow: none;
+  border-style: solid;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+option {
+  background-color: white;
+  color: #031926;
+  padding: 8px;
+  font-family: inherit;
+}
+
+.lista {
+  width: 100%;
+}
+
+th {
+  font-size: 20px;
+  color: #4A4F9E;
+  padding: 3px;
+}
+
+td {
+  padding: 3px;
+  background-color: white;
+  border-color: #6D72C3;
+  border-width: 2px;
+  outline: none;
+  box-shadow: none;
+  border-style: solid;
+  border-radius: 5px;
+}
+
+.action-btn {
+  color:#031926;
+  text-decoration-color: #FF9770;
+}
+
+@media (max-width: 575.98px) {
+
+  #navbarNav {
+    background-color: #031926;
+    margin: 10px;
+    height: 50%;
+  }
+
+  #navbarNav .drawer-header {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  #navbarNav .drawer-title {
+    font-family: "Changa One", sans-serif;
+    margin: 8px;
+    font-size: 40px;
+    color: white;
+  }
+
+  #navbarNav .navbar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  #navbarNav .nav-link {
+    display: block;
+    padding: 4px 8px;
+    font-size: 20px;
+    color: white;
+  }
+
+  .btn-criar {
+    width: 20%;
+  }
+
+}
+
+/* ---------- Seletor Produto / Cliente (páginas de criar) ---------- */
+
+.cabecalho-pagina {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  max-width: 90%;
+  margin: 40px auto 1%;
+}
+
+/* dentro do cabeçalho, quem alinha é o flex: tira o max-width e as margens do título */
+.cabecalho-pagina .titulo-cabecalho-cartao {
+  max-width: none;
+  margin: 0;
+}
+
+.alternar-tipo {
+  display: flex;
+  gap: 6px;
+  padding: 4px;
+  background-color: #031926;
+  border-radius: 8px;
+}
+
+.alternar-tipo a {
+  padding: 7px 18px;
+  border-radius: 5px;
+  font-family: 'Changa One', sans-serif;
+  font-size: 18px;
+  color: #E0F2E9;
+  text-decoration: none;
+}
+
+.alternar-tipo a:hover {
+  color: #8EE3EF;
+}
+
+.alternar-tipo a[aria-current="page"] {
+  background-color: #8EE3EF;
+  color: #031926;
+}
+
+.alternar-tipo a:focus-visible {
+  outline: 3px solid #FF9770;
+  outline-offset: 2px;
+}
+
+/* ---------- Página inicial ---------- */
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 32px;
+  align-items: center;
+  max-width: 90%;
+  margin: 40px auto 0;
+  padding: 40px;
+  background-color: #031926;
+  color: #E0F2E9;
+  border-radius: 12px;
+}
+
+.hero-eyebrow {
+  margin-bottom: 12px;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: #8EE3EF;
+}
+
+.hero-titulo {
+  margin-bottom: 16px;
+  font-family: 'Changa One', sans-serif;
+  font-size: clamp(44px, 8vw, 84px);
+  line-height: 1;
+  color: #E0F2E9;
+}
+
+.hero-texto {
+  max-width: 34ch;
+  margin-bottom: 28px;
+  font-size: 22px;
+  line-height: 1.3;
+}
+
+.hero-acoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.btn-hero {
+  display: inline-block;
+  padding: 14px 28px;
+  border: 2px solid #FF9770;
+  border-radius: 8px;
+  background-color: #FF9770;
+  font-family: 'Changa One', sans-serif;
+  font-size: 20px;
+  color: #031926;
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.btn-hero:hover {
+  background-color: #E0F2E9;
+  border-color: #E0F2E9;
+  color: #031926;
+}
+
+.btn-hero.secundario {
+  background-color: transparent;
+  border-color: #E0F2E9;
+  color: #E0F2E9;
+}
+
+.btn-hero.secundario:hover {
+  background-color: #8EE3EF;
+  border-color: #8EE3EF;
+  color: #031926;
+}
+
+.btn-hero:focus-visible {
+  outline: 3px solid #8EE3EF;
+  outline-offset: 3px;
+}
+
+/* cartela de cores: amostras de tecido, como a coleção é apresentada */
+.cartela {
+  padding: 20px;
+  background-color: #E0F2E9;
+  color: #031926;
+  border-radius: 12px;
+}
+
+.cartela-titulo {
+  margin-bottom: 14px;
+  font-family: 'Changa One', sans-serif;
+  font-size: 22px;
+  color: #4A4F9E;
+}
+
+.cartela-grade {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px 12px;
+}
+
+.amostra {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 15px;
+}
+
+.amostra-cor {
+  display: block;
+  height: 56px;
+  border-radius: 6px;
+  background-color: var(--cor);
+  box-shadow: inset 0 0 0 1px rgba(3, 25, 38, 0.15);
+}
+
+/* grades de conteúdo: mesma largura do título e dos cartões das outras páginas */
+.secao-grade {
+  display: grid;
+  gap: 20px;
+  max-width: 90%;
+  margin: 0 auto 48px;
+}
+
+.categorias {
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+.categoria-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 24px;
+  background-color: #031926;
+  color: #E0F2E9;
+  border-radius: 12px;
+  text-decoration: none;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+
+.categoria-nome {
+  font-family: 'Changa One', sans-serif;
+  font-size: 26px;
+}
+
+.categoria-sub {
+  font-size: 16px;
+}
+
+.vitrine {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.produto-card {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background-color: #E0F2E9;
+  color: #031926;
+  border-radius: 12px;
+}
+
+.produto-cor {
+  height: 150px;
+  background-color: var(--cor);
+}
+
+.produto-info {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px 18px 20px;
+}
+
+.produto-categoria {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #4A4F9E;
+}
+
+.produto-nome {
+  font-family: 'Changa One', sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  color: #031926;
+}
+
+.produto-marca {
+  font-size: 16px;
+}
+
+.produto-preco {
+  margin-top: auto;
+  padding-top: 8px;
+  font-family: 'Changa One', sans-serif;
+  font-size: 26px;
+}
+
+.rodape {
+  padding: 20px 16px;
+  background-color: #031926;
+  font-family: "Special Gothic Condensed One", sans-serif;
+  letter-spacing: 1px;
+  text-align: center;
+  color: #E0F2E9;
+}
+
+@media (max-width: 800px) {
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 24px;
+  }
+}
+
+/* faixa no topo da página pública: acesso à área do administrador */
+.barra-admin {
+  padding: 6px 8px;
+  background-color: #0A2D40;
+  font-family: "Special Gothic Condensed One", sans-serif;
+  font-size: 15px;
+  letter-spacing: 1px;
+}
+
+.barra-admin a {
+  color: #8EE3EF;
+  text-decoration: none;
+}
+
+.barra-admin a:hover {
+  color: #E0F2E9;
+  text-decoration: underline;
+  text-decoration-color: #FF9770;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 4px;
+}
+
+.barra-admin a:focus-visible {
+  outline: 3px solid #FF9770;
+  outline-offset: 2px;
+}

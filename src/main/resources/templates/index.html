@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ezVest</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Changa+One:ital@0;1&family=Special+Gothic+Condensed+One&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe" crossorigin="anonymous">
+    <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-1a/pXj49ZQ1aHEmrJ+gMw1otqoVsYwlEnlD8mIfY2TV03r20Y0CN7uqx1tQogjPL" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/mensagens.css}">
+</head>
+<body>
+    <div class="barra-admin">
+        <a th:href="@{/admin}">Área do administrador</a>
+    </div>
+
+    <nav class="navbar sm:navbar-expand bg-1 fg-2">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">ezVest</a>
+            <button class="btn-icon navbar-toggler" type="button" data-bs-toggle="drawer" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon" aria-hidden="true"></span>
+            </button>
+            <dialog class="drawer drawer-end" tabindex="-1" id="navbarNav" aria-labelledby="navbarNavLabel">
+                <div class="drawer-header">
+                    <h5 class="drawer-title" id="navbarNavLabel">Menu</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="drawer" aria-label="Close"></button>
+                </div>
+                <div class="drawer-body">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#categorias">Categorias</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#catalogo">Catálogo</a>
+                        </li>
+                    </ul>
+                </div>
+            </dialog>
+        </div>
+    </nav>
+
+    <main class="container">
+
+        <section class="hero" aria-labelledby="hero-titulo">
+            <div>
+                <p class="hero-eyebrow">Coleção Verão 2027</p>
+                <h1 class="hero-titulo" id="hero-titulo">ezVest</h1>
+                <p class="hero-texto">Camisetas, calças, moletons e vestidos para o dia a dia.</p>
+                <div class="hero-acoes">
+                    <a class="btn-hero" href="#catalogo">Ver catálogo</a>
+                    <a class="btn-hero secundario" href="#categorias">Ver categorias</a>
+                </div>
+            </div>
+
+            <div class="cartela" aria-label="Cartela de cores da coleção">
+                <p class="cartela-titulo">Cartela de cores</p>
+                <div class="cartela-grade">
+                    <div class="amostra" style="--cor: #5E6B3F"><span class="amostra-cor"></span>Verde-musgo</div>
+                    <div class="amostra" style="--cor: #3E5C8A"><span class="amostra-cor"></span>Azul</div>
+                    <div class="amostra" style="--cor: #3A3F47"><span class="amostra-cor"></span>Grafite</div>
+                    <div class="amostra" style="--cor: #C0603E"><span class="amostra-cor"></span>Terracota</div>
+                    <div class="amostra" style="--cor: #D8C6A5"><span class="amostra-cor"></span>Areia</div>
+                    <div class="amostra" style="--cor: #F1ECE2"><span class="amostra-cor"></span>Off-white</div>
+                </div>
+            </div>
+        </section>
+
+        <h2 class="titulo-cabecalho-cartao" id="categorias">Categorias</h2>
+        <section class="secao-grade categorias" aria-label="Categorias">
+            <div class="categoria-tile">
+                <span class="categoria-nome">Camisetas</span>
+                <span class="categoria-sub">Manga curta · Regata</span>
+            </div>
+            <div class="categoria-tile">
+                <span class="categoria-nome">Calças</span>
+                <span class="categoria-sub">Jeans · Sarja</span>
+            </div>
+            <div class="categoria-tile">
+                <span class="categoria-nome">Moletons</span>
+                <span class="categoria-sub">Canguru · Zíper</span>
+            </div>
+            <div class="categoria-tile">
+                <span class="categoria-nome">Vestidos</span>
+                <span class="categoria-sub">Midi · Curto</span>
+            </div>
+        </section>
+
+        <h2 class="titulo-cabecalho-cartao" id="catalogo">Catálogo</h2>
+        <p class="catalogo-info" th:if="${produtos.totalElements > 0}"
+           th:text="|Mostrando ${produtos.number * produtos.size + 1}–${produtos.number * produtos.size + produtos.numberOfElements} de ${produtos.totalElements} produtos|">
+            Mostrando 1–12 de 126 produtos
+        </p>
+
+        <section class="secao-grade vitrine" aria-label="Catálogo de produtos">
+            <!-- Um cartão por produto da página atual (12 por página) -->
+            <article class="produto-card" th:each="produto : ${produtos.content}">
+                <!-- A faixa usa a cor do produto: cada cor tem uma classe em mensagens.css (ex.: .cor-Azul) -->
+                <div class="produto-cor" th:classappend="|cor-${produto.cor}|"></div>
+                <div class="produto-info">
+                    <p class="produto-categoria" th:text="|${produto.colecao} · ${produto.genero}|">Verão · Unissex</p>
+                    <h3 class="produto-nome" th:text="|${produto.categoria} ${produto.subcategoria}|">Camiseta Básica</h3>
+                    <p class="produto-marca" th:text="|${produto.marca} · ${produto.cor}|">Pulse · Branco</p>
+                    <p class="produto-preco" th:text="|R$ ${#numbers.formatDecimal(produto.precoUnitario, 1, 'POINT', 2, 'COMMA')}|">R$ 89,90</p>
+                </div>
+            </article>
+
+            <p class="catalogo-vazio" th:if="${produtos.totalElements == 0}">Nenhum produto disponível no momento.</p>
+        </section>
+
+        <!-- Navegação: Anterior · 1 … 4 5 [6] 7 8 … 11 · Próxima -->
+        <nav class="paginacao" aria-label="Páginas do catálogo" th:if="${totalPaginas > 1}">
+            <a th:if="${paginaAtual > 1}" th:href="@{/(pagina=${paginaAtual - 1})} + '#catalogo'">Anterior</a>
+            <span class="desabilitado" th:unless="${paginaAtual > 1}">Anterior</span>
+
+            <th:block th:if="${inicioJanela > 1}">
+                <a th:href="@{/(pagina=1)} + '#catalogo'">1</a>
+                <span class="reticencias" th:if="${inicioJanela > 2}">…</span>
+            </th:block>
+
+            <a th:each="n : ${#numbers.sequence(inicioJanela, fimJanela)}"
+               th:href="@{/(pagina=${n})} + '#catalogo'"
+               th:text="${n}"
+               th:attr="aria-current=${n == paginaAtual} ? 'page' : null">1</a>
+
+            <th:block th:if="${fimJanela < totalPaginas}">
+                <span class="reticencias" th:if="${fimJanela < totalPaginas - 1}">…</span>
+                <a th:href="@{/(pagina=${totalPaginas})} + '#catalogo'" th:text="${totalPaginas}">11</a>
+            </th:block>
+
+            <a th:if="${paginaAtual < totalPaginas}" th:href="@{/(pagina=${paginaAtual + 1})} + '#catalogo'">Próxima</a>
+            <span class="desabilitado" th:unless="${paginaAtual < totalPaginas}">Próxima</span>
+        </nav>
+
+    </main>
+
+    <footer class="rodape">
+        © 2026 ezVest
+    </footer>
+</body>
+</html>

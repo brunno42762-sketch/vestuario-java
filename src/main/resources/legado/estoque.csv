@@ -1,0 +1,126 @@
+id_produto;categoria;subcategoria;estoque_atual;estoque_minimo;fornecedor;tempo_reposicao_dias
+2;Camiseta;Básica;371;31;ModaSul;43
+3;Camiseta;Básica;217;27;Confecções Alpha;19
+4;Camiseta;Básica;207;8;ModaSul;30
+5;Camiseta;Básica;134;29;Confecções Alpha;19
+6;Camiseta;Básica;484;14;TexBrasil;16
+7;Camiseta;Básica;101;25;UrbanTec;30
+8;Camiseta;Oversized;33;40;TexBrasil;31
+9;Camiseta;Oversized;324;22;TexBrasil;35
+10;Camiseta;Oversized;296;34;ModaSul;42
+11;Camiseta;Oversized;264;11;ModaSul;25
+12;Camiseta;Oversized;466;12;TexBrasil;10
+13;Camiseta;Oversized;337;5;Confecções Alpha;31
+14;Camiseta;Oversized;175;39;UrbanTec;39
+15;Camiseta;Estampada;157;20;ModaSul;8
+16;Camiseta;Estampada;397;5;UrbanTec;34
+17;Camiseta;Estampada;41;19;UrbanTec;33
+18;Camiseta;Estampada;10;39;Confecções Alpha;9
+19;Camiseta;Estampada;206;22;ModaSul;37
+20;Camiseta;Estampada;200;5;UrbanTec;25
+21;Camiseta;Estampada;249;8;UrbanTec;42
+22;Calça;Jeans Skinny;430;20;TexBrasil;23
+23;Calça;Jeans Skinny;250;5;ModaSul;38
+24;Calça;Jeans Skinny;345;38;TexBrasil;17
+25;Calça;Jeans Skinny;444;34;Confecções Alpha;23
+26;Calça;Jeans Skinny;198;12;ModaSul;7
+27;Calça;Jeans Skinny;361;8;UrbanTec;10
+28;Calça;Jeans Skinny;469;12;UrbanTec;38
+29;Calça;Jeans Wide;178;24;Confecções Alpha;20
+30;Calça;Jeans Wide;472;39;TexBrasil;41
+31;Calça;Jeans Wide;154;16;Confecções Alpha;26
+32;Calça;Jeans Wide;22;29;ModaSul;39
+33;Calça;Jeans Wide;94;37;UrbanTec;7
+34;Calça;Jeans Wide;237;15;UrbanTec;27
+35;Calça;Jeans Wide;124;16;TexBrasil;30
+36;Calça;Cargo;365;13;UrbanTec;11
+37;Calça;Cargo;173;28;TexBrasil;14
+38;Calça;Cargo;106;26;ModaSul;23
+39;Calça;Cargo;249;10;TexBrasil;35
+40;Calça;Cargo;293;37;Confecções Alpha;29
+41;Calça;Cargo;16;28;TexBrasil;20
+42;Calça;Cargo;453;12;UrbanTec;12
+43;Vestido;Midi;272;6;UrbanTec;12
+44;Vestido;Midi;430;23;TexBrasil;15
+45;Vestido;Midi;21;5;Confecções Alpha;23
+46;Vestido;Midi;333;7;UrbanTec;30
+47;Vestido;Midi;44;26;Confecções Alpha;44
+48;Vestido;Midi;319;18;ModaSul;16
+49;Vestido;Midi;252;31;ModaSul;31
+50;Vestido;Longo;297;21;Confecções Alpha;21
+51;Vestido;Longo;271;34;ModaSul;9
+52;Vestido;Longo;300;14;UrbanTec;18
+53;Vestido;Longo;445;18;TexBrasil;31
+54;Vestido;Longo;36;28;Confecções Alpha;19
+55;Vestido;Longo;220;7;Confecções Alpha;12
+56;Vestido;Longo;86;24;TexBrasil;20
+57;Vestido;Casual;254;18;UrbanTec;12
+58;Vestido;Casual;80;25;TexBrasil;43
+59;Vestido;Casual;123;32;Confecções Alpha;44
+60;Vestido;Casual;157;17;Confecções Alpha;26
+61;Vestido;Casual;116;32;UrbanTec;19
+62;Vestido;Casual;53;24;UrbanTec;45
+63;Vestido;Casual;415;22;UrbanTec;33
+64;Jaqueta;Couro;292;12;UrbanTec;9
+65;Jaqueta;Couro;396;39;UrbanTec;13
+66;Jaqueta;Couro;479;23;Confecções Alpha;21
+67;Jaqueta;Couro;414;11;Confecções Alpha;42
+68;Jaqueta;Couro;306;35;Confecções Alpha;21
+69;Jaqueta;Couro;132;7;ModaSul;19
+70;Jaqueta;Couro;14;22;ModaSul;20
+71;Jaqueta;Jeans;133;19;ModaSul;13
+72;Jaqueta;Jeans;348;29;TexBrasil;16
+73;Jaqueta;Jeans;176;6;ModaSul;38
+74;Jaqueta;Jeans;18;21;TexBrasil;8
+75;Jaqueta;Jeans;408;24;ModaSul;41
+76;Jaqueta;Jeans;479;32;Confecções Alpha;34
+77;Jaqueta;Jeans;273;24;Confecções Alpha;9
+78;Jaqueta;Puffer;425;36;ModaSul;31
+79;Jaqueta;Puffer;31;15;Confecções Alpha;27
+80;Jaqueta;Puffer;254;37;Confecções Alpha;34
+81;Jaqueta;Puffer;113;31;TexBrasil;29
+82;Jaqueta;Puffer;115;36;ModaSul;40
+83;Jaqueta;Puffer;39;40;ModaSul;19
+84;Jaqueta;Puffer;107;7;Confecções Alpha;8
+85;Tênis;Casual;57;39;ModaSul;25
+86;Tênis;Casual;247;36;TexBrasil;36
+87;Tênis;Casual;195;11;Confecções Alpha;15
+88;Tênis;Casual;63;5;Confecções Alpha;19
+89;Tênis;Casual;216;34;ModaSul;39
+90;Tênis;Casual;342;9;Confecções Alpha;41
+91;Tênis;Casual;495;29;TexBrasil;7
+92;Tênis;Esportivo;203;30;TexBrasil;17
+93;Tênis;Esportivo;259;8;UrbanTec;17
+94;Tênis;Esportivo;199;15;UrbanTec;31
+95;Tênis;Esportivo;175;37;TexBrasil;34
+96;Tênis;Esportivo;289;9;Confecções Alpha;45
+97;Tênis;Esportivo;78;15;UrbanTec;13
+98;Tênis;Esportivo;350;34;Confecções Alpha;7
+99;Tênis;Streetwear;121;12;TexBrasil;42
+100;Tênis;Streetwear;41;38;ModaSul;23
+101;Tênis;Streetwear;296;5;UrbanTec;23
+102;Tênis;Streetwear;141;38;Confecções Alpha;42
+103;Tênis;Streetwear;303;7;UrbanTec;41
+104;Tênis;Streetwear;136;17;UrbanTec;33
+105;Tênis;Streetwear;470;25;Confecções Alpha;36
+106;Moletom;Canguru;478;13;Confecções Alpha;10
+107;Moletom;Canguru;103;11;ModaSul;11
+108;Moletom;Canguru;353;37;TexBrasil;34
+109;Moletom;Canguru;370;32;Confecções Alpha;26
+110;Moletom;Canguru;38;25;Confecções Alpha;26
+111;Moletom;Canguru;123;6;Confecções Alpha;42
+112;Moletom;Canguru;14;18;Confecções Alpha;40
+113;Moletom;Fechado;98;26;ModaSul;35
+114;Moletom;Fechado;64;13;Confecções Alpha;40
+115;Moletom;Fechado;280;36;TexBrasil;25
+116;Moletom;Fechado;468;10;UrbanTec;27
+117;Moletom;Fechado;259;39;TexBrasil;22
+118;Moletom;Fechado;333;33;ModaSul;11
+119;Moletom;Fechado;155;15;TexBrasil;37
+120;Moletom;Premium;352;26;Confecções Alpha;15
+121;Moletom;Premium;148;35;UrbanTec;23
+122;Moletom;Premium;136;17;TexBrasil;38
+123;Moletom;Premium;288;15;Confecções Alpha;21
+124;Moletom;Premium;379;7;UrbanTec;37
+125;Moletom;Premium;219;32;ModaSul;9
+126;Moletom;Premium;280;24;TexBrasil;35

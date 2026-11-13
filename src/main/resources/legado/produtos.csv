@@ -1,0 +1,126 @@
+id_produto;categoria;subcategoria;cor;marca;preco_unitario;custo_unitario;colecao;genero
+2;Camiseta;Básica;Branco;Pulse;120.4;45.23;Primavera;Unissex
+3;Camiseta;Básica;Azul;Lunar;244.65;87.45;Verão;Unissex
+4;Camiseta;Básica;Verde;Pulse;323.89;158.81;Inverno;Masculino
+5;Camiseta;Básica;Bege;UrbanWay;256.65;107.68;Verão;Unissex
+6;Camiseta;Básica;Cinza;Lunar;244.95;102.75;Outono;Masculino
+7;Camiseta;Básica;Rosa;StreetFit;99.81;37.35;Outono;Masculino
+8;Camiseta;Oversized;Preto;NovaModa;380.08;183.98;Primavera;Unissex
+9;Camiseta;Oversized;Branco;StreetFit;188;95.35;Verão;Unissex
+10;Camiseta;Oversized;Azul;StreetFit;89.6;46.17;Primavera;Masculino
+11;Camiseta;Oversized;Verde;NovaModa;440.25;195.93;Outono;Masculino
+12;Camiseta;Oversized;Bege;StreetFit;221.88;89.28;Primavera;Unissex
+13;Camiseta;Oversized;Cinza;Lunar;338.39;163.62;Verão;Feminino
+14;Camiseta;Oversized;Rosa;Pulse;225.96;134.98;Verão;Unissex
+15;Camiseta;Estampada;Preto;UrbanWay;201.68;109.33;Verão;Masculino
+16;Camiseta;Estampada;Branco;UrbanWay;413.22;186.07;Verão;Unissex
+17;Camiseta;Estampada;Azul;NovaModa;444.6;190.59;Inverno;Unissex
+18;Camiseta;Estampada;Verde;Lunar;260.89;108.59;Outono;Unissex
+19;Camiseta;Estampada;Bege;NovaModa;316.22;181.65;Outono;Masculino
+20;Camiseta;Estampada;Cinza;NovaModa;497.82;191.45;Primavera;Masculino
+21;Camiseta;Estampada;Rosa;Lunar;437.89;169.99;Inverno;Unissex
+22;Calça;Jeans Skinny;Preto;NovaModa;86.95;38.73;Outono;Unissex
+23;Calça;Jeans Skinny;Branco;UrbanWay;437.74;154.47;Outono;Unissex
+24;Calça;Jeans Skinny;Azul;Lunar;208.68;88.35;Inverno;Masculino
+25;Calça;Jeans Skinny;Verde;StreetFit;478.68;272.35;Verão;Unissex
+26;Calça;Jeans Skinny;Bege;StreetFit;460.56;261.43;Verão;Masculino
+27;Calça;Jeans Skinny;Cinza;Pulse;223.52;87.26;Primavera;Unissex
+28;Calça;Jeans Skinny;Rosa;StreetFit;201.63;71.55;Outono;Masculino
+29;Calça;Jeans Wide;Preto;UrbanWay;84.49;48.12;Primavera;Unissex
+30;Calça;Jeans Wide;Branco;Pulse;272.84;100.21;Verão;Masculino
+31;Calça;Jeans Wide;Azul;Lunar;349.29;204.93;Outono;Unissex
+32;Calça;Jeans Wide;Verde;Lunar;442.87;201.85;Verão;Unissex
+33;Calça;Jeans Wide;Bege;StreetFit;196.16;117.46;Inverno;Unissex
+34;Calça;Jeans Wide;Cinza;UrbanWay;257.65;106.15;Outono;Masculino
+35;Calça;Jeans Wide;Rosa;Lunar;317.86;129.54;Primavera;Masculino
+36;Calça;Cargo;Preto;UrbanWay;370.45;135.11;Primavera;Feminino
+37;Calça;Cargo;Branco;NovaModa;90.18;36.93;Verão;Unissex
+38;Calça;Cargo;Azul;Pulse;117.22;68.44;Inverno;Masculino
+39;Calça;Cargo;Verde;Lunar;404.23;223.08;Primavera;Masculino
+40;Calça;Cargo;Bege;NovaModa;348.95;153.04;Inverno;Unissex
+41;Calça;Cargo;Cinza;UrbanWay;82.84;42.53;Primavera;Feminino
+42;Calça;Cargo;Rosa;UrbanWay;379.41;208.73;Verão;Masculino
+43;Vestido;Midi;Preto;NovaModa;142.69;65.94;Verão;Feminino
+44;Vestido;Midi;Branco;UrbanWay;262.56;149.3;Inverno;Unissex
+45;Vestido;Midi;Azul;Pulse;102.08;52.37;Primavera;Masculino
+46;Vestido;Midi;Verde;Lunar;466.6;262.31;Inverno;Feminino
+47;Vestido;Midi;Bege;UrbanWay;270.8;153.32;Verão;Feminino
+48;Vestido;Midi;Cinza;NovaModa;59.95;26.83;Outono;Feminino
+49;Vestido;Midi;Rosa;Pulse;365.5;194.67;Inverno;Masculino
+50;Vestido;Longo;Preto;UrbanWay;142.56;57.65;Primavera;Unissex
+51;Vestido;Longo;Branco;NovaModa;196.99;71.42;Verão;Masculino
+52;Vestido;Longo;Azul;Lunar;481.74;178.26;Primavera;Unissex
+53;Vestido;Longo;Verde;NovaModa;88.9;50.27;Primavera;Unissex
+54;Vestido;Longo;Bege;Pulse;167.33;83.44;Primavera;Feminino
+55;Vestido;Longo;Cinza;StreetFit;348.24;171.09;Outono;Masculino
+56;Vestido;Longo;Rosa;StreetFit;353.68;151.57;Inverno;Masculino
+57;Vestido;Casual;Preto;StreetFit;354.54;150.68;Primavera;Masculino
+58;Vestido;Casual;Branco;UrbanWay;260.65;156.29;Primavera;Unissex
+59;Vestido;Casual;Azul;StreetFit;152.79;63.61;Primavera;Masculino
+60;Vestido;Casual;Verde;Pulse;221.59;86.3;Outono;Unissex
+61;Vestido;Casual;Bege;Pulse;491.9;271.42;Primavera;Unissex
+62;Vestido;Casual;Cinza;UrbanWay;418.53;177.81;Verão;Feminino
+63;Vestido;Casual;Rosa;Pulse;109.79;41.36;Verão;Feminino
+64;Jaqueta;Couro;Preto;StreetFit;182.97;73.67;Verão;Unissex
+65;Jaqueta;Couro;Branco;NovaModa;338.06;140.63;Outono;Masculino
+66;Jaqueta;Couro;Azul;StreetFit;99.61;45.41;Primavera;Masculino
+67;Jaqueta;Couro;Verde;StreetFit;205.76;78.75;Verão;Unissex
+68;Jaqueta;Couro;Bege;Pulse;253.41;133.4;Primavera;Masculino
+69;Jaqueta;Couro;Cinza;Lunar;92.11;52.57;Primavera;Feminino
+70;Jaqueta;Couro;Rosa;Lunar;315.3;122.03;Primavera;Feminino
+71;Jaqueta;Jeans;Preto;UrbanWay;219.45;128;Outono;Masculino
+72;Jaqueta;Jeans;Branco;StreetFit;359.11;185.56;Inverno;Unissex
+73;Jaqueta;Jeans;Azul;Lunar;388.77;226.05;Verão;Masculino
+74;Jaqueta;Jeans;Verde;StreetFit;446.82;159.16;Inverno;Unissex
+75;Jaqueta;Jeans;Bege;StreetFit;439.19;242.73;Verão;Unissex
+76;Jaqueta;Jeans;Cinza;NovaModa;106.56;60.53;Verão;Masculino
+77;Jaqueta;Jeans;Rosa;StreetFit;418.3;194.54;Verão;Masculino
+78;Jaqueta;Puffer;Preto;StreetFit;69.41;27.64;Outono;Masculino
+79;Jaqueta;Puffer;Branco;Pulse;484.43;203.35;Inverno;Unissex
+80;Jaqueta;Puffer;Azul;UrbanWay;490.71;237.53;Primavera;Feminino
+81;Jaqueta;Puffer;Verde;StreetFit;137.57;81.25;Primavera;Masculino
+82;Jaqueta;Puffer;Bege;StreetFit;321.49;140.31;Inverno;Unissex
+83;Jaqueta;Puffer;Cinza;Pulse;492.06;186.45;Verão;Feminino
+84;Jaqueta;Puffer;Rosa;Pulse;78.53;36.05;Verão;Feminino
+85;Tênis;Casual;Preto;StreetFit;248.77;146.08;Outono;Unissex
+86;Tênis;Casual;Branco;StreetFit;432.13;229;Outono;Unissex
+87;Tênis;Casual;Azul;StreetFit;238.69;107.55;Verão;Masculino
+88;Tênis;Casual;Verde;Lunar;244;142.76;Outono;Feminino
+89;Tênis;Casual;Bege;StreetFit;300.09;105.06;Verão;Feminino
+90;Tênis;Casual;Cinza;StreetFit;404.73;203.04;Inverno;Feminino
+91;Tênis;Casual;Rosa;NovaModa;253.55;102.29;Verão;Unissex
+92;Tênis;Esportivo;Preto;Pulse;96.31;46.12;Outono;Masculino
+93;Tênis;Esportivo;Branco;StreetFit;419.11;225.39;Verão;Masculino
+94;Tênis;Esportivo;Azul;NovaModa;123.84;44.77;Primavera;Feminino
+95;Tênis;Esportivo;Verde;Lunar;241.35;122.47;Inverno;Feminino
+96;Tênis;Esportivo;Bege;UrbanWay;234.85;90.86;Primavera;Feminino
+97;Tênis;Esportivo;Cinza;Pulse;155.29;85.57;Inverno;Masculino
+98;Tênis;Esportivo;Rosa;UrbanWay;304.26;176.28;Inverno;Masculino
+99;Tênis;Streetwear;Preto;Pulse;411.62;212.76;Outono;Feminino
+100;Tênis;Streetwear;Branco;Pulse;328.57;174.08;Inverno;Unissex
+101;Tênis;Streetwear;Azul;NovaModa;255.2;99.47;Inverno;Feminino
+102;Tênis;Streetwear;Verde;StreetFit;389.78;218.26;Inverno;Unissex
+103;Tênis;Streetwear;Bege;StreetFit;164.27;75.56;Verão;Feminino
+104;Tênis;Streetwear;Cinza;UrbanWay;206.77;118.53;Verão;Masculino
+105;Tênis;Streetwear;Rosa;Lunar;160.76;84.16;Primavera;Feminino
+106;Moletom;Canguru;Preto;NovaModa;238.34;115.75;Primavera;Masculino
+107;Moletom;Canguru;Branco;Pulse;425.47;190.34;Primavera;Unissex
+108;Moletom;Canguru;Azul;StreetFit;226.37;79.56;Outono;Feminino
+109;Moletom;Canguru;Verde;NovaModa;434.52;255.65;Verão;Feminino
+110;Moletom;Canguru;Bege;UrbanWay;155.55;71.39;Inverno;Feminino
+111;Moletom;Canguru;Cinza;Lunar;353.3;194.15;Inverno;Masculino
+112;Moletom;Canguru;Rosa;NovaModa;490.52;237.18;Primavera;Masculino
+113;Moletom;Fechado;Preto;NovaModa;341.81;131.23;Verão;Masculino
+114;Moletom;Fechado;Branco;NovaModa;173.47;74.91;Outono;Feminino
+115;Moletom;Fechado;Azul;NovaModa;393.94;175.22;Outono;Masculino
+116;Moletom;Fechado;Verde;UrbanWay;265.94;142.88;Outono;Masculino
+117;Moletom;Fechado;Bege;UrbanWay;345.06;188.16;Primavera;Masculino
+118;Moletom;Fechado;Cinza;Lunar;146.72;52.1;Verão;Masculino
+119;Moletom;Fechado;Rosa;Lunar;267.37;101.23;Inverno;Unissex
+120;Moletom;Premium;Preto;Pulse;171.75;75.95;Primavera;Masculino
+121;Moletom;Premium;Branco;UrbanWay;483.48;182.28;Outono;Unissex
+122;Moletom;Premium;Azul;NovaModa;357.03;210.48;Verão;Masculino
+123;Moletom;Premium;Verde;Lunar;319.52;178.18;Primavera;Unissex
+124;Moletom;Premium;Bege;Pulse;398.89;224.4;Primavera;Unissex
+125;Moletom;Premium;Cinza;NovaModa;403.36;176.19;Outono;Masculino
+126;Moletom;Premium;Rosa;NovaModa;281.62;122.59;Inverno;Masculino
