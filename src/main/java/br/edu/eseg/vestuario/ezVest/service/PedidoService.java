@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -41,6 +42,30 @@ public class PedidoService {
                 : pedidoRepository.listarComClientePorStatus(status, pageable);
     }
 
+    // ---------------- Minha conta (perfil CLIENTE) ----------------
+
+    /** Os pedidos do cliente logado, dos mais recentes para os mais antigos. */
+    @Transactional(readOnly = true)
+    public Page<Pedido> listarDoCliente(Integer idCliente, int pagina) {
+        int indice = Math.max(pagina, 1) - 1;
+        Pageable pageable = PageRequest.of(indice, PEDIDOS_POR_PAGINA, OrdemPedidos.RECENTES.getSort());
+        return pedidoRepository.findByClienteIdCliente(idCliente, pageable);
+    }
+
+    /**
+     * Um pedido do cliente logado, com os itens. Se o pedido existir mas for de OUTRO cliente,
+     * a resposta é a mesma de um pedido inexistente (404): assim ninguém descobre, trocando o
+     * número na URL, quais pedidos existem.
+     */
+    @Transactional(readOnly = true)
+    public Pedido buscarDoCliente(Integer idPedido, Integer idCliente) {
+        return pedidoRepository.buscarDoClienteComItens(idPedido, idCliente)
+                .orElseThrow(() -> new RecursoNaoEncontradoException(
+                        "Pedido " + idPedido + " não encontrado."));
+    }
+
+    // ---------------- Área administrativa ----------------
+
     @Transactional(readOnly = true)
     public Pedido buscar(Integer id) {
         return pedidoRepository.findById(id)
@@ -50,6 +75,7 @@ public class PedidoService {
 
     /** A regra de transição fica em Pedido.alterarStatus / Status.podeMudarPara. */
     @Transactional
+    @PreAuthorize("hasAnyRole('ADMIN', 'VENDEDOR')")
     public Pedido alterarStatus(Integer id, Status novoStatus) {
         Pedido pedido = buscar(id);
         pedido.alterarStatus(novoStatus);

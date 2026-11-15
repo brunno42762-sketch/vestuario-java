@@ -6,6 +6,8 @@ import br.edu.eseg.vestuario.ezVest.model.Cliente;
 import br.edu.eseg.vestuario.ezVest.model.Entrega;
 import br.edu.eseg.vestuario.ezVest.repository.ClienteRepository;
 import br.edu.eseg.vestuario.ezVest.repository.PedidoRepository;
+import br.edu.eseg.vestuario.ezVest.repository.UsuarioRepository;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BeanPropertyBindingResult;
@@ -19,13 +21,16 @@ public class ClienteService {
     private final ClienteRepository clienteRepository;
     private final PedidoRepository pedidoRepository;
     private final ClienteValidator clienteValidator;
+    private final UsuarioRepository usuarioRepository;
 
     public ClienteService(ClienteRepository clienteRepository,
                           PedidoRepository pedidoRepository,
-                          ClienteValidator clienteValidator) {
+                          ClienteValidator clienteValidator,
+                          UsuarioRepository usuarioRepository) {
         this.clienteRepository = clienteRepository;
         this.pedidoRepository = pedidoRepository;
         this.clienteValidator = clienteValidator;
+        this.usuarioRepository = usuarioRepository;
     }
 
     @Transactional(readOnly = true)
@@ -41,6 +46,7 @@ public class ClienteService {
     }
 
     @Transactional
+    @PreAuthorize("hasAnyRole('ADMIN', 'VENDEDOR')")
     public Cliente criar(Cliente cliente) {
         cliente.setIdCliente(null); // o id é sempre gerado pelo banco
         normalizar(cliente);
@@ -62,6 +68,7 @@ public class ClienteService {
      * só os campos do formulário para ele.
      */
     @Transactional
+    @PreAuthorize("hasAnyRole('ADMIN', 'VENDEDOR')")
     public Cliente atualizar(Integer id, Cliente dados) {
         Cliente existente = buscar(id);
         normalizar(dados);
@@ -89,6 +96,7 @@ public class ClienteService {
     }
 
     @Transactional
+    @PreAuthorize("hasRole('ADMIN')")
     public void excluir(Integer id) {
         Cliente cliente = buscar(id);
         // Cliente ◆—— Pedido é composição (cascade ALL): excluir o cliente apagaria
@@ -96,6 +104,10 @@ public class ClienteService {
         if (pedidoRepository.existsByClienteIdCliente(id)) {
             throw new RegraNegocioException("O cliente " + id
                     + " não pode ser excluído porque tem pedidos registrados.");
+        }
+        if (usuarioRepository.existsByClienteIdCliente(id)) {
+            throw new RegraNegocioException("O cliente " + id
+                    + " não pode ser excluído porque tem um usuário de acesso ligado a ele.");
         }
         clienteRepository.delete(cliente); // a entrega vai junto (cascade)
     }

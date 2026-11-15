@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface PedidoRepository extends JpaRepository<Pedido, Integer> {
 
@@ -30,6 +31,18 @@ public interface PedidoRepository extends JpaRepository<Pedido, Integer> {
     /** Quantidade de pedidos em cada status: cada linha é [Status, Long]. */
     @Query("select p.statusPedido, count(p) from Pedido p group by p.statusPedido")
     List<Object[]> contarPorStatus();
+
+    /** Minha conta: os pedidos de um cliente (consulta derivada do nome do método). */
+    Page<Pedido> findByClienteIdCliente(Integer idCliente, Pageable pagina);
+
+    /**
+     * Minha conta: um pedido com os itens e os produtos, SÓ se for do cliente informado.
+     * Se o pedido for de outra pessoa, volta vazio, como se não existisse.
+     */
+    @Query("select p from Pedido p left join fetch p.itensPedido i left join fetch i.produto"
+            + " where p.idPedido = :idPedido and p.cliente.idCliente = :idCliente")
+    Optional<Pedido> buscarDoClienteComItens(@Param("idPedido") Integer idPedido,
+                                             @Param("idCliente") Integer idCliente);
 
     /** Usado para impedir a exclusão de um cliente que tem pedidos. */
     boolean existsByClienteIdCliente(Integer idCliente);

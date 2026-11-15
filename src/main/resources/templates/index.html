@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,8 +16,15 @@
     <link rel="stylesheet" th:href="@{/css/mensagens.css}">
 </head>
 <body>
+    <!-- Barra do topo: muda conforme quem está logado -->
     <div class="barra-admin">
-        <a th:href="@{/admin}">Área do administrador</a>
+        <a sec:authorize="isAnonymous()" th:href="@{/login}">Entrar</a>
+        <a sec:authorize="hasRole('CLIENTE')" th:href="@{/minha-conta}">Minha conta</a>
+        <a sec:authorize="hasAnyRole('ADMIN', 'VENDEDOR')" th:href="@{/admin}">Área do administrador</a>
+        <form class="form-sair" sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+            <span class="usuario-logado" sec:authentication="name">Cliente</span>
+            <button type="submit" class="botao-sair">Sair</button>
+        </form>
     </div>
 
     <nav class="navbar sm:navbar-expand bg-1 fg-2">

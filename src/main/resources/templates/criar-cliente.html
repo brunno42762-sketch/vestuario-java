@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,6 +40,16 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" th:href="@{/admin/pedidos}">Pedidos</a>
+          </li>
+          <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+            <a class="nav-link" th:href="@{/admin/usuarios}">Usuários</a>
+          </li>
+          <li class="nav-item item-sair" sec:authorize="isAuthenticated()">
+            <!-- Sair é um POST (com o token CSRF que o th:action acrescenta), nunca um link -->
+            <form class="form-sair" th:action="@{/logout}" method="post">
+              <span class="usuario-logado" sec:authentication="name">Administrador</span>
+              <button type="submit" class="botao-sair">Sair</button>
+            </form>
           </li>
         </ul>
       </div>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${usuario.id == null} ? 'Novo usuário' : 'Editar usuário'">Usuário</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Changa+One:ital@0;1&family=Special+Gothic+Condensed+One&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe" crossorigin="anonymous">
+    <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-1a/pXj49ZQ1aHEmrJ+gMw1otqoVsYwlEnlD8mIfY2TV03r20Y0CN7uqx1tQogjPL" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/mensagens.css}">
+</head>
+<body>
+<nav class="navbar sm:navbar-expand bg-1 fg-2">
+  <div class="container-fluid">
+    <a class="navbar-brand" th:href="@{/}">Vestuário</a>
+    <button class="btn-icon navbar-toggler" type="button" data-bs-toggle="drawer" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon" aria-hidden="true"></span>
+    </button>
+    <dialog class="drawer drawer-end" tabindex="-1" id="navbarNav" aria-labelledby="navbarNavLabel">
+      <div class="drawer-header">
+        <h5 class="drawer-title" id="navbarNavLabel">Menu</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="drawer" aria-label="Close"></button>
+      </div>
+      <div class="drawer-body">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/admin}">Painel</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/admin/produtos}">Produtos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/admin/clientes}">Clientes</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" th:href="@{/admin/pedidos}">Pedidos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" th:href="@{/admin/usuarios}">Usuários</a>
+          </li>
+          <li class="nav-item item-sair" sec:authorize="isAuthenticated()">
+            <form class="form-sair" th:action="@{/logout}" method="post">
+              <span class="usuario-logado" sec:authentication="name">admin</span>
+              <button type="submit" class="botao-sair">Sair</button>
+            </form>
+          </li>
+        </ul>
+      </div>
+    </dialog>
+  </div>
+</nav>
+
+<main class="container">
+    <div class="cabecalho-pagina">
+        <h2 class="titulo-cabecalho-cartao"
+            th:text="${usuario.id == null} ? 'Novo usuário' : |Editar usuário ${usuario.username}|">Novo usuário</h2>
+    </div>
+
+    <form method="post" th:action="@{/admin/usuarios/salvar}" th:object="${usuario}">
+        <div class="alerta alerta-erro" role="alert" th:if="${erro}" th:text="${erro}">Erro.</div>
+
+        <!-- id em branco = cadastro novo; preenchido = edição -->
+        <input type="hidden" th:field="*{id}">
+
+        <fieldset>
+            <legend>Acesso</legend>
+            <div class="campos">
+                <label for="username">Usuário</label>
+                <div>
+                    <input type="text" id="username" th:field="*{username}" maxlength="80" autocomplete="off" required>
+                    <span class="dica-campo">Nome usado para entrar no sistema.</span>
+                </div>
+
+                <label for="novaSenha" th:text="${usuario.id == null} ? 'Senha' : 'Nova senha'">Senha</label>
+                <div>
+                    <input type="password" id="novaSenha" name="novaSenha" autocomplete="new-password"
+                           minlength="8" th:required="${usuario.id == null}">
+                    <span class="dica-campo" th:if="${usuario.id == null}">Pelo menos 8 caracteres.</span>
+                    <span class="dica-campo" th:if="${usuario.id != null}">Deixe em branco para manter a senha atual.</span>
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Perfil</legend>
+            <div class="campos">
+                <label for="perfil">Perfil</label>
+                <select id="perfil" th:field="*{perfil}" required>
+                    <option value="">Selecione o perfil</option>
+                    <option th:each="p : ${perfis}" th:value="${p.name()}" th:text="${p.descricao}">Vendedor</option>
+                </select>
+
+                <label for="idCliente">ID do cliente vinculado</label>
+                <div>
+                    <input type="number" id="idCliente" name="idCliente" min="1"
+                           th:value="${usuario.cliente != null} ? ${usuario.cliente.idCliente} : ''">
+                    <span class="dica-campo">Só para o perfil Cliente: o cadastro de cliente cujos pedidos este usuário vai ver.</span>
+                </div>
+
+                <label class="campo-checkbox">
+                    <input type="checkbox" th:field="*{ativo}">
+                    Conta ativa
+                </label>
+            </div>
+        </fieldset>
+
+        <div class="acoes-form">
+            <button class="btn-criar" type="submit" th:text="${usuario.id == null} ? 'Cadastrar' : 'Salvar'">Salvar</button>
+            <a class="link-cancelar" th:href="@{/admin/usuarios}">Cancelar</a>
+        </div>
+    </form>
+</main>
+</body>
+</html>

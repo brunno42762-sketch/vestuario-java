@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,7 +32,7 @@
           <li class="nav-item">
             <a class="nav-link" th:href="@{/admin}">Painel</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" sec:authorize="hasRole('ADMIN')">
             <a class="nav-link" th:href="@{/admin/produtos/novo}">Criar</a>
           </li>
           <li class="nav-item">
@@ -39,6 +40,16 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" th:href="@{/admin/pedidos}">Pedidos</a>
+          </li>
+          <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+            <a class="nav-link" th:href="@{/admin/usuarios}">Usuários</a>
+          </li>
+          <li class="nav-item item-sair" sec:authorize="isAuthenticated()">
+            <!-- Sair é um POST (com o token CSRF que o th:action acrescenta), nunca um link -->
+            <form class="form-sair" th:action="@{/logout}" method="post">
+              <span class="usuario-logado" sec:authentication="name">Administrador</span>
+              <button type="submit" class="botao-sair">Sair</button>
+            </form>
           </li>
         </ul>
       </div>
@@ -71,7 +82,7 @@
                     <th scope="col">Marca</th>
                     <th scope="col">Preço</th>
                     <th scope="col">Estoque</th>
-                    <th scope="col">Ações</th>
+                    <th scope="col" sec:authorize="hasRole('ADMIN')">Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -86,7 +97,7 @@
                         <span th:text="${produto.estoqueAtual}">48</span>
                         <span class="selo-repor" th:if="${produto.abaixoDoEstoqueMinimo}">repor</span>
                     </td>
-                    <td class="acoes">
+                    <td class="acoes" sec:authorize="hasRole('ADMIN')">
                         <a class="action-btn" th:href="@{/admin/produtos/{id}/editar(id=${produto.idProduto})}">Editar</a>
                         <form class="form-inline" method="post"
                               th:action="@{/admin/produtos/{id}/excluir(id=${produto.idProduto})}"

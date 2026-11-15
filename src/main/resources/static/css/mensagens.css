@@ -467,3 +467,102 @@ form.filtro-lista button {
   flex-wrap: wrap;
   gap: 12px;
 }
+
+/* ---------- Entrega 3: login, sair e áreas por perfil ---------- */
+
+/* "Sair" é um formulário (POST com CSRF): tira o visual de cartão do form */
+form.form-sair {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+  background: none;
+  border-radius: 0;
+}
+
+.usuario-logado {
+  color: #8EE3EF;
+  font-size: 15px;
+}
+
+.botao-sair {
+  padding: 4px 14px;
+  border: 1px solid rgba(224, 242, 233, 0.6);
+  border-radius: 8px;
+  background: transparent;
+  color: #E0F2E9;
+  font: inherit;
+  cursor: pointer;
+}
+
+.botao-sair:hover,
+.botao-sair:focus-visible {
+  background: rgba(224, 242, 233, 0.15);
+  outline: none;
+}
+
+/* Na barra do topo da loja os itens ficam lado a lado */
+.barra-admin {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.barra-admin .form-sair {
+  margin-left: auto;
+}
+
+/* Tela de login: cartão estreito e centralizado */
+form.form-login {
+  max-width: 460px;
+}
+
+.alerta-aviso {
+  background-color: #FFF1C9;
+  color: #5A4300;
+  border-left: 6px solid #E5B93B;
+}
+
+.dica-campo {
+  display: block;
+  padding: 2px 5px 6px;
+  color: #4A4F9E;
+  font-size: 14px;
+}
+
+.acoes-erro {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+/* Minha conta */
+.conta-resumo p {
+  margin: 0 0 4px;
+  color: #031926;
+}
+
+.total-pedido {
+  font-size: 40px;
+}
+
+.legenda-tabela {
+  caption-side: top;
+  padding-bottom: 10px;
+  color: #4A4F9E;
+  font-family: 'Changa One', sans-serif;
+  font-size: 20px;
+  text-align: left;
+}
+
+.painel-usuarios {
+  margin-bottom: 30px;
+}
+
+.painel-usuarios p {
+  color: #031926;
+}

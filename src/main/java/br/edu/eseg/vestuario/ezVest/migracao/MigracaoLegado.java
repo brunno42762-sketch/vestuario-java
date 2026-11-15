@@ -7,6 +7,7 @@ import br.edu.eseg.vestuario.ezVest.model.Tamanho;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
@@ -39,6 +40,7 @@ import java.util.function.Function;
  * nada fica gravado.
  */
 @Component
+@Order(1) // roda antes da CargaAutomatica (@Order 2)
 public class MigracaoLegado implements CommandLineRunner {
 
     private static final Logger log = LoggerFactory.getLogger(MigracaoLegado.class);

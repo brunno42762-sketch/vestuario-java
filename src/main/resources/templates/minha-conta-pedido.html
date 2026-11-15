@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Changa+One:ital@0;1&family=Special+Gothic+Condensed+One&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe" crossorigin="anonymous">
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/mensagens.css}">
+</head>
+<body>
+<nav class="navbar sm:navbar-expand bg-1 fg-2">
+  <div class="container-fluid">
+    <a class="navbar-brand" th:href="@{/}">Vestuário</a>
+    <ul class="navbar-nav menu-conta">
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/}">Catálogo</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/minha-conta}">Meus pedidos</a>
+      </li>
+      <li class="nav-item item-sair" sec:authorize="isAuthenticated()">
+        <form class="form-sair" th:action="@{/logout}" method="post">
+          <span class="usuario-logado" sec:authentication="name">Cliente</span>
+          <button type="submit" class="botao-sair">Sair</button>
+        </form>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<main class="container">
+    <div class="cabecalho-pagina">
+        <h2 class="titulo-cabecalho-cartao" th:text="|Pedido ${pedido.idPedido}|">Pedido 1</h2>
+        <a class="link-loja" th:href="@{/minha-conta}">Voltar aos meus pedidos</a>
+    </div>
+
+    <section class="painel-grade conta-resumo" aria-label="Resumo do pedido">
+        <article class="painel-cartao">
+            <h3 class="painel-titulo">Situação</h3>
+            <p>
+                <span class="status" th:classappend="|status-${pedido.statusPedido}|"
+                      th:text="${pedido.statusPedido.nome}">Entregue</span>
+            </p>
+            <p th:text="|Feito em ${#temporals.format(pedido.dataPedido, 'dd/MM/yyyy')}|">Feito em 10/01/2026</p>
+        </article>
+        <article class="painel-cartao">
+            <h3 class="painel-titulo">Pagamento</h3>
+            <p th:text="${pedido.formaPagamento.nome}">Pix</p>
+            <p th:text="|Canal: ${pedido.canalVenda.nome}|">Canal: E-commerce</p>
+        </article>
+        <article class="painel-cartao">
+            <h3 class="painel-titulo">Total</h3>
+            <p class="painel-numero total-pedido"
+               th:text="|R$ ${#numbers.formatDecimal(pedido.valorTotal, 1, 'POINT', 2, 'COMMA')}|">R$ 159,80</p>
+            <p class="painel-legenda" th:if="${cliente.entrega != null}"
+               th:text="|Entrega em ${cliente.entrega.cidadeEntrega} / ${cliente.entrega.estadoEntrega}|">Entrega em Porto Alegre / RS</p>
+        </article>
+    </section>
+
+    <div class="cartao-lista">
+        <table class="lista">
+            <caption class="legenda-tabela">Itens do pedido</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Produto</th>
+                    <th scope="col">Marca</th>
+                    <th scope="col">Cor</th>
+                    <th scope="col">Tamanho</th>
+                    <th scope="col">Quantidade</th>
+                    <th scope="col">Preço unitário</th>
+                    <th scope="col">Desconto</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="item : ${pedido.itensPedido}">
+                    <td th:text="|${item.produto.categoria} ${item.produto.subcategoria}|">Calça Jeans</td>
+                    <td th:text="${item.produto.marca}">Linha Sul</td>
+                    <td th:text="${item.produto.cor}">Azul</td>
+                    <td th:text="${item.tamanho}">M</td>
+                    <td th:text="${item.quantidade}">2</td>
+                    <td th:text="|R$ ${#numbers.formatDecimal(item.precoUnitario, 1, 'POINT', 2, 'COMMA')}|">R$ 189,90</td>
+                    <td th:text="${item.descontoPercentual > 0} ? |${#numbers.formatDecimal(item.descontoPercentual * 100, 1, 0)}%| : '—'">10%</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+</body>
+</html>

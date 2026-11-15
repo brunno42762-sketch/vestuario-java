@@ -8,6 +8,7 @@ import br.edu.eseg.vestuario.ezVest.repository.ProdutoRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BeanPropertyBindingResult;
@@ -59,6 +60,7 @@ public class ProdutoService {
     }
 
     @Transactional
+    @PreAuthorize("hasRole('ADMIN')") // 2ª camada: mesmo fora da rota, só o ADMIN cria
     public Produto criar(Produto produto) {
         produto.setIdProduto(null); // o id é sempre gerado pelo banco
         limparTextos(produto);
@@ -67,6 +69,7 @@ public class ProdutoService {
     }
 
     @Transactional
+    @PreAuthorize("hasRole('ADMIN')")
     public Produto atualizar(Integer id, Produto dados) {
         buscar(id); // garante que existe (senão lança 404)
         dados.setIdProduto(id);
@@ -76,6 +79,7 @@ public class ProdutoService {
     }
 
     @Transactional
+    @PreAuthorize("hasRole('ADMIN')")
     public void excluir(Integer id) {
         Produto produto = buscar(id);
         if (itemPedidoRepository.existsByProdutoIdProduto(id)) {

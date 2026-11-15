@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -40,6 +41,16 @@
           <li class="nav-item">
             <a class="nav-link" th:href="@{/admin/pedidos}">Pedidos</a>
           </li>
+          <li class="nav-item" sec:authorize="hasRole('ADMIN')">
+            <a class="nav-link" th:href="@{/admin/usuarios}">Usuários</a>
+          </li>
+          <li class="nav-item item-sair" sec:authorize="isAuthenticated()">
+            <!-- Sair é um POST (com o token CSRF que o th:action acrescenta), nunca um link -->
+            <form class="form-sair" th:action="@{/logout}" method="post">
+              <span class="usuario-logado" sec:authentication="name">Administrador</span>
+              <button type="submit" class="botao-sair">Sair</button>
+            </form>
+          </li>
         </ul>
       </div>
     </dialog>
@@ -60,7 +71,7 @@
             <p class="painel-legenda">cadastrados</p>
             <div class="painel-acoes">
                 <a class="botao-primario" th:href="@{/admin/produtos}">Ver lista</a>
-                <a class="botao-secundario" th:href="@{/admin/produtos/novo}">Novo produto</a>
+                <a class="botao-secundario" sec:authorize="hasRole('ADMIN')" th:href="@{/admin/produtos/novo}">Novo produto</a>
             </div>
         </article>
 
@@ -92,6 +103,16 @@
         </article>
     </section>
 
+    <!-- Só o ADMIN gerencia quem entra no sistema -->
+    <section class="cartao-lista painel-usuarios" sec:authorize="hasRole('ADMIN')" aria-labelledby="titulo-usuarios">
+        <h3 class="painel-titulo" id="titulo-usuarios">Usuários e perfis</h3>
+        <p>Cadastre vendedores e clientes, troque perfis e desative acessos.</p>
+        <div class="painel-acoes">
+            <a class="botao-primario" th:href="@{/admin/usuarios}">Gerenciar usuários</a>
+            <a class="botao-secundario" th:href="@{/admin/usuarios/novo}">Novo usuário</a>
+        </div>
+    </section>
+
     <!-- Regra de negócio: produtos com estoque atual <= estoque mínimo -->
     <section class="cartao-lista painel-repor" aria-labelledby="titulo-repor">
         <h3 class="painel-titulo" id="titulo-repor">Produtos para repor</h3>
@@ -106,7 +127,7 @@
                     <th scope="col">Estoque atual</th>
                     <th scope="col">Estoque mínimo</th>
                     <th scope="col">Reposição</th>
-                    <th scope="col">Ações</th>
+                    <th scope="col" sec:authorize="hasRole('ADMIN')">Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -116,7 +137,7 @@
                     <td th:text="${produto.estoqueAtual}">6</td>
                     <td th:text="${produto.estoqueMinimo}">12</td>
                     <td th:text="|${produto.tempoReposicaoDias} dias (${produto.fornecedor})|">25 dias (Malharia Serra)</td>
-                    <td class="acoes">
+                    <td class="acoes" sec:authorize="hasRole('ADMIN')">
                         <a class="action-btn" th:href="@{/admin/produtos/{id}/editar(id=${produto.idProduto})}">Editar</a>
                     </td>
                 </tr>
