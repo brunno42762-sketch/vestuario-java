@@ -11,7 +11,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "pedido")
+// Índices onde há filtro frequente (RNF02, Entrega 1, seção 6.4). A chave estrangeira id_cliente
+// também tem índice: o H2 cria um para cada FK. Canal e forma de pagamento ficam sem índice:
+// têm poucos valores, e o ganho seria pequeno.
+@Table(name = "pedido", indexes = {
+        @Index(name = "ix_pedido_data", columnList = "data_pedido"),
+        @Index(name = "ix_pedido_status", columnList = "status_pedido")
+})
 @Getter
 @Setter
 @NoArgsConstructor

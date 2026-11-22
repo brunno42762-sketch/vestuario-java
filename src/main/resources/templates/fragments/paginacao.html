@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<!--
+  Navegação entre páginas:  Anterior · 1 … 4 5 [6] 7 8 … 300 · Próxima
+
+  Parâmetros:
+    base    URL da lista, já com os filtros. Ex.: @{/admin/pedidos(status=${statusFiltro},ordem=${ordem})}
+    rotulo  texto do aria-label (lido por leitores de tela)
+    ancora  '#catalogo' para voltar ao mesmo ponto da página, ou '' para nenhuma
+
+  Variáveis que o controller precisa colocar no model:
+    paginaAtual, totalPaginas, inicioJanela, fimJanela
+
+  Uso:
+    <nav th:replace="~{fragments/paginacao :: paginacao(@{/minha-conta}, 'Páginas dos meus pedidos', '')}"></nav>
+-->
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<!-- sep: se a base já tem "?" (filtros), o número da página entra com "&" -->
+<nav class="paginacao" th:fragment="paginacao(base, rotulo, ancora)"
+     th:if="${totalPaginas > 1}"
+     th:attr="aria-label=${rotulo}"
+     th:with="sep=${#strings.contains(base, '?')} ? '&' : '?'">
+
+    <a th:if="${paginaAtual > 1}" th:href="|${base}${sep}pagina=${paginaAtual - 1}${ancora}|">Anterior</a>
+    <span class="desabilitado" th:unless="${paginaAtual > 1}">Anterior</span>
+
+    <th:block th:if="${inicioJanela > 1}">
+        <a th:href="|${base}${sep}pagina=1${ancora}|">1</a>
+        <span class="reticencias" th:if="${inicioJanela > 2}">…</span>
+    </th:block>
+
+    <a th:each="n : ${#numbers.sequence(inicioJanela, fimJanela)}"
+       th:href="|${base}${sep}pagina=${n}${ancora}|"
+       th:text="${n}"
+       th:attr="aria-current=${n == paginaAtual} ? 'page' : null">1</a>
+
+    <th:block th:if="${fimJanela < totalPaginas}">
+        <span class="reticencias" th:if="${fimJanela < totalPaginas - 1}">…</span>
+        <a th:href="|${base}${sep}pagina=${totalPaginas}${ancora}|" th:text="${totalPaginas}">300</a>
+    </th:block>
+
+    <a th:if="${paginaAtual < totalPaginas}" th:href="|${base}${sep}pagina=${paginaAtual + 1}${ancora}|">Próxima</a>
+    <span class="desabilitado" th:unless="${paginaAtual < totalPaginas}">Próxima</span>
+</nav>
+
+</body>
+</html>

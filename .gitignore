@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Banco H2 local (recriado a partir da planilha na primeira execução) ###
+database/

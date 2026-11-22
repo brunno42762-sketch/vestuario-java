@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/base :: head('Nova venda')}"></head>
+<body>
+<th:block th:replace="~{fragments/navegacao :: admin('vendas')}"></th:block>
+
+<main class="container" id="conteudo">
+    <div class="cabecalho-pagina">
+        <h2 class="titulo-cabecalho-cartao">Nova venda</h2>
+        <a class="link-loja" th:href="@{/admin/pedidos}">Ver pedidos</a>
+    </div>
+
+    <!-- VENDEDOR e ADMIN registram vendas de qualquer canal. O pedido nasce "Criado" e baixa o estoque. -->
+    <form th:object="${venda}" method="post" th:action="@{/admin/vendas}" novalidate>
+
+        <div class="alerta alerta-erro" role="alert" th:if="${#fields.hasGlobalErrors()}">
+            <p th:each="erro : ${#fields.globalErrors()}" th:text="${erro}">Estoque insuficiente.</p>
+        </div>
+
+        <fieldset>
+            <legend>Venda</legend>
+            <div class="campos">
+                <label for="idCliente">Cliente</label>
+                <div>
+                    <select id="idCliente" th:field="*{idCliente}" aria-describedby="dica-cliente" required>
+                        <option value="">Selecione...</option>
+                        <option th:each="c : ${clientes}" th:value="${c.idCliente}"
+                                th:text="|${c.idCliente} – ${c.cidade}/${c.estado} (${c.faixaEtaria})|">103 – Porto Alegre/RS</option>
+                    </select>
+                    <span class="dica-campo" id="dica-cliente">Cliente que não quis se identificar: use o 1 (Não informado).</span>
+                    <span class="erro-campo" th:if="${#fields.hasErrors('idCliente')}" th:errors="*{idCliente}"></span>
+                </div>
+
+                <label for="canal">Canal</label>
+                <div>
+                    <select id="canal" th:field="*{canal}" required>
+                        <option th:each="c : ${canais}" th:value="${c}" th:text="${c.nome}">Loja Física</option>
+                    </select>
+                    <span class="erro-campo" th:if="${#fields.hasErrors('canal')}" th:errors="*{canal}"></span>
+                </div>
+
+                <label for="formaPagamento">Forma de pagamento</label>
+                <div>
+                    <select id="formaPagamento" th:field="*{formaPagamento}" required>
+                        <option value="">Selecione...</option>
+                        <option th:each="f : ${formasPagamento}" th:value="${f}" th:text="${f.nome}">Pix</option>
+                    </select>
+                    <span class="erro-campo" th:if="${#fields.hasErrors('formaPagamento')}" th:errors="*{formaPagamento}"></span>
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Itens</legend>
+            <p class="dica-campo">Preencha uma linha por produto e tamanho. Linhas em branco são ignoradas.
+                O preço é o do cadastro do produto.</p>
+
+            <!-- Uma linha por item: os nomes viram itens[0].idProduto, itens[1].idProduto... -->
+            <div class="linha-venda" th:each="linha, i : *{itens}">
+                <div>
+                    <label th:for="|produto-${i.index}|" th:text="|Produto ${i.count}|">Produto 1</label>
+                    <select th:id="|produto-${i.index}|" th:field="*{itens[__${i.index}__].idProduto}">
+                        <option value="">—</option>
+                        <option th:each="p : ${produtos}" th:value="${p.idProduto}"
+                                th:disabled="${p.estoqueAtual <= 0}"
+                                th:text="|${p.idProduto} – ${p.categoria} ${p.subcategoria} ${p.cor} · R$ ${#numbers.formatDecimal(p.precoUnitario, 1, 'POINT', 2, 'COMMA')} · estoque ${p.estoqueAtual}|">
+                            3 – Camiseta Básica Azul · R$ 89,90 · estoque 20
+                        </option>
+                    </select>
+                </div>
+                <div>
+                    <label th:for="|tamanho-${i.index}|">Tamanho</label>
+                    <select th:id="|tamanho-${i.index}|" th:field="*{itens[__${i.index}__].tamanho}">
+                        <option value="">—</option>
+                        <option th:each="t : ${tamanhos}" th:value="${t}" th:text="${t}">M</option>
+                    </select>
+                </div>
+                <div>
+                    <label th:for="|quantidade-${i.index}|">Quantidade</label>
+                    <input type="number" min="1" th:max="${maxQuantidade}" th:id="|quantidade-${i.index}|"
+                           th:field="*{itens[__${i.index}__].quantidade}">
+                </div>
+                <span class="erro-campo" th:if="${#fields.hasErrors('itens[__${i.index}__].*')}"
+                      th:errors="*{itens[__${i.index}__].*}"></span>
+            </div>
+        </fieldset>
+
+        <div class="acoes-form">
+            <button class="btn-criar" type="submit">Registrar venda</button>
+            <a class="link-cancelar" th:href="@{/admin/pedidos}">Cancelar</a>
+        </div>
+    </form>
+</main>
+</body>
+</html>

@@ -24,7 +24,7 @@ import java.util.*;
 import java.util.function.Function;
 
 /**
- * RF08 – Migração dos dados da planilha legada para o banco (Entrega 1, seção 6.5).
+ * RF10 – Migração dos dados da planilha legada para o banco (Entrega 1, seção 6.5).
  *
  * Roda quando a aplicação inicia, mas só se o banco estiver vazio (o H2 é em arquivo,
  * então os dados ficam gravados e a carga acontece uma vez só).
@@ -237,7 +237,7 @@ public class MigracaoLegado implements CommandLineRunner {
     }
 
     // =====================================================================
-    // Conferência de totais (RF08)
+    // Conferência de totais (RF10)
     // =====================================================================
 
     private void conferirTotais(int produtosEsperados, int clientesEsperados, List<Map<String, String>> vendas) {

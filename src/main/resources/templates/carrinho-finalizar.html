@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/base :: head('Finalizar compra')}"></head>
+<body>
+<th:block th:replace="~{fragments/navegacao :: loja('carrinho')}"></th:block>
+
+<main class="container" id="conteudo">
+    <div class="cabecalho-pagina">
+        <h2 class="titulo-cabecalho-cartao">Finalizar compra</h2>
+        <a class="link-loja" th:href="@{/carrinho}">Voltar ao carrinho</a>
+    </div>
+
+    <th:block th:replace="~{fragments/mensagens :: alertas}"></th:block>
+
+    <section class="painel-grade conta-resumo" aria-label="Resumo da compra">
+        <article class="painel-cartao">
+            <h3 class="painel-titulo">Itens</h3>
+            <ul class="lista-resumo">
+                <li th:each="linha : ${carrinho.linhas}"
+                    th:text="|${linha.quantidade}× ${linha.produto.categoria} ${linha.produto.subcategoria} ${linha.produto.cor} (${linha.tamanho})|">
+                    2× Camiseta Básica Azul (M)
+                </li>
+            </ul>
+        </article>
+        <article class="painel-cartao">
+            <h3 class="painel-titulo">Entrega</h3>
+            <p th:if="${cliente.entrega != null}"
+               th:text="|${cliente.entrega.cidadeEntrega} / ${cliente.entrega.estadoEntrega}|">Porto Alegre / RS</p>
+            <p class="painel-legenda">O endereço de entrega do seu cadastro.</p>
+        </article>
+        <article class="painel-cartao">
+            <h3 class="painel-titulo">Total</h3>
+            <p class="painel-numero total-pedido"
+               th:text="|R$ ${#numbers.formatDecimal(carrinho.total, 1, 'POINT', 2, 'COMMA')}|">R$ 179,80</p>
+            <p class="painel-legenda" th:text="|${carrinho.pecas} peça(s)|">2 peças</p>
+        </article>
+    </section>
+
+    <!-- O cliente NÃO vem deste formulário: o servidor usa o do usuário logado -->
+    <form method="post" th:action="@{/carrinho/finalizar}">
+        <fieldset>
+            <legend>Pagamento</legend>
+            <div class="campos">
+                <label for="formaPagamento">Forma de pagamento</label>
+                <div>
+                    <select id="formaPagamento" name="formaPagamento" required>
+                        <option value="">Selecione...</option>
+                        <option th:each="f : ${formasPagamento}" th:value="${f}" th:text="${f.nome}">Pix</option>
+                    </select>
+                </div>
+            </div>
+        </fieldset>
+
+        <div class="acoes-form">
+            <button class="btn-criar" type="submit">Confirmar pedido</button>
+            <a class="link-cancelar" th:href="@{/carrinho}">Voltar</a>
+        </div>
+    </form>
+</main>
+</body>
+</html>

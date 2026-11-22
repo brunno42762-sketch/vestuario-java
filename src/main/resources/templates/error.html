@@ -1,27 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title th:text="${status} + ' – ' + ${error}">Erro</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Changa+One:ital@0;1&family=Special+Gothic+Condensed+One&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe" crossorigin="anonymous">
-
-    <link rel="stylesheet" th:href="@{/css/style.css}">
-    <link rel="stylesheet" th:href="@{/css/mensagens.css}">
-</head>
+<head th:replace="~{fragments/base :: head(${status} + ' – ' + ${error})}"></head>
 <body>
-<nav class="navbar sm:navbar-expand bg-1 fg-2">
-  <div class="container-fluid">
-    <a class="navbar-brand" th:href="@{/}">Vestuário</a>
-  </div>
-</nav>
+<th:block th:replace="~{fragments/navegacao :: loja('')}"></th:block>
 
-<main class="container">
+<main class="container" id="conteudo">
     <div class="cabecalho-pagina">
         <h2 class="titulo-cabecalho-cartao" th:text="${status == 404} ? 'Página não encontrada' : 'Ocorreu um erro'">Erro</h2>
     </div>

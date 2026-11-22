@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<body>
+<!--
+  Ilustrações genéricas das peças, uma por categoria (desenhos próprios, sem imagens de terceiros).
+  A cor vem da variável CSS --cor (classes .cor-Azul, .cor-Preto... em mensagens.css).
+
+  Uso:  <svg th:replace="~{fragments/pecas :: ilustracao(${produto.categoria})}"></svg>
+  O th:switch escolhe o desenho pela categoria; "*" é o caso padrão (um cabide).
+-->
+<!-- aria-hidden: é decorativa; o nome do produto já aparece em texto ao lado -->
+<svg th:fragment="ilustracao(categoria)" class="peca" viewBox="0 0 200 200"
+     aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"
+     th:switch="${categoria}">
+
+  <!-- Camiseta -->
+  <g th:case="'Camiseta'">
+    <path class="peca-corpo" d="M74 32 L50 40 L18 66 L36 92 L58 80 L58 172 L142 172 L142 80 L164 92 L182 66 L150 40 L126 32 C120 50 80 50 74 32 Z"/>
+    <path class="peca-detalhe" d="M80 34 C86 46 114 46 120 34"/>
+  </g>
+
+  <!-- Calça -->
+  <g th:case="'Calça'">
+    <path class="peca-corpo" d="M62 24 L138 24 L150 178 L112 178 L100 84 L88 178 L50 178 Z"/>
+    <path class="peca-detalhe" d="M62 38 L138 38 M100 38 L100 70 M70 38 C72 54 82 58 90 58 M130 38 C128 54 118 58 110 58"/>
+  </g>
+
+  <!-- Jaqueta -->
+  <g th:case="'Jaqueta'">
+    <path class="peca-corpo" d="M72 28 L46 38 L30 62 L22 162 L44 164 L54 92 L58 92 L58 174 L142 174 L142 92 L146 92 L156 164 L178 162 L170 62 L154 38 L128 28 L114 46 L100 62 L86 46 Z"/>
+    <path class="peca-detalhe" d="M100 62 L100 174 M72 28 L84 66 L100 62 M128 28 L116 66 L100 62 M68 128 L88 128 M112 128 L132 128"/>
+  </g>
+
+  <!-- Moletom (com capuz) -->
+  <g th:case="'Moletom'">
+    <path class="peca-corpo" d="M70 44 C70 14 130 14 130 44 L154 54 L172 78 L176 162 L154 164 L148 100 L144 100 L144 174 L56 174 L56 100 L52 100 L46 164 L24 162 L28 78 L46 54 Z"/>
+    <path class="peca-detalhe" d="M80 50 C80 30 120 30 120 50 C112 62 88 62 80 50 Z M92 62 L90 86 M108 62 L110 86 M72 128 L128 128 L120 152 L80 152 Z M56 164 L144 164"/>
+  </g>
+
+  <!-- Vestido -->
+  <g th:case="'Vestido'">
+    <path class="peca-corpo" d="M78 22 L86 22 C90 38 110 38 114 22 L122 22 L122 60 L132 74 L164 178 L36 178 L68 74 L78 60 Z"/>
+    <path class="peca-detalhe" d="M78 60 L122 60 M70 74 C90 82 110 82 130 74 M100 82 L94 178 M100 82 L118 178"/>
+  </g>
+
+  <!-- Tênis (vista lateral) -->
+  <g th:case="'Tênis'">
+    <path class="peca-corpo" d="M18 132 C18 110 30 98 50 98 L76 98 C88 98 94 110 110 116 L160 126 C176 129 184 136 184 146 L184 150 L18 150 Z"/>
+    <path class="peca-sola" d="M14 150 L188 150 L186 162 C186 166 182 168 178 168 L22 168 C18 168 14 166 14 162 Z"/>
+    <path class="peca-detalhe" d="M80 108 L92 102 M88 116 L100 110 M98 122 L110 117 M30 132 C52 126 74 138 100 132"/>
+  </g>
+
+  <!-- Qualquer outra categoria: um cabide -->
+  <g th:case="*">
+    <path class="peca-detalhe" d="M100 56 C100 44 116 44 116 56 C116 66 100 66 100 78 L28 140 L172 140 L100 78"/>
+  </g>
+</svg>
+
+</body>
+</html>

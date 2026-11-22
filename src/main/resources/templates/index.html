@@ -1,104 +1,117 @@
 <!DOCTYPE html>
 <html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ezVest</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Changa+One:ital@0;1&family=Special+Gothic+Condensed+One&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe" crossorigin="anonymous">
-    <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-1a/pXj49ZQ1aHEmrJ+gMw1otqoVsYwlEnlD8mIfY2TV03r20Y0CN7uqx1tQogjPL" crossorigin="anonymous"></script>
-
-    <link rel="stylesheet" th:href="@{/css/style.css}">
-    <link rel="stylesheet" th:href="@{/css/mensagens.css}">
-</head>
+<head th:replace="~{fragments/base :: head('ezVest')}"></head>
 <body>
-    <!-- Barra do topo: muda conforme quem está logado -->
-    <div class="barra-admin">
-        <a sec:authorize="isAnonymous()" th:href="@{/login}">Entrar</a>
-        <a sec:authorize="hasRole('CLIENTE')" th:href="@{/minha-conta}">Minha conta</a>
-        <a sec:authorize="hasAnyRole('ADMIN', 'VENDEDOR')" th:href="@{/admin}">Área do administrador</a>
-        <form class="form-sair" sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
-            <span class="usuario-logado" sec:authentication="name">Cliente</span>
-            <button type="submit" class="botao-sair">Sair</button>
-        </form>
-    </div>
+    <th:block th:replace="~{fragments/navegacao :: loja('inicio')}"></th:block>
 
-    <nav class="navbar sm:navbar-expand bg-1 fg-2">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">ezVest</a>
-            <button class="btn-icon navbar-toggler" type="button" data-bs-toggle="drawer" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon" aria-hidden="true"></span>
-            </button>
-            <dialog class="drawer drawer-end" tabindex="-1" id="navbarNav" aria-labelledby="navbarNavLabel">
-                <div class="drawer-header">
-                    <h5 class="drawer-title" id="navbarNavLabel">Menu</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="drawer" aria-label="Close"></button>
+    <main id="conteudo">
+<!-- ================= Banner do topo (largura total) =================
+     Carrossel do Bootstrap 6: o 1º slide é a coleção (com a foto) e os seguintes são os
+     6 mais vendidos (ProdutoService.maisVendidos). Troca sozinho a cada 6 s; o botão de
+     pausa atende à acessibilidade (conteúdo que se move sozinho precisa poder ser parado). -->
+<section class="banner" aria-labelledby="banner-titulo">
+    <h1 class="visually-hidden" id="banner-titulo">ezVest: moda para o dia a dia</h1>
+
+    <div id="banner-carrossel" class="carousel" data-bs-autoplay="true" data-bs-interval="6000"
+         aria-roledescription="carrossel" aria-label="Destaques da loja">
+        <div class="carousel-inner">
+
+            <!-- Slide 1: a coleção, com a modelo recortada (da cabeça ao meio da coxa) sobre o menta da paleta
+                 (foto do Pexels com o fundo removido; crédito no rodapé) -->
+            <div class="carousel-item active banner-slide banner-colecao"
+                 role="group" aria-roledescription="slide"
+                 th:attr="aria-label=|1 de ${#lists.size(destaques) + 1}|">
+                <p class="banner-palavra" aria-hidden="true">verão</p>
+                <div class="banner-figura">
+                    <img th:src="@{/img/modelo-verao.webp}" src="/img/modelo-verao.webp" width="460" height="798"
+                         alt="Modelo com regata estampada de girassóis, saia clara e bolsa de palha">
                 </div>
-                <div class="drawer-body">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#categorias">Categorias</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#catalogo">Catálogo</a>
-                        </li>
-                    </ul>
+                <div class="banner-chamada">
+                    <p class="banner-sobretitulo">Nova coleção</p>
+                    <p class="banner-titulo">Verão 2027</p>
+                    <p class="banner-texto">Camisetas, calças, moletons e vestidos para o dia a dia.</p>
                 </div>
-            </dialog>
+                <a class="banner-botao" href="#catalogo">Comprar</a>
+            </div>
+
+            <!-- Slides 2 a 7: os mais vendidos. O fundo é um tom escuro da cor do produto. -->
+            <div class="carousel-item banner-slide banner-produto"
+                 th:each="d, i : ${destaques}"
+                 th:classappend="|cor-${d.produto.cor}|"
+                 role="group" aria-roledescription="slide"
+                 th:attr="aria-label=|${i.count + 1} de ${i.size + 1}|">
+                <p class="banner-palavra" aria-hidden="true" th:text="${#strings.toLowerCase(d.produto.categoria)}">vestido</p>
+                <div class="banner-figura banner-ilustracao">
+                    <svg th:replace="~{fragments/pecas :: ilustracao(${d.produto.categoria})}"></svg>
+                </div>
+                <div class="banner-chamada">
+                    <p class="banner-sobretitulo">Mais vendidos</p>
+                    <p class="banner-titulo" th:text="|${d.produto.categoria} ${d.produto.subcategoria}|">Vestido Longo</p>
+                    <p class="banner-texto" th:text="|${d.produto.marca} · ${d.produto.cor}|">NovaModa · Branco</p>
+                </div>
+                <!-- Leva à página do catálogo onde o produto está, já rolando até ele -->
+                <a class="banner-botao" th:href="@{/(pagina=${d.pagina})} + '#produto-' + ${d.produto.idProduto}"
+                   th:attr="aria-label=|Comprar ${d.produto.categoria} ${d.produto.subcategoria} ${d.produto.cor}|">Comprar</a>
+            </div>
         </div>
-    </nav>
 
-    <main class="container">
+        <!-- Setas nas laterais -->
+        <button type="button" class="banner-seta banner-seta-anterior" data-bs-target="#banner-carrossel"
+                data-bs-slide="prev" aria-label="Destaque anterior">
+            <span class="carousel-icon-prev" aria-hidden="true"></span>
+        </button>
+        <button type="button" class="banner-seta banner-seta-proxima" data-bs-target="#banner-carrossel"
+                data-bs-slide="next" aria-label="Próximo destaque">
+            <span class="carousel-icon-next" aria-hidden="true"></span>
+        </button>
 
-        <section class="hero" aria-labelledby="hero-titulo">
-            <div>
-                <p class="hero-eyebrow">Coleção Verão 2027</p>
-                <h1 class="hero-titulo" id="hero-titulo">ezVest</h1>
-                <p class="hero-texto">Camisetas, calças, moletons e vestidos para o dia a dia.</p>
-                <div class="hero-acoes">
-                    <a class="btn-hero" href="#catalogo">Ver catálogo</a>
-                    <a class="btn-hero secundario" href="#categorias">Ver categorias</a>
-                </div>
+        <!-- Indicadores e pausa, embaixo -->
+        <div class="banner-controles">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#banner-carrossel" data-bs-slide-to="0"
+                        class="active" aria-current="true" aria-label="Ir para o destaque 1"></button>
+                <button type="button" th:each="d, i : ${destaques}" data-bs-target="#banner-carrossel"
+                        th:attr="data-bs-slide-to=${i.count},aria-label=|Ir para o destaque ${i.count + 1}|"></button>
             </div>
+            <button type="button" class="banner-pausa carousel-control-play-pause" data-bs-target="#banner-carrossel"
+                    data-bs-pause-label="Pausar a troca automática" data-bs-play-label="Retomar a troca automática"
+                    aria-label="Pausar a troca automática">
+                <span class="carousel-icon-pause" aria-hidden="true"></span>
+                <span class="carousel-icon-play" aria-hidden="true"></span>
+            </button>
+        </div>
+    </div>
+</section>
 
-            <div class="cartela" aria-label="Cartela de cores da coleção">
-                <p class="cartela-titulo">Cartela de cores</p>
-                <div class="cartela-grade">
-                    <div class="amostra" style="--cor: #5E6B3F"><span class="amostra-cor"></span>Verde-musgo</div>
-                    <div class="amostra" style="--cor: #3E5C8A"><span class="amostra-cor"></span>Azul</div>
-                    <div class="amostra" style="--cor: #3A3F47"><span class="amostra-cor"></span>Grafite</div>
-                    <div class="amostra" style="--cor: #C0603E"><span class="amostra-cor"></span>Terracota</div>
-                    <div class="amostra" style="--cor: #D8C6A5"><span class="amostra-cor"></span>Areia</div>
-                    <div class="amostra" style="--cor: #F1ECE2"><span class="amostra-cor"></span>Off-white</div>
-                </div>
-            </div>
-        </section>
+<div class="container">
+
 
         <h2 class="titulo-cabecalho-cartao" id="categorias">Categorias</h2>
-        <section class="secao-grade categorias" aria-label="Categorias">
-            <div class="categoria-tile">
-                <span class="categoria-nome">Camisetas</span>
-                <span class="categoria-sub">Manga curta · Regata</span>
-            </div>
-            <div class="categoria-tile">
-                <span class="categoria-nome">Calças</span>
-                <span class="categoria-sub">Jeans · Sarja</span>
-            </div>
-            <div class="categoria-tile">
-                <span class="categoria-nome">Moletons</span>
-                <span class="categoria-sub">Canguru · Zíper</span>
-            </div>
-            <div class="categoria-tile">
-                <span class="categoria-nome">Vestidos</span>
-                <span class="categoria-sub">Midi · Curto</span>
-            </div>
-        </section>
+        <!-- Categorias geradas do banco (ProdutoService.categorias): cada cartão filtra o catálogo -->
+        <nav class="secao-grade categorias" aria-label="Categorias">
+            <a class="categoria-tile" th:each="c : ${categorias}"
+               th:href="@{/(categoria=${c.nome})} + '#catalogo'"
+               th:classappend="${c.nome == categoriaAtual} ? 'ativa'"
+               th:attr="aria-current=${c.nome == categoriaAtual} ? 'true' : null">
+                <svg th:replace="~{fragments/pecas :: ilustracao(${c.nome})}"></svg>
+                <span class="categoria-nome" th:text="${c.nome}">Camiseta</span>
+                <span class="categoria-sub" th:text="${#strings.listJoin(c.subcategorias, ' · ')}">Básica · Oversized</span>
+                <span class="categoria-qtd" th:text="|${c.produtos} produtos|">21 produtos</span>
+            </a>
+        </nav>
 
-        <h2 class="titulo-cabecalho-cartao" id="catalogo">Catálogo</h2>
+        <div class="cabecalho-catalogo">
+            <h2 class="titulo-cabecalho-cartao" id="catalogo"
+                th:text="${categoriaAtual} ? |Catálogo: ${categoriaAtual}| : 'Catálogo'">Catálogo</h2>
+            <a class="link-limpar" th:if="${categoriaAtual}" th:href="@{/} + '#catalogo'">Ver todas as categorias</a>
+        </div>
+
+        <!-- Mensagens do carrinho ("adicionado", "sem estoque"...): aparecem aqui, perto do produto -->
+        <th:block th:replace="~{fragments/mensagens :: alertas}"></th:block>
+        <p class="link-ver-carrinho" th:if="${mostrarLinkCarrinho}">
+            <a class="botao-secundario" th:href="@{/carrinho}">Ver carrinho</a>
+        </p>
         <p class="catalogo-info" th:if="${produtos.totalElements > 0}"
            th:text="|Mostrando ${produtos.number * produtos.size + 1}–${produtos.number * produtos.size + produtos.numberOfElements} de ${produtos.totalElements} produtos|">
             Mostrando 1–12 de 126 produtos
@@ -106,48 +119,60 @@
 
         <section class="secao-grade vitrine" aria-label="Catálogo de produtos">
             <!-- Um cartão por produto da página atual (12 por página) -->
-            <article class="produto-card" th:each="produto : ${produtos.content}">
-                <!-- A faixa usa a cor do produto: cada cor tem uma classe em mensagens.css (ex.: .cor-Azul) -->
-                <div class="produto-cor" th:classappend="|cor-${produto.cor}|"></div>
+            <!-- id="produto-12": o link do carrossel rola a página até o cartão -->
+            <article class="produto-card" th:each="produto : ${produtos.content}"
+                     th:id="|produto-${produto.idProduto}|">
+                <!-- Ilustração da categoria na cor do produto: cada cor tem uma classe em mensagens.css (ex.: .cor-Azul) -->
+                <div class="produto-cor" th:classappend="|cor-${produto.cor}|">
+                    <svg th:replace="~{fragments/pecas :: ilustracao(${produto.categoria})}"></svg>
+                </div>
                 <div class="produto-info">
                     <p class="produto-categoria" th:text="|${produto.colecao} · ${produto.genero}|">Verão · Unissex</p>
                     <h3 class="produto-nome" th:text="|${produto.categoria} ${produto.subcategoria}|">Camiseta Básica</h3>
                     <p class="produto-marca" th:text="|${produto.marca} · ${produto.cor}|">Pulse · Branco</p>
                     <p class="produto-preco" th:text="|R$ ${#numbers.formatDecimal(produto.precoUnitario, 1, 'POINT', 2, 'COMMA')}|">R$ 89,90</p>
+
+                    <p class="produto-estoque esgotado" th:if="${produto.estoqueAtual <= 0}">Esgotado</p>
+                    <p class="produto-estoque" th:if="${produto.estoqueAtual > 0 and produto.estoqueAtual <= 5}"
+                       th:text="|Últimas ${produto.estoqueAtual} peças|">Últimas 3 peças</p>
+
+                    <!-- Visitante ou cliente: escolhe tamanho e quantidade e adiciona ao carrinho.
+                         A equipe (ADMIN/VENDEDOR) não vê o botão: ela vende pela tela "Nova venda". -->
+                    <form class="form-carrinho" method="post" th:action="@{/carrinho/itens}"
+                          th:if="${produto.estoqueAtual > 0}"
+                          sec:authorize="isAnonymous() or hasRole('CLIENTE')">
+                        <input type="hidden" name="idProduto" th:value="${produto.idProduto}">
+                        <input type="hidden" name="pagina" th:value="${paginaAtual}">
+                        <input type="hidden" name="categoria" th:if="${categoriaAtual}" th:value="${categoriaAtual}">
+                        <div class="form-carrinho-campos">
+                            <div>
+                                <label th:for="|tamanho-${produto.idProduto}|">Tamanho</label>
+                                <select name="tamanho" th:id="|tamanho-${produto.idProduto}|" required>
+                                    <option value="">–</option>
+                                    <option th:each="t : ${tamanhos}" th:value="${t}" th:text="${t}">M</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label th:for="|quantidade-${produto.idProduto}|">Qtd.</label>
+                                <input type="number" name="quantidade" value="1" min="1" required
+                                       th:id="|quantidade-${produto.idProduto}|"
+                                       th:max="${produto.estoqueAtual < maxQuantidade} ? ${produto.estoqueAtual} : ${maxQuantidade}">
+                            </div>
+                        </div>
+                        <button type="submit" class="botao-primario botao-carrinho"
+                                th:attr="aria-label=|Adicionar ${produto.categoria} ${produto.subcategoria} ${produto.cor} ao carrinho|">Adicionar ao carrinho</button>
+                    </form>
                 </div>
             </article>
 
             <p class="catalogo-vazio" th:if="${produtos.totalElements == 0}">Nenhum produto disponível no momento.</p>
         </section>
 
-        <!-- Navegação: Anterior · 1 … 4 5 [6] 7 8 … 11 · Próxima -->
-        <nav class="paginacao" aria-label="Páginas do catálogo" th:if="${totalPaginas > 1}">
-            <a th:if="${paginaAtual > 1}" th:href="@{/(pagina=${paginaAtual - 1})} + '#catalogo'">Anterior</a>
-            <span class="desabilitado" th:unless="${paginaAtual > 1}">Anterior</span>
+        <nav th:replace="~{fragments/paginacao :: paginacao(@{${basePaginacao}}, 'Páginas do catálogo', '#catalogo')}"></nav>
 
-            <th:block th:if="${inicioJanela > 1}">
-                <a th:href="@{/(pagina=1)} + '#catalogo'">1</a>
-                <span class="reticencias" th:if="${inicioJanela > 2}">…</span>
-            </th:block>
-
-            <a th:each="n : ${#numbers.sequence(inicioJanela, fimJanela)}"
-               th:href="@{/(pagina=${n})} + '#catalogo'"
-               th:text="${n}"
-               th:attr="aria-current=${n == paginaAtual} ? 'page' : null">1</a>
-
-            <th:block th:if="${fimJanela < totalPaginas}">
-                <span class="reticencias" th:if="${fimJanela < totalPaginas - 1}">…</span>
-                <a th:href="@{/(pagina=${totalPaginas})} + '#catalogo'" th:text="${totalPaginas}">11</a>
-            </th:block>
-
-            <a th:if="${paginaAtual < totalPaginas}" th:href="@{/(pagina=${paginaAtual + 1})} + '#catalogo'">Próxima</a>
-            <span class="desabilitado" th:unless="${paginaAtual < totalPaginas}">Próxima</span>
-        </nav>
-
+</div>
     </main>
 
-    <footer class="rodape">
-        © 2026 ezVest
-    </footer>
+    <footer th:replace="~{fragments/base :: rodape}"></footer>
 </body>
 </html>

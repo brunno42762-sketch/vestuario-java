@@ -3,6 +3,7 @@ package br.edu.eseg.vestuario.ezVest.service;
 import br.edu.eseg.vestuario.ezVest.exception.RecursoNaoEncontradoException;
 import br.edu.eseg.vestuario.ezVest.exception.RegraNegocioException;
 import br.edu.eseg.vestuario.ezVest.model.Produto;
+import br.edu.eseg.vestuario.ezVest.model.Status;
 import br.edu.eseg.vestuario.ezVest.repository.ItemPedidoRepository;
 import br.edu.eseg.vestuario.ezVest.repository.ProdutoRepository;
 import org.springframework.data.domain.Page;
@@ -14,7 +15,13 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.Errors;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
 public class ProdutoService {
@@ -46,10 +53,59 @@ public class ProdutoService {
      *               (o Spring Data conta a partir de 0, por isso o "- 1")
      */
     @Transactional(readOnly = true)
+    /** Um produto em destaque na página inicial e a página do catálogo em que ele aparece. */
+    public record Destaque(Produto produto, int pagina) {
+    }
+
+    /** Os mais vendidos com estoque, para o carrossel da página inicial. */
+    @Transactional(readOnly = true)
+    public List<Destaque> maisVendidos(int quantos) {
+        List<Integer> ids = itemPedidoRepository.maisVendidos(Status.CANCELADO, PageRequest.of(0, quantos));
+        Map<Integer, Produto> produtos = produtoRepository.findAllById(ids).stream()
+                .collect(Collectors.toMap(Produto::getIdProduto, Function.identity()));
+        // findAllById não garante a ordem: monta a lista na ordem do ranking
+        return ids.stream()
+                .map(produtos::get)
+                .filter(Objects::nonNull)
+                .map(p -> new Destaque(p, paginaNoCatalogo(p)))
+                .toList();
+    }
+
+    private int paginaNoCatalogo(Produto p) {
+        long antes = produtoRepository.contarAntesNoCatalogo(p.getCategoria(), p.getSubcategoria(), p.getIdProduto());
+        return (int) (antes / PRODUTOS_POR_PAGINA) + 1;
+    }
+
+    /** Uma categoria da página inicial: nome, quantos produtos tem e as subcategorias. */
+    public record ResumoCategoria(String nome, long produtos, List<String> subcategorias) {
+    }
+
+    /** As categorias que existem no banco (a seção "Categorias" deixa de ser texto fixo no HTML). */
+    @Transactional(readOnly = true)
+    public List<ResumoCategoria> categorias() {
+        Map<String, List<Object[]>> porCategoria = new LinkedHashMap<>();
+        for (Object[] linha : produtoRepository.contarPorSubcategoria()) {
+            porCategoria.computeIfAbsent((String) linha[0], c -> new ArrayList<>()).add(linha);
+        }
+        return porCategoria.entrySet().stream()
+                .map(e -> new ResumoCategoria(e.getKey(),
+                        e.getValue().stream().mapToLong(l -> ((Number) l[2]).longValue()).sum(),
+                        e.getValue().stream().map(l -> (String) l[1]).toList()))
+                .toList();
+    }
+
     public Page<Produto> catalogo(int pagina) {
+        return catalogo(pagina, null);
+    }
+
+    /** Catálogo paginado; categoria null = todas. */
+    public Page<Produto> catalogo(int pagina, String categoria) {
         int indice = Math.max(pagina, 1) - 1;
         Sort ordem = Sort.by("categoria", "subcategoria", "idProduto");
-        return produtoRepository.findAll(PageRequest.of(indice, PRODUTOS_POR_PAGINA, ordem));
+        PageRequest pageable = PageRequest.of(indice, PRODUTOS_POR_PAGINA, ordem);
+        return categoria == null
+                ? produtoRepository.findAll(pageable)
+                : produtoRepository.findByCategoria(categoria, pageable);
     }
 
     @Transactional(readOnly = true)

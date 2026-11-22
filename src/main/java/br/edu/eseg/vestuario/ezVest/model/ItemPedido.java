@@ -9,7 +9,11 @@ import lombok.Setter;
  * Classe de associação entre Pedido e Produto (Pedido * —— * Produto).
  */
 @Entity
-@Table(name = "item_pedido")
+// O H2 já cria índice nas chaves estrangeiras (id_pedido, id_produto); os nomes aqui deixam isso explícito (RNF02)
+@Table(name = "item_pedido", indexes = {
+        @Index(name = "ix_item_pedido_pedido", columnList = "id_pedido"),
+        @Index(name = "ix_item_pedido_produto", columnList = "id_produto")
+})
 @Getter
 @Setter
 @NoArgsConstructor

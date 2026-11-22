@@ -1,0 +1,133 @@
+
+CarrinhoServiceTest
+  OK     resumoCalculaSubtotalETotal() (140 ms)
+  OK     contaAsPecasDosOutrosTamanhosDoMesmoProduto() (10 ms)
+  OK     recusaUmaPecaAlemDoEstoque() (2 ms)
+  OK     adicionaAteOEstoqueExato() (7 ms)
+  OK     exigeTamanhoEProdutoExistente() (2 ms)
+  OK     quantidadeForaDoIntervalo() (3 ms)
+
+FiltroPedidosTest
+  OK     periodoInvertidoEhDetectado() (2 ms)
+  OK     parametrosSoComOsFiltrosPreenchidos() (6 ms)
+  OK     mesmoDiaEPeriodoAbertoSaoValidos() (1 ms)
+
+SegurancaIT
+  OK     postNaoDeclaradoEDeleteSaoNegadosParaTodos() (48 ms)
+  OK     postSemTokenCsrfEhRecusadoComAPagina403() (8 ms)
+  OK     loginComSenhaCertaEErrada() (274 ms)
+  OK     mesmoChamandoOServicoDiretoOVendedorNaoCriaProduto() (29 ms)
+  OK     clienteNaoEntraNaAreaAdministrativa() (256 ms)
+  OK     adminAcessaTudoDaEquipe() (339 ms)
+  OK     visitanteVeALojaMasNaoAAreaAdministrativa() (188 ms)
+  OK     vendedorConsultaMasNaoMexeEmProdutos() (576 ms)
+
+EzVestApplicationTests
+  OK     contextLoads() (5 ms)
+
+UsuarioServiceIT
+  OK     vendedorNaoGerenciaUsuarios() (15 ms)
+  OK     criaVendedorComSenhaGuardadaComoHash() (81 ms)
+  OK     perfilClienteExigeClienteLivre() (103 ms)
+  OK     adminNaoExcluiNemRebaixaASiMesmo() (8 ms)
+  OK     sistemaMantemPeloMenosUmAdminAtivo() (24 ms)
+  OK     usernameRepetidoESenhaCurta() (6 ms)
+
+CarrinhoTest
+  OK     mesmoProdutoEMesmoTamanhoSomaNaMesmaLinha() (1 ms)
+  OK     alterarRemoverELimpar() (3 ms)
+  OK     tamanhosDiferentesSaoLinhasDiferentesMasOEstoqueEhDoProduto() (2 ms)
+  OK     getItensDevolveUmaCopia() (1 ms)
+
+ClienteValidatorTest
+  OK     errosDaEntregaFicamNoCampoDaEntrega() (1 ms)
+  OK     valoresForaDasListasFechadas() (0 ms)
+  OK     entregaEhObrigatoria() (3 ms)
+  OK     clienteValido() (1 ms)
+  OK     cidadeCom60CaracteresPassaE61NaoPassa() (0 ms)
+
+ProdutoValidatorTest
+  OK     precoMenorQueOCustoEhRecusado() (0 ms)
+  OK     estoqueZeroEhPermitido() (1 ms)
+  OK     precoZeroEstoqueNegativoESemCategoria() (1 ms)
+  OK     textoAcimaDoTamanhoDaColunaEGeneroForaDaLista() (1 ms)
+  OK     produtoValidoNaoTemErros() (0 ms)
+  OK     precoIgualAoCustoEhPermitido() (1 ms)
+
+VendaServiceIT
+  OK     vendaCalculaValorELucroEBaixaOEstoque() (43 ms)
+  OK     visitanteNaoCompra() (16 ms)
+  OK     clienteNaoRegistraVendaDeLoja() (10 ms)
+  OK     estoqueInsuficienteNaoGravaNadaENaoMexeNoEstoque() (41 ms)
+  OK     dadosInvalidos() (19 ms)
+  OK     clienteCompraPeloSiteSempreComoECommerce() (12 ms)
+  OK     exatamenteOEstoqueDisponivelPodeSerVendido() (12 ms)
+  OK     linhasRepetidasSaoJuntadasETamanhosDiferentesNao() (14 ms)
+
+ConsultasIT
+  OK     maisVendidosTemEstoqueEOLinkLevaAPaginaCertaDoCatalogo() (58 ms)
+  OK     relatorioSemCanceladosESomasConsistentes() (68 ms)
+  OK     filtrosCombinadosBatemComUmaContagemFeitaEmJava() (196 ms)
+  OK     o banco recusa: "update APP.produto set preco_unitario = -1 where id_produto = (select min(id_produto) from APP.produto)" (12 ms)
+  OK     o banco recusa: "update APP.produto set custo_unitario = preco_unitario + 1 where id_produto = (select min(id_produto) from APP.produto)" (4 ms)
+  OK     o banco recusa: "update APP.produto set estoque_atual = -1 where id_produto = (select min(id_produto) from APP.produto)" (3 ms)
+  OK     o banco recusa: "update APP.item_pedido set quantidade = 0 where id_item_pedido = (select min(id_item_pedido) from APP.item_pedido)" (3 ms)
+  OK     o banco recusa: "update APP.item_pedido set desconto_percentual = 0.2 where id_item_pedido = (select min(id_item_pedido) from APP.item_pedido)" (3 ms)
+  OK     o banco recusa: "update APP.pedido set valor_total = -10 where id_pedido = (select min(id_pedido) from APP.pedido)" (3 ms)
+  OK     o banco recusa: "update APP.pedido set status_pedido = 'PERDIDO' where id_pedido = (select min(id_pedido) from APP.pedido)" (3 ms)
+  OK     listaDeReposicaoTemOs8ProdutosDaPlanilhaENadaComEstoqueSobrando() (8 ms)
+  OK     categoriasVemDoBanco() (8 ms)
+  OK     relatorioDeUmMes() (30 ms)
+  OK     semFiltroTrazTudoEDatasSaoInclusivas() (144 ms)
+
+MigracaoLegadoIT
+  OK     quantidades() (11 ms)
+  OK     totaisDosPedidosLegados() (9 ms)
+  OK     registrosReconstruidos() (7 ms)
+
+CadastroServiceTest
+  OK     confirmacaoDiferente() (1 ms)
+  OK     senhaAcimaDe72BytesNaoPassa() (3 ms)
+  OK     senhaDe7Caracteres_NaoPassa_DeOito_Passa() (1 ms)
+  OK     usernameRepetido() (1 ms)
+  OK     username válido: ""ana"" (1 ms)
+  OK     username válido: ""maria.silva"" (1 ms)
+  OK     username válido: ""joao_2026"" (1 ms)
+  OK     username válido: ""a-b"" (1 ms)
+  OK     username inválido: """" (3 ms)
+  OK     username inválido: ""ab"" (1 ms)
+  OK     username inválido: ""joão"" (1 ms)
+  OK     username inválido: ""com espaço"" (0 ms)
+  OK     username inválido: ""maria@x"" (2 ms)
+  OK     usernameCom80CaracteresPassaE81NaoPassa() (1 ms)
+
+PedidoServiceIT
+  OK     transicaoInvalidaEhBloqueadaNoServidor() (28 ms)
+  OK     clienteNaoCancelaPedidoDeOutraPessoa() (19 ms)
+  OK     cancelarPelaEquipeDevolveOEstoque() (33 ms)
+  OK     cancelarUmPedidoDoLegadoTambemDevolve() (116 ms)
+  OK     clienteCancelaOProprioPedidoCriado() (29 ms)
+  OK     clienteNaoCancelaPedidoJaEntregue() (22 ms)
+
+StatusTest
+  OK     "CRIADO" -> "ENTREGUE" é permitido (7 ms)
+  OK     "CRIADO" -> "CANCELADO" é permitido (0 ms)
+  OK     "ENTREGUE" -> "CONCLUIDO" é permitido (0 ms)
+  OK     "ENTREGUE" -> "TROCA" é permitido (1 ms)
+  OK     "ENTREGUE" -> "CANCELADO" é permitido (1 ms)
+  OK     Pedido.alterarStatus aplica a regra e lança erro na transição inválida (1 ms)
+  OK     "CRIADO" -> "CONCLUIDO" é bloqueado (0 ms)
+  OK     "CRIADO" -> "TROCA" é bloqueado (0 ms)
+  OK     "CRIADO" -> "CRIADO" é bloqueado (1 ms)
+  OK     "ENTREGUE" -> "CRIADO" é bloqueado (0 ms)
+  OK     "ENTREGUE" -> "ENTREGUE" é bloqueado (1 ms)
+  OK     "CONCLUIDO" -> "TROCA" é bloqueado (0 ms)
+  OK     "TROCA" -> "CONCLUIDO" é bloqueado (1 ms)
+  OK     "CANCELADO" -> "ENTREGUE" é bloqueado (0 ms)
+  OK     "CANCELADO" -> "CRIADO" é bloqueado (0 ms)
+  OK     CANCELADO é final: não muda para nenhum status (1 ms)
+  OK     CONCLUIDO é final: não muda para nenhum status (0 ms)
+  OK     TROCA é final: não muda para nenhum status (1 ms)
+  OK     CRIADO e ENTREGUE não são finais (0 ms)
+
+Testes: 103 | Sucesso: 103 | Falhas: 0 | Ignorados: 0 | Tempo: 12.1 s

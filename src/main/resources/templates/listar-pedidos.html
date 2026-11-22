@@ -1,85 +1,59 @@
 <!DOCTYPE html>
 <html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pedidos</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Changa+One:ital@0;1&family=Special+Gothic+Condensed+One&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe" crossorigin="anonymous">
-    <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-1a/pXj49ZQ1aHEmrJ+gMw1otqoVsYwlEnlD8mIfY2TV03r20Y0CN7uqx1tQogjPL" crossorigin="anonymous"></script>
-
-    <link rel="stylesheet" th:href="@{/css/style.css}">
-    <link rel="stylesheet" th:href="@{/css/mensagens.css}">
-</head>
+<head th:replace="~{fragments/base :: head('Pedidos')}"></head>
 <body>
-<nav class="navbar sm:navbar-expand bg-1 fg-2">
-  <div class="container-fluid">
-    <a class="navbar-brand" th:href="@{/}">Vestuário</a>
-    <button class="btn-icon navbar-toggler" type="button" data-bs-toggle="drawer" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon" aria-hidden="true"></span>
-    </button>
-    <dialog class="drawer drawer-end" tabindex="-1" id="navbarNav" aria-labelledby="navbarNavLabel">
-      <div class="drawer-header">
-        <h5 class="drawer-title" id="navbarNavLabel">Menu</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="drawer" aria-label="Close"></button>
-      </div>
-      <div class="drawer-body">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" th:href="@{/admin}">Painel</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" th:href="@{/admin/produtos/novo}">Criar</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" th:href="@{/admin/produtos}">Listar</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" th:href="@{/admin/pedidos}">Pedidos</a>
-          </li>
-          <li class="nav-item" sec:authorize="hasRole('ADMIN')">
-            <a class="nav-link" th:href="@{/admin/usuarios}">Usuários</a>
-          </li>
-          <li class="nav-item item-sair" sec:authorize="isAuthenticated()">
-            <!-- Sair é um POST (com o token CSRF que o th:action acrescenta), nunca um link -->
-            <form class="form-sair" th:action="@{/logout}" method="post">
-              <span class="usuario-logado" sec:authentication="name">Administrador</span>
-              <button type="submit" class="botao-sair">Sair</button>
-            </form>
-          </li>
-        </ul>
-      </div>
-    </dialog>
-  </div>
-</nav>
+<th:block th:replace="~{fragments/navegacao :: admin('pedidos')}"></th:block>
 
-<main class="container">
+<main class="container" id="conteudo">
     <div class="cabecalho-pagina">
         <h2 class="titulo-cabecalho-cartao">Pedidos</h2>
+        <a class="botao-primario" th:href="@{/admin/vendas/nova}">Nova venda</a>
     </div>
 
-    <div class="alerta alerta-sucesso" th:if="${sucesso}" th:text="${sucesso}">Status alterado.</div>
-    <div class="alerta alerta-erro" th:if="${erro}" th:text="${erro}">Transição inválida.</div>
+    <th:block th:replace="~{fragments/mensagens :: alertas}"></th:block>
 
-    <!-- Filtro por status e ordem (GET): /admin/pedidos?status=ENTREGUE&ordem=ID_CRESCENTE -->
-    <form class="filtro-lista" method="get" th:action="@{/admin/pedidos}">
-        <label for="filtro-status">Status</label>
-        <select id="filtro-status" name="status">
-            <option value="" th:selected="${statusFiltro == ''}">Todos</option>
-            <option th:each="s : ${todosStatus}" th:value="${s}" th:text="${s.nome}"
-                    th:selected="${s.name() == statusFiltro}">Entregue</option>
-        </select>
-
-        <label for="filtro-ordem">Ordenar</label>
-        <select id="filtro-ordem" name="ordem">
-            <option th:each="o : ${ordens}" th:value="${o}" th:text="${o.nome}"
-                    th:selected="${o.name() == ordem}">Mais recentes</option>
-        </select>
-        <button type="submit">Aplicar</button>
+    <!-- Filtros (GET, RF08): /admin/pedidos?status=ENTREGUE&canal=FISICA&de=2026-01-01&ate=2026-03-31&cliente=103 -->
+    <form class="filtro-lista filtro-pedidos" method="get" th:action="@{/admin/pedidos}">
+        <div class="filtro-campo">
+            <label for="filtro-status">Status</label>
+            <select id="filtro-status" name="status">
+                <option value="">Todos</option>
+                <option th:each="s : ${todosStatus}" th:value="${s}" th:text="${s.nome}"
+                        th:selected="${s == filtro.status}">Entregue</option>
+            </select>
+        </div>
+        <div class="filtro-campo">
+            <label for="filtro-canal">Canal</label>
+            <select id="filtro-canal" name="canal">
+                <option value="">Todos</option>
+                <option th:each="c : ${canais}" th:value="${c}" th:text="${c.nome}"
+                        th:selected="${c == filtro.canal}">Loja Física</option>
+            </select>
+        </div>
+        <div class="filtro-campo">
+            <label for="filtro-de">De</label>
+            <input type="date" id="filtro-de" name="de" th:value="${filtro.de}">
+        </div>
+        <div class="filtro-campo">
+            <label for="filtro-ate">Até</label>
+            <input type="date" id="filtro-ate" name="ate" th:value="${filtro.ate}">
+        </div>
+        <div class="filtro-campo">
+            <label for="filtro-cliente">Cliente (ID)</label>
+            <input type="number" id="filtro-cliente" name="cliente" min="1" th:value="${filtro.idCliente}">
+        </div>
+        <div class="filtro-campo">
+            <label for="filtro-ordem">Ordenar</label>
+            <select id="filtro-ordem" name="ordem">
+                <option th:each="o : ${ordens}" th:value="${o}" th:text="${o.nome}"
+                        th:selected="${o.name() == ordem}">Mais recentes</option>
+            </select>
+        </div>
+        <div class="filtro-botoes">
+            <button type="submit">Filtrar</button>
+            <a class="link-limpar" th:if="${filtroAtivo}" th:href="@{/admin/pedidos}">Limpar filtros</a>
+        </div>
         <span class="filtro-total" th:if="${pedidos.totalElements > 0}"
               th:text="|Mostrando ${#numbers.formatInteger(pedidos.number * pedidos.size + 1, 1, 'POINT')}–${#numbers.formatInteger(pedidos.number * pedidos.size + pedidos.numberOfElements, 1, 'POINT')} de ${#numbers.formatInteger(pedidos.totalElements, 1, 'POINT')} pedidos|">
             Mostrando 1–20 de 5.999 pedidos
@@ -122,44 +96,22 @@
                                         th:value="${s}" th:text="${s.nome}"
                                         th:selected="${s == pedido.statusPedido}">Entregue</option>
                             </select>
-                            <!-- Para voltar à mesma página e ao mesmo filtro depois de alterar -->
+                            <!-- Para voltar à mesma página, aos mesmos filtros e à mesma ordem depois de alterar -->
                             <input type="hidden" name="pagina" th:value="${paginaAtual}">
-                            <input type="hidden" name="status" th:value="${statusFiltro}">
+                            <input type="hidden" th:each="f : ${parametrosFiltro}" th:name="${f.key}" th:value="${f.value}">
                             <input type="hidden" name="ordem" th:value="${ordem}">
                             <button type="submit">Alterar</button>
                         </form>
                     </td>
                 </tr>
                 <tr th:if="${pedidos.totalElements == 0}">
-                    <td colspan="8" th:text="${statusFiltro == ''} ? 'Nenhum pedido cadastrado.' : 'Nenhum pedido com esse status.'">Nenhum pedido cadastrado.</td>
+                    <td colspan="8" th:text="${filtroAtivo} ? 'Nenhum pedido com esses filtros.' : 'Nenhum pedido cadastrado.'">Nenhum pedido cadastrado.</td>
                 </tr>
             </tbody>
         </table>
     </div>
 
-    <!-- Navegação: Anterior · 1 … 4 5 [6] 7 8 … 300 · Próxima (mantém o filtro e a ordem) -->
-    <nav class="paginacao paginacao-lista" aria-label="Páginas da lista de pedidos" th:if="${totalPaginas > 1}">
-        <a th:if="${paginaAtual > 1}" th:href="@{/admin/pedidos(pagina=${paginaAtual - 1},status=${statusFiltro},ordem=${ordem})}">Anterior</a>
-        <span class="desabilitado" th:unless="${paginaAtual > 1}">Anterior</span>
-
-        <th:block th:if="${inicioJanela > 1}">
-            <a th:href="@{/admin/pedidos(pagina=1,status=${statusFiltro},ordem=${ordem})}">1</a>
-            <span class="reticencias" th:if="${inicioJanela > 2}">…</span>
-        </th:block>
-
-        <a th:each="n : ${#numbers.sequence(inicioJanela, fimJanela)}"
-           th:href="@{/admin/pedidos(pagina=${n},status=${statusFiltro},ordem=${ordem})}"
-           th:text="${n}"
-           th:attr="aria-current=${n == paginaAtual} ? 'page' : null">1</a>
-
-        <th:block th:if="${fimJanela < totalPaginas}">
-            <span class="reticencias" th:if="${fimJanela < totalPaginas - 1}">…</span>
-            <a th:href="@{/admin/pedidos(pagina=${totalPaginas},status=${statusFiltro},ordem=${ordem})}" th:text="${totalPaginas}">300</a>
-        </th:block>
-
-        <a th:if="${paginaAtual < totalPaginas}" th:href="@{/admin/pedidos(pagina=${paginaAtual + 1},status=${statusFiltro},ordem=${ordem})}">Próxima</a>
-        <span class="desabilitado" th:unless="${paginaAtual < totalPaginas}">Próxima</span>
-    </nav>
+    <nav th:replace="~{fragments/paginacao :: paginacao(@{${basePaginacao}}, 'Páginas da lista de pedidos', '')}"></nav>
 </main>
 </body>
 </html>

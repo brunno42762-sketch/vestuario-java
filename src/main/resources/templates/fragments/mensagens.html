@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<!--
+  Mensagens enviadas pelo controller com RedirectAttributes.addFlashAttribute("sucesso"/"erro", ...).
+  Uso:  <th:block th:replace="~{fragments/mensagens :: alertas}"></th:block>
+-->
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<th:block th:fragment="alertas">
+    <div class="alerta alerta-sucesso" role="status" th:if="${sucesso}" th:text="${sucesso}">Operação concluída.</div>
+    <div class="alerta alerta-erro" role="alert" th:if="${erro}" th:text="${erro}">Não foi possível concluir.</div>
+</th:block>
+
+</body>
+</html>

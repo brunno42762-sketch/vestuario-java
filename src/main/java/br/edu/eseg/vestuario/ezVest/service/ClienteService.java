@@ -48,6 +48,20 @@ public class ClienteService {
     @Transactional
     @PreAuthorize("hasAnyRole('ADMIN', 'VENDEDOR')")
     public Cliente criar(Cliente cliente) {
+        return inserir(cliente);
+    }
+
+    /**
+     * Cadastro feito pela própria pessoa na loja (/cadastro). Só para quem ainda não entrou:
+     * um usuário logado não cria clientes por aqui. Usado pelo CadastroService.
+     */
+    @Transactional
+    @PreAuthorize("isAnonymous()")
+    public Cliente criarPeloCadastro(Cliente cliente) {
+        return inserir(cliente);
+    }
+
+    private Cliente inserir(Cliente cliente) {
         cliente.setIdCliente(null); // o id é sempre gerado pelo banco
         normalizar(cliente);
         validarRegras(cliente);

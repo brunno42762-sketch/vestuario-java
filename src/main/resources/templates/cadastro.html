@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/base :: head('Criar conta')}"></head>
+<body>
+<th:block th:replace="~{fragments/navegacao :: loja('cadastro')}"></th:block>
+
+<main class="container" id="conteudo">
+    <div class="cabecalho-pagina">
+        <h2 class="titulo-cabecalho-cartao">Criar conta</h2>
+        <a class="link-loja" th:href="@{/login}">Já tenho conta</a>
+    </div>
+
+    <!-- Cria o Cliente (com a Entrega) e o usuário de acesso, com perfil CLIENTE -->
+    <form th:object="${cadastro}" method="post" th:action="@{/cadastro}" novalidate>
+
+        <div class="alerta alerta-erro" role="alert" th:if="${#fields.hasGlobalErrors()}">
+            <p th:each="erro : ${#fields.globalErrors()}" th:text="${erro}">Erro</p>
+        </div>
+
+        <fieldset>
+            <legend>Acesso</legend>
+            <div class="campos">
+                <label for="username">Nome de usuário</label>
+                <div>
+                    <input type="text" id="username" th:field="*{username}" maxlength="80"
+                           autocomplete="username" aria-describedby="dica-username" required>
+                    <span class="dica-campo" id="dica-username">Letras sem acento, números, ponto, hífen ou sublinhado.</span>
+                    <span class="erro-campo" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+                </div>
+
+                <label for="senha">Senha</label>
+                <div>
+                    <!-- th:field não devolve a senha digitada quando a página volta com erro (por segurança) -->
+                    <input type="password" id="senha" name="senha" minlength="8" maxlength="72"
+                           autocomplete="new-password" aria-describedby="dica-senha" required>
+                    <span class="dica-campo" id="dica-senha">Pelo menos 8 caracteres.</span>
+                    <span class="erro-campo" th:if="${#fields.hasErrors('senha')}" th:errors="*{senha}"></span>
+                </div>
+
+                <label for="confirmacaoSenha">Confirme a senha</label>
+                <div>
+                    <input type="password" id="confirmacaoSenha" name="confirmacaoSenha" maxlength="72"
+                           autocomplete="new-password" required>
+                    <span class="erro-campo" th:if="${#fields.hasErrors('confirmacaoSenha')}" th:errors="*{confirmacaoSenha}"></span>
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Sobre você</legend>
+            <div class="campos">
+                <label for="faixaEtaria">Faixa etária</label>
+                <div>
+                    <select id="faixaEtaria" th:field="*{cliente.faixaEtaria}" required>
+                        <option value="">Selecione...</option>
+                        <option th:each="f : ${faixasEtarias}" th:value="${f}" th:text="${f}">25-34</option>
+                    </select>
+                    <span class="erro-campo" th:if="${#fields.hasErrors('cliente.faixaEtaria')}" th:errors="*{cliente.faixaEtaria}"></span>
+                </div>
+
+                <label for="genero">Gênero</label>
+                <div>
+                    <select id="genero" th:field="*{cliente.genero}" required>
+                        <option value="">Selecione...</option>
+                        <option th:each="g : ${generos}" th:value="${g}" th:text="${g}">Feminino</option>
+                    </select>
+                    <span class="erro-campo" th:if="${#fields.hasErrors('cliente.genero')}" th:errors="*{cliente.genero}"></span>
+                </div>
+
+                <label for="canalPreferido">Canal preferido</label>
+                <div>
+                    <select id="canalPreferido" th:field="*{cliente.canalPreferido}" required>
+                        <option value="">Selecione...</option>
+                        <option th:each="c : ${canais}" th:value="${c}" th:text="${c.nome}">E-commerce</option>
+                    </select>
+                    <span class="erro-campo" th:if="${#fields.hasErrors('cliente.canalPreferido')}" th:errors="*{cliente.canalPreferido}"></span>
+                </div>
+
+                <label class="campo-checkbox">
+                    <input type="checkbox" th:field="*{cliente.clienteFidelidade}">
+                    Quero participar do programa de fidelidade
+                </label>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>Onde você mora</legend>
+            <div class="campos">
+                <label for="cidade">Cidade</label>
+                <div>
+                    <input type="text" id="cidade" th:field="*{cliente.cidade}" maxlength="60" required>
+                    <span class="erro-campo" th:if="${#fields.hasErrors('cliente.cidade')}" th:errors="*{cliente.cidade}"></span>
+                </div>
+
+                <label for="estado">Estado</label>
+                <div>
+                    <select id="estado" th:field="*{cliente.estado}" required>
+                        <option value="">Selecione...</option>
+                        <option th:each="uf : ${ufs}" th:value="${uf}" th:text="${uf}">SP</option>
+                    </select>
+                    <span class="erro-campo" th:if="${#fields.hasErrors('cliente.estado')}" th:errors="*{cliente.estado}"></span>
+                </div>
+            </div>
+        </fieldset>
+
+        <!-- Campos da entidade Entrega (Cliente 1 ◆—— 1 Entrega) -->
+        <fieldset>
+            <legend>Entrega</legend>
+            <div class="campos">
+                <label for="cidadeEntrega">Cidade de entrega</label>
+                <div>
+                    <input type="text" id="cidadeEntrega" th:field="*{cliente.entrega.cidadeEntrega}" maxlength="60" required>
+                    <span class="erro-campo" th:if="${#fields.hasErrors('cliente.entrega.cidadeEntrega')}" th:errors="*{cliente.entrega.cidadeEntrega}"></span>
+                </div>
+
+                <label for="estadoEntrega">Estado de entrega</label>
+                <div>
+                    <select id="estadoEntrega" th:field="*{cliente.entrega.estadoEntrega}" required>
+                        <option value="">Selecione...</option>
+                        <option th:each="uf : ${ufs}" th:value="${uf}" th:text="${uf}">SP</option>
+                    </select>
+                    <span class="erro-campo" th:if="${#fields.hasErrors('cliente.entrega.estadoEntrega')}" th:errors="*{cliente.entrega.estadoEntrega}"></span>
+                </div>
+            </div>
+        </fieldset>
+
+        <div class="acoes-form">
+            <button class="btn-criar" type="submit">Criar conta</button>
+            <a class="link-cancelar" th:href="@{/}">Voltar à loja</a>
+        </div>
+    </form>
+</main>
+</body>
+</html>

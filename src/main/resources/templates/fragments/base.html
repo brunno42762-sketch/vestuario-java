@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!--
+  Partes comuns a todas as páginas.
+  Uso:  <head th:replace="~{fragments/base :: head('Pedidos')}"></head>
+-->
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+
+<!-- <head> igual em todas as páginas; só o título muda (parâmetro) -->
+<head th:fragment="head(titulo)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${titulo}">ezVest</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Changa+One:ital@0;1&family=Special+Gothic+Condensed+One&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe" crossorigin="anonymous">
+    <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-1a/pXj49ZQ1aHEmrJ+gMw1otqoVsYwlEnlD8mIfY2TV03r20Y0CN7uqx1tQogjPL" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/mensagens.css}">
+</head>
+
+<body>
+
+<!-- Rodapé -->
+<footer class="rodape" th:fragment="rodape">
+    <p>© 2026 ezVest</p>
+    <!-- Crédito da foto do topo da página inicial (pedido pelo Pexels, que permite uso gratuito) -->
+    <p class="rodape-credito">Foto do destaque: Godisable Jacob,
+        <a href="https://www.pexels.com/photo/908989/" target="_blank" rel="noopener">Pexels</a></p>
+</footer>
+
+</body>
+</html>

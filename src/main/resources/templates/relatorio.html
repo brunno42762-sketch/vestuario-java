@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/base :: head('Relatório de receita e lucro')}"></head>
+<body>
+<th:block th:replace="~{fragments/navegacao :: admin('relatorio')}"></th:block>
+
+<main class="container" id="conteudo">
+    <div class="cabecalho-pagina">
+        <h2 class="titulo-cabecalho-cartao">Receita e lucro</h2>
+    </div>
+
+    <th:block th:replace="~{fragments/mensagens :: alertas}"></th:block>
+
+    <!-- Período opcional (GET): /admin/relatorio?de=2025-01-01&ate=2025-12-31 -->
+    <form class="filtro-lista filtro-pedidos" method="get" th:action="@{/admin/relatorio}">
+        <div class="filtro-campo">
+            <label for="rel-de">De</label>
+            <input type="date" id="rel-de" name="de" th:value="${de}">
+        </div>
+        <div class="filtro-campo">
+            <label for="rel-ate">Até</label>
+            <input type="date" id="rel-ate" name="ate" th:value="${ate}">
+        </div>
+        <div class="filtro-botoes">
+            <button type="submit">Aplicar</button>
+            <a class="link-limpar" th:if="${de != null or ate != null}" th:href="@{/admin/relatorio}">Todo o período</a>
+        </div>
+        <span class="filtro-total">Pedidos cancelados não entram nas contas.</span>
+    </form>
+
+    <!-- Totais do período -->
+    <section class="painel-grade" aria-label="Totais do período" th:with="t=${relatorio.total}">
+        <article class="painel-cartao">
+            <h3 class="painel-titulo">Receita</h3>
+            <p class="painel-numero" th:text="|R$ ${#numbers.formatDecimal(t.receita, 1, 'POINT', 2, 'COMMA')}|">R$ 4.595.510,02</p>
+        </article>
+        <article class="painel-cartao">
+            <h3 class="painel-titulo">Lucro estimado</h3>
+            <p class="painel-numero" th:text="|R$ ${#numbers.formatDecimal(t.lucro, 1, 'POINT', 2, 'COMMA')}|">R$ 2.290.000,00</p>
+        </article>
+        <article class="painel-cartao">
+            <h3 class="painel-titulo">Margem</h3>
+            <p class="painel-numero" th:text="|${#numbers.formatDecimal(t.margem, 1, 'POINT', 1, 'COMMA')}%|">49,8%</p>
+            <p class="painel-legenda">lucro ÷ receita</p>
+        </article>
+        <article class="painel-cartao">
+            <h3 class="painel-titulo">Pedidos</h3>
+            <p class="painel-numero" th:text="${#numbers.formatInteger(t.quantidade, 1, 'POINT')}">5.671</p>
+        </article>
+    </section>
+
+    <p class="cartao-lista" th:if="${relatorio.total.quantidade == 0}">Nenhum pedido no período.</p>
+
+    <!-- As três tabelas têm o mesmo formato: um fragment local, chamado três vezes com parâmetros -->
+    <th:block th:unless="${relatorio.total.quantidade == 0}">
+        <section th:replace="~{::tabela(${relatorio.porCanal}, 'Por canal', 'Pedidos', 'rel-canal')}"></section>
+        <section th:replace="~{::tabela(${relatorio.porCategoria}, 'Por categoria', 'Peças', 'rel-categoria')}"></section>
+        <section th:replace="~{::tabela(${relatorio.porMes}, 'Por mês', 'Pedidos', 'rel-mes')}"></section>
+    </th:block>
+
+    <!-- Fragment da tabela, definido aqui mesmo e reaproveitado acima.
+         O th:block com th:if="false" esconde só a definição; as cópias inseridas aparecem normalmente. -->
+    <th:block th:if="false">
+    <section class="cartao-lista relatorio-tabela" th:fragment="tabela(tabela, titulo, coluna, id)"
+             th:attr="aria-labelledby=${id}">
+        <h3 class="painel-titulo" th:id="${id}" th:text="${titulo}">Por canal</h3>
+        <table class="lista">
+            <thead>
+                <tr>
+                    <th scope="col" th:text="${#strings.capitalize(#strings.substringAfter(titulo, 'Por '))}">Canal</th>
+                    <th scope="col" th:text="${coluna}">Pedidos</th>
+                    <th scope="col">Receita</th>
+                    <th scope="col">Lucro</th>
+                    <th scope="col">Margem</th>
+                    <th scope="col" class="coluna-barra"><span class="visually-hidden">Participação na receita</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="l : ${tabela.linhas}">
+                    <th scope="row" th:text="${l.rotulo}">E-commerce</th>
+                    <td th:text="${#numbers.formatInteger(l.quantidade, 1, 'POINT')}">2.000</td>
+                    <td th:text="|R$ ${#numbers.formatDecimal(l.receita, 1, 'POINT', 2, 'COMMA')}|">R$ 1.500.000,00</td>
+                    <td th:text="|R$ ${#numbers.formatDecimal(l.lucro, 1, 'POINT', 2, 'COMMA')}|">R$ 750.000,00</td>
+                    <td th:text="|${#numbers.formatDecimal(l.margem, 1, 'POINT', 1, 'COMMA')}%|">50,0%</td>
+                    <!-- Barra proporcional à maior receita da tabela (só visual; o valor está na coluna Receita) -->
+                    <td class="coluna-barra" aria-hidden="true">
+                        <span class="barra-relatorio" th:style="|width: ${tabela.largura(l)}%|"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    </th:block>
+</main>
+</body>
+</html>

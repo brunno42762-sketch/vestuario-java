@@ -6,7 +6,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "produto")
+// Índice na ordem do catálogo (categoria, subcategoria) e na lista de reposição (RNF02)
+@Table(name = "produto", indexes = {
+        @Index(name = "ix_produto_categoria", columnList = "categoria, subcategoria")
+})
 @Getter
 @Setter
 @NoArgsConstructor

@@ -1,6 +1,7 @@
 package br.edu.eseg.vestuario.ezVest.controller;
 
 import br.edu.eseg.vestuario.ezVest.exception.RecursoNaoEncontradoException;
+import br.edu.eseg.vestuario.ezVest.exception.RegraNegocioException;
 import br.edu.eseg.vestuario.ezVest.model.Pedido;
 import br.edu.eseg.vestuario.ezVest.security.PrincipalVestuario;
 import br.edu.eseg.vestuario.ezVest.service.ClienteService;
@@ -9,10 +10,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * Área do perfil CLIENTE: só os próprios pedidos.
@@ -64,6 +63,19 @@ public class MinhaContaController {
         model.addAttribute("pedido", pedido);
         model.addAttribute("cliente", clienteService.buscar(idClienteDo(usuario)));
         return "minha-conta-pedido";
+    }
+
+    /** O cliente cancela um pedido que ainda está "Criado"; as peças voltam para o estoque. */
+    @PostMapping("/pedidos/{id}/cancelar")
+    public String cancelar(@AuthenticationPrincipal PrincipalVestuario usuario,
+                           @PathVariable Integer id, RedirectAttributes redirect) {
+        try {
+            pedidoService.cancelarDoCliente(id, idClienteDo(usuario));
+            redirect.addFlashAttribute("sucesso", "Pedido " + id + " cancelado.");
+        } catch (RegraNegocioException e) {
+            redirect.addFlashAttribute("erro", e.getMessage());
+        }
+        return "redirect:/minha-conta/pedidos/" + id;
     }
 
     private Integer idClienteDo(PrincipalVestuario usuario) {

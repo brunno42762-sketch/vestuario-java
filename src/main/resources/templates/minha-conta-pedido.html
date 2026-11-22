@@ -1,45 +1,17 @@
 <!DOCTYPE html>
 <html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pedido</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Changa+One:ital@0;1&family=Special+Gothic+Condensed+One&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe" crossorigin="anonymous">
-
-    <link rel="stylesheet" th:href="@{/css/style.css}">
-    <link rel="stylesheet" th:href="@{/css/mensagens.css}">
-</head>
+<head th:replace="~{fragments/base :: head('Pedido')}"></head>
 <body>
-<nav class="navbar sm:navbar-expand bg-1 fg-2">
-  <div class="container-fluid">
-    <a class="navbar-brand" th:href="@{/}">Vestuário</a>
-    <ul class="navbar-nav menu-conta">
-      <li class="nav-item">
-        <a class="nav-link" th:href="@{/}">Catálogo</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" th:href="@{/minha-conta}">Meus pedidos</a>
-      </li>
-      <li class="nav-item item-sair" sec:authorize="isAuthenticated()">
-        <form class="form-sair" th:action="@{/logout}" method="post">
-          <span class="usuario-logado" sec:authentication="name">Cliente</span>
-          <button type="submit" class="botao-sair">Sair</button>
-        </form>
-      </li>
-    </ul>
-  </div>
-</nav>
+<th:block th:replace="~{fragments/navegacao :: loja('minha-conta')}"></th:block>
 
-<main class="container">
+<main class="container" id="conteudo">
     <div class="cabecalho-pagina">
         <h2 class="titulo-cabecalho-cartao" th:text="|Pedido ${pedido.idPedido}|">Pedido 1</h2>
         <a class="link-loja" th:href="@{/minha-conta}">Voltar aos meus pedidos</a>
     </div>
+
+    <th:block th:replace="~{fragments/mensagens :: alertas}"></th:block>
 
     <section class="painel-grade conta-resumo" aria-label="Resumo do pedido">
         <article class="painel-cartao">
@@ -49,6 +21,12 @@
                       th:text="${pedido.statusPedido.nome}">Entregue</span>
             </p>
             <p th:text="|Feito em ${#temporals.format(pedido.dataPedido, 'dd/MM/yyyy')}|">Feito em 10/01/2026</p>
+            <!-- Só pedidos ainda não entregues podem ser cancelados pelo cliente; as peças voltam ao estoque -->
+            <form class="form-inline" method="post" th:if="${pedido.statusPedido.name() == 'CRIADO'}"
+                  th:action="@{/minha-conta/pedidos/{id}/cancelar(id=${pedido.idPedido})}"
+                  onsubmit="return confirm('Cancelar este pedido?')">
+                <button type="submit" class="botao-secundario">Cancelar pedido</button>
+            </form>
         </article>
         <article class="painel-cartao">
             <h3 class="painel-titulo">Pagamento</h3>

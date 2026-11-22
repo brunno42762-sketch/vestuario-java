@@ -1,41 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meus pedidos</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Changa+One:ital@0;1&family=Special+Gothic+Condensed+One&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe" crossorigin="anonymous">
-
-    <link rel="stylesheet" th:href="@{/css/style.css}">
-    <link rel="stylesheet" th:href="@{/css/mensagens.css}">
-</head>
+<head th:replace="~{fragments/base :: head('Meus pedidos')}"></head>
 <body>
-<nav class="navbar sm:navbar-expand bg-1 fg-2">
-  <div class="container-fluid">
-    <a class="navbar-brand" th:href="@{/}">Vestuário</a>
-    <ul class="navbar-nav menu-conta">
-      <li class="nav-item">
-        <a class="nav-link" th:href="@{/}">Catálogo</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link active" aria-current="page" th:href="@{/minha-conta}">Meus pedidos</a>
-      </li>
-      <li class="nav-item item-sair" sec:authorize="isAuthenticated()">
-        <form class="form-sair" th:action="@{/logout}" method="post">
-          <span class="usuario-logado" sec:authentication="name">Cliente</span>
-          <button type="submit" class="botao-sair">Sair</button>
-        </form>
-      </li>
-    </ul>
-  </div>
-</nav>
+<th:block th:replace="~{fragments/navegacao :: loja('minha-conta')}"></th:block>
 
-<main class="container">
+<main class="container" id="conteudo">
     <div class="cabecalho-pagina">
         <h2 class="titulo-cabecalho-cartao">Meus pedidos</h2>
     </div>
@@ -95,15 +65,7 @@
         </table>
     </div>
 
-    <nav class="paginacao paginacao-lista" aria-label="Páginas dos meus pedidos" th:if="${totalPaginas > 1}">
-        <a th:if="${paginaAtual > 1}" th:href="@{/minha-conta(pagina=${paginaAtual - 1})}">Anterior</a>
-        <span class="desabilitado" th:unless="${paginaAtual > 1}">Anterior</span>
-        <a th:each="n : ${#numbers.sequence(inicioJanela, fimJanela)}"
-           th:href="@{/minha-conta(pagina=${n})}" th:text="${n}"
-           th:attr="aria-current=${n == paginaAtual} ? 'page' : null">1</a>
-        <a th:if="${paginaAtual < totalPaginas}" th:href="@{/minha-conta(pagina=${paginaAtual + 1})}">Próxima</a>
-        <span class="desabilitado" th:unless="${paginaAtual < totalPaginas}">Próxima</span>
-    </nav>
+    <nav th:replace="~{fragments/paginacao :: paginacao(@{/minha-conta}, 'Páginas dos meus pedidos', '')}"></nav>
 </main>
 </body>
 </html>

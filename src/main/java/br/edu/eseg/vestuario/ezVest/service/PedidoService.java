@@ -1,6 +1,7 @@
 package br.edu.eseg.vestuario.ezVest.service;
 
 import br.edu.eseg.vestuario.ezVest.exception.RecursoNaoEncontradoException;
+import br.edu.eseg.vestuario.ezVest.exception.RegraNegocioException;
 import br.edu.eseg.vestuario.ezVest.model.Pedido;
 import br.edu.eseg.vestuario.ezVest.model.Status;
 import br.edu.eseg.vestuario.ezVest.repository.PedidoRepository;
@@ -19,9 +20,11 @@ public class PedidoService {
     public static final int PEDIDOS_POR_PAGINA = 20;
 
     private final PedidoRepository pedidoRepository;
+    private final EstoqueService estoqueService;
 
-    public PedidoService(PedidoRepository pedidoRepository) {
+    public PedidoService(PedidoRepository pedidoRepository, EstoqueService estoqueService) {
         this.pedidoRepository = pedidoRepository;
+        this.estoqueService = estoqueService;
     }
 
     /**
@@ -32,14 +35,12 @@ public class PedidoService {
      * @param pagina número da página como aparece para o usuário, começando em 1
      */
     @Transactional(readOnly = true)
-    public Page<Pedido> listar(Status status, OrdemPedidos ordem, int pagina) {
+    public Page<Pedido> listar(FiltroPedidos filtro, OrdemPedidos ordem, int pagina) {
         int indice = Math.max(pagina, 1) - 1;
         Sort sort = (ordem == null ? OrdemPedidos.RECENTES : ordem).getSort();
         Pageable pageable = PageRequest.of(indice, PEDIDOS_POR_PAGINA, sort);
-
-        return status == null
-                ? pedidoRepository.listarComCliente(pageable)
-                : pedidoRepository.listarComClientePorStatus(status, pageable);
+        FiltroPedidos f = filtro == null ? FiltroPedidos.nenhum() : filtro;
+        return pedidoRepository.filtrar(f.status(), f.canal(), f.de(), f.ate(), f.idCliente(), pageable);
     }
 
     // ---------------- Minha conta (perfil CLIENTE) ----------------
@@ -73,12 +74,41 @@ public class PedidoService {
                         "Pedido " + id + " não encontrado."));
     }
 
-    /** A regra de transição fica em Pedido.alterarStatus / Status.podeMudarPara. */
+    /**
+     * A regra de transição fica em Pedido.alterarStatus / Status.podeMudarPara.
+     * Ao cancelar, os itens voltam para o estoque.
+     */
     @Transactional
     @PreAuthorize("hasAnyRole('ADMIN', 'VENDEDOR')")
     public Pedido alterarStatus(Integer id, Status novoStatus) {
-        Pedido pedido = buscar(id);
-        pedido.alterarStatus(novoStatus);
-        return pedidoRepository.save(pedido);
+        Pedido pedido = pedidoRepository.bloquear(id)
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Pedido " + id + " não encontrado."));
+        mudarStatus(pedido, novoStatus);
+        return pedido;
+    }
+
+    /**
+     * Minha conta: o cliente cancela um pedido que ainda não foi entregue (status CRIADO).
+     * Pedido de outra pessoa responde 404, igual a um pedido inexistente.
+     */
+    @Transactional
+    @PreAuthorize("hasRole('CLIENTE')")
+    public Pedido cancelarDoCliente(Integer idPedido, Integer idCliente) {
+        Pedido pedido = pedidoRepository.bloquear(idPedido)
+                .filter(p -> p.getCliente().getIdCliente().equals(idCliente))
+                .orElseThrow(() -> new RecursoNaoEncontradoException("Pedido " + idPedido + " não encontrado."));
+        if (pedido.getStatusPedido() != Status.CRIADO) {
+            throw new RegraNegocioException("Só é possível cancelar um pedido que ainda não foi entregue.");
+        }
+        mudarStatus(pedido, Status.CANCELADO);
+        return pedido;
+    }
+
+    private void mudarStatus(Pedido pedido, Status novoStatus) {
+        pedido.alterarStatus(novoStatus); // lança RegraNegocioException se a transição não for permitida
+        if (novoStatus == Status.CANCELADO) {
+            estoqueService.devolver(pedido);
+        }
+        // O pedido está bloqueado e sendo acompanhado pelo JPA: as mudanças vão para o banco no commit.
     }
 }

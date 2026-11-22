@@ -1,63 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title th:text="${edicao} ? 'Editar produto' : 'Novo produto'">Vestuário</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Changa+One:ital@0;1&family=Special+Gothic+Condensed+One&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-B/GM4XqrwHnWXNOWMbloTmrYXZg10cakYGmpfsR/bbzQ6JAJI4ihuyADKLnBgrCe" crossorigin="anonymous">
-    <script type="module" src="https://cdn.jsdelivr.net/npm/bootstrap@6.0.0-alpha.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-1a/pXj49ZQ1aHEmrJ+gMw1otqoVsYwlEnlD8mIfY2TV03r20Y0CN7uqx1tQogjPL" crossorigin="anonymous"></script>
-
-    <link rel="stylesheet" th:href="@{/css/style.css}">
-    <link rel="stylesheet" th:href="@{/css/mensagens.css}">
-</head>
+<head th:replace="~{fragments/base :: head(${edicao} ? 'Editar produto' : 'Novo produto')}"></head>
 <body>
-<nav class="navbar sm:navbar-expand bg-1 fg-2">
-  <div class="container-fluid">
-    <a class="navbar-brand" th:href="@{/}">Vestuário</a>
-    <button class="btn-icon navbar-toggler" type="button" data-bs-toggle="drawer" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon" aria-hidden="true"></span>
-    </button>
-    <dialog class="drawer drawer-end" tabindex="-1" id="navbarNav" aria-labelledby="navbarNavLabel">
-      <div class="drawer-header">
-        <h5 class="drawer-title" id="navbarNavLabel">Menu</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="drawer" aria-label="Close"></button>
-      </div>
-      <div class="drawer-body">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" th:href="@{/admin}">Painel</a>
-          </li>
-          <li class="nav-item" sec:authorize="hasRole('ADMIN')">
-            <a class="nav-link" th:classappend="${!edicao} ? 'active'" th:href="@{/admin/produtos/novo}">Criar</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" th:href="@{/admin/produtos}">Listar</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" th:href="@{/admin/pedidos}">Pedidos</a>
-          </li>
-          <li class="nav-item" sec:authorize="hasRole('ADMIN')">
-            <a class="nav-link" th:href="@{/admin/usuarios}">Usuários</a>
-          </li>
-          <li class="nav-item item-sair" sec:authorize="isAuthenticated()">
-            <!-- Sair é um POST (com o token CSRF que o th:action acrescenta), nunca um link -->
-            <form class="form-sair" th:action="@{/logout}" method="post">
-              <span class="usuario-logado" sec:authentication="name">Administrador</span>
-              <button type="submit" class="botao-sair">Sair</button>
-            </form>
-          </li>
-        </ul>
-      </div>
-    </dialog>
-  </div>
-</nav>
+<th:block th:replace="~{fragments/navegacao :: admin('produtos')}"></th:block>
 
-<main class="container">
+<main class="container" id="conteudo">
 
     <div class="cabecalho-pagina">
         <h2 class="titulo-cabecalho-cartao"
