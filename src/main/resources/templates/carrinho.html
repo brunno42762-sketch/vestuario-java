@@ -22,52 +22,54 @@
 
     <th:block th:unless="${carrinho.vazio}">
         <div class="cartao-lista">
-            <table class="lista tabela-carrinho">
-                <caption class="legenda-tabela">Itens no carrinho</caption>
-                <thead>
-                    <tr>
-                        <th scope="col">Produto</th>
-                        <th scope="col">Tamanho</th>
-                        <th scope="col">Preço</th>
-                        <th scope="col">Quantidade</th>
-                        <th scope="col">Subtotal</th>
-                        <th scope="col"><span class="visually-hidden">Remover</span></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="linha : ${carrinho.linhas}">
-                        <td>
-                            <span th:text="|${linha.produto.categoria} ${linha.produto.subcategoria}|">Camiseta Básica</span>
-                            <span class="dica-campo" th:text="|${linha.produto.marca} · ${linha.produto.cor}|">Pulse · Azul</span>
-                        </td>
-                        <td th:text="${linha.tamanho}">M</td>
-                        <td th:text="|R$ ${#numbers.formatDecimal(linha.produto.precoUnitario, 1, 'POINT', 2, 'COMMA')}|">R$ 89,90</td>
-                        <td>
-                            <!-- Cada linha tem o próprio formulário (POST com o token CSRF) -->
-                            <form class="form-status" method="post"
-                                  th:action="@{/carrinho/itens/{chave}/quantidade(chave=${linha.chave})}">
-                                <label class="visually-hidden" th:for="|qtd-${linha.chave}|">Quantidade</label>
-                                <input class="campo-quantidade" type="number" name="quantidade" min="1"
-                                       th:id="|qtd-${linha.chave}|" th:max="${linha.maximo}" th:value="${linha.quantidade}" required>
-                                <button type="submit">Atualizar</button>
-                            </form>
-                        </td>
-                        <td th:text="|R$ ${#numbers.formatDecimal(linha.subtotal, 1, 'POINT', 2, 'COMMA')}|">R$ 179,80</td>
-                        <td class="acoes">
-                            <form class="form-inline" method="post"
-                                  th:action="@{/carrinho/itens/{chave}/remover(chave=${linha.chave})}">
-                                <button type="submit" class="action-btn botao-link">Remover</button>
-                            </form>
-                        </td>
-                    </tr>
-                </tbody>
-                <tfoot>
-                    <tr class="linha-total">
-                        <th scope="row" colspan="4" th:text="|Total (${carrinho.pecas} peça(s))|">Total (2 peças)</th>
-                        <td colspan="2" th:text="|R$ ${#numbers.formatDecimal(carrinho.total, 1, 'POINT', 2, 'COMMA')}|">R$ 179,80</td>
-                    </tr>
-                </tfoot>
-            </table>
+            <div class="tabela-rolavel">
+                <table class="lista tabela-carrinho">
+                    <caption class="legenda-tabela">Itens no carrinho</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Produto</th>
+                            <th scope="col">Tamanho</th>
+                            <th scope="col">Preço</th>
+                            <th scope="col">Quantidade</th>
+                            <th scope="col">Subtotal</th>
+                            <th scope="col"><span class="visually-hidden">Remover</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="linha : ${carrinho.linhas}">
+                            <td>
+                                <span th:text="|${linha.produto.categoria} ${linha.produto.subcategoria}|">Camiseta Básica</span>
+                                <span class="dica-campo" th:text="|${linha.produto.marca} · ${linha.produto.cor}|">Pulse · Azul</span>
+                            </td>
+                            <td th:text="${linha.tamanho}">M</td>
+                            <td th:text="|R$ ${#numbers.formatDecimal(linha.produto.precoUnitario, 1, 'POINT', 2, 'COMMA')}|">R$ 89,90</td>
+                            <td>
+                                <!-- Cada linha tem o próprio formulário (POST com o token CSRF) -->
+                                <form class="form-status" method="post"
+                                      th:action="@{/carrinho/itens/{chave}/quantidade(chave=${linha.chave})}">
+                                    <label class="visually-hidden" th:for="|qtd-${linha.chave}|">Quantidade</label>
+                                    <input class="campo-quantidade" type="number" name="quantidade" min="1"
+                                           th:id="|qtd-${linha.chave}|" th:max="${linha.maximo}" th:value="${linha.quantidade}" required>
+                                    <button type="submit">Atualizar</button>
+                                </form>
+                            </td>
+                            <td th:text="|R$ ${#numbers.formatDecimal(linha.subtotal, 1, 'POINT', 2, 'COMMA')}|">R$ 179,80</td>
+                            <td class="acoes">
+                                <form class="form-inline" method="post"
+                                      th:action="@{/carrinho/itens/{chave}/remover(chave=${linha.chave})}">
+                                    <button type="submit" class="action-btn botao-link">Remover</button>
+                                </form>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr class="linha-total">
+                            <th scope="row" colspan="4" th:text="|Total (${carrinho.pecas} peça(s))|">Total (2 peças)</th>
+                            <td colspan="2" th:text="|R$ ${#numbers.formatDecimal(carrinho.total, 1, 'POINT', 2, 'COMMA')}|">R$ 179,80</td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
         </div>
 
         <div class="cartao-lista finalizar-acoes">

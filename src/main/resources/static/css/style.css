@@ -198,12 +198,17 @@ td {
   text-decoration-color: #FF9770;
 }
 
-@media (max-width: 575.98px) {
-
+/* Menu lateral (drawer) quando a barra está fechada.
+   As duas barras (loja e admin) abrem a partir de 992px (lg:navbar-expand): com o usuário
+   logado e todos os itens, abaixo disso não cabem numa linha. */
+@media (max-width: 991.98px) {
+  /* Sem altura fixa (antes era 50%, e o "Sair" ficava cortado no menu do admin).
+     Se os itens não couberem na tela, o menu rola por dentro. */
   #navbarNav {
     background-color: #031926;
     margin: 10px;
-    height: 50%;
+    max-height: calc(100% - 20px);
+    overflow-y: auto;
   }
 
   #navbarNav .drawer-header {
@@ -230,10 +235,22 @@ td {
     color: white;
   }
 
+  #navbarNav .nav-conta {
+    margin-left: 0;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  #navbarNav .form-sair {
+    padding: 4px 8px;
+  }
+}
+
+@media (max-width: 575.98px) {
   .btn-criar {
     width: 20%;
   }
-
 }
 
 /* ---------- Seletor Produto / Cliente (páginas de criar) ---------- */

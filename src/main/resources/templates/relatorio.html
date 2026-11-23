@@ -29,7 +29,7 @@
     </form>
 
     <!-- Totais do período -->
-    <section class="painel-grade" aria-label="Totais do período" th:with="t=${relatorio.total}">
+    <section class="painel-grade relatorio-totais" aria-label="Totais do período" th:with="t=${relatorio.total}">
         <article class="painel-cartao">
             <h3 class="painel-titulo">Receita</h3>
             <p class="painel-numero" th:text="|R$ ${#numbers.formatDecimal(t.receita, 1, 'POINT', 2, 'COMMA')}|">R$ 4.595.510,02</p>
@@ -64,31 +64,28 @@
     <section class="cartao-lista relatorio-tabela" th:fragment="tabela(tabela, titulo, coluna, id)"
              th:attr="aria-labelledby=${id}">
         <h3 class="painel-titulo" th:id="${id}" th:text="${titulo}">Por canal</h3>
-        <table class="lista">
-            <thead>
-                <tr>
-                    <th scope="col" th:text="${#strings.capitalize(#strings.substringAfter(titulo, 'Por '))}">Canal</th>
-                    <th scope="col" th:text="${coluna}">Pedidos</th>
-                    <th scope="col">Receita</th>
-                    <th scope="col">Lucro</th>
-                    <th scope="col">Margem</th>
-                    <th scope="col" class="coluna-barra"><span class="visually-hidden">Participação na receita</span></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="l : ${tabela.linhas}">
-                    <th scope="row" th:text="${l.rotulo}">E-commerce</th>
-                    <td th:text="${#numbers.formatInteger(l.quantidade, 1, 'POINT')}">2.000</td>
-                    <td th:text="|R$ ${#numbers.formatDecimal(l.receita, 1, 'POINT', 2, 'COMMA')}|">R$ 1.500.000,00</td>
-                    <td th:text="|R$ ${#numbers.formatDecimal(l.lucro, 1, 'POINT', 2, 'COMMA')}|">R$ 750.000,00</td>
-                    <td th:text="|${#numbers.formatDecimal(l.margem, 1, 'POINT', 1, 'COMMA')}%|">50,0%</td>
-                    <!-- Barra proporcional à maior receita da tabela (só visual; o valor está na coluna Receita) -->
-                    <td class="coluna-barra" aria-hidden="true">
-                        <span class="barra-relatorio" th:style="|width: ${tabela.largura(l)}%|"></span>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="tabela-rolavel">
+            <table class="lista">
+                <thead>
+                    <tr>
+                        <th scope="col" th:text="${#strings.capitalize(#strings.substringAfter(titulo, 'Por '))}">Canal</th>
+                        <th scope="col" th:text="${coluna}">Pedidos</th>
+                        <th scope="col">Receita</th>
+                        <th scope="col">Lucro</th>
+                        <th scope="col">Margem</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="l : ${tabela.linhas}">
+                        <th scope="row" th:text="${l.rotulo}">E-commerce</th>
+                        <td th:text="${#numbers.formatInteger(l.quantidade, 1, 'POINT')}">2.000</td>
+                        <td th:text="|R$ ${#numbers.formatDecimal(l.receita, 1, 'POINT', 2, 'COMMA')}|">R$ 1.500.000,00</td>
+                        <td th:text="|R$ ${#numbers.formatDecimal(l.lucro, 1, 'POINT', 2, 'COMMA')}|">R$ 750.000,00</td>
+                        <td th:text="|${#numbers.formatDecimal(l.margem, 1, 'POINT', 1, 'COMMA')}%|">50,0%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </section>
     </th:block>
 </main>

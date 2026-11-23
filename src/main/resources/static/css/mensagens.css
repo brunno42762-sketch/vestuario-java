@@ -536,7 +536,14 @@ form.form-sair {
   border-radius: 0;
 }
 
+/* Nome de usuário comprido (até 80 caracteres) termina em "..." em vez de estourar a barra */
 .usuario-logado {
+  display: inline-block;
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: middle;
   color: #8EE3EF;
   font-size: 15px;
 }
@@ -559,8 +566,9 @@ form.form-sair {
 
 
 /* Tela de login: cartão estreito e centralizado */
+/* Cartão do login: 460px, mas nunca mais que 90% da tela (no celular sobra margem dos lados) */
 form.form-login {
-  max-width: 460px;
+  max-width: min(460px, 90%);
 }
 
 .alerta-aviso {
@@ -613,25 +621,10 @@ form.form-login {
 
 /* ---------- Navegação (fragments/navegacao.html) ---------- */
 
-/* Lado direito da barra: Entrar, ou usuário + Sair.
-   Com a barra aberta (>= 576px), o margin-left: auto empurra o grupo para a direita. */
-@media (min-width: 576px) {
-  .nav-conta {
-    margin-left: auto;
-  }
-}
-
-/* No menu do celular, o grupo da conta fica separado por uma linha */
-@media (max-width: 575.98px) {
-  #navbarNav .nav-conta {
-    margin-top: 12px;
-    padding-top: 12px;
-    border-top: 1px solid rgba(255, 255, 255, 0.15);
-  }
-
-  #navbarNav .form-sair {
-    padding: 4px 8px;
-  }
+/* Lado direito da barra aberta: Entrar, ou usuário + Sair, empurrados para a direita.
+   (No menu lateral, o style.css tira esse empurrão e separa o grupo com uma linha.) */
+.nav-conta {
+  margin-left: auto;
 }
 
 /* A cor da marca vinha do Bootstrap (escura no tema claro do sistema): fixa a da identidade */
@@ -1134,22 +1127,38 @@ form.form-carrinho {
   text-align: left;
 }
 
-.coluna-barra {
-  width: 28%;
+/* Totais do relatório: os 4 cartões na mesma linha. Receita e lucro têm números longos
+   (R$ 4.599.234,04), então ganham o dobro da largura de margem e pedidos. */
+.relatorio-totais {
+  grid-template-columns: minmax(0, 2fr) minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr);
 }
 
-/* Barra proporcional à receita da linha */
-.barra-relatorio {
-  display: block;
-  height: 14px;
-  min-width: 2px;
-  border-radius: 7px;
-  background-color: #4A4F9E;
+.relatorio-totais .painel-numero {
+  font-size: 44px;
+  overflow-wrap: anywhere;
 }
 
-@media (max-width: 700px) {
-  .coluna-barra {
-    display: none;
+@media (max-width: 1400px) {
+  .relatorio-totais .painel-numero {
+    font-size: 34px;
+  }
+}
+
+/* Telas médias: 2 por linha (receita e lucro em cima, margem e pedidos embaixo) */
+@media (max-width: 1100px) {
+  .relatorio-totais {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Celular: um embaixo do outro */
+@media (max-width: 600px) {
+  .relatorio-totais {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .relatorio-totais .painel-numero {
+    font-size: 32px;
   }
 }
 
@@ -1193,11 +1202,41 @@ form.form-carrinho {
   color: #8EE3EF;
 }
 
+/* Título do catálogo e "Ver todas as categorias": mesma largura da grade de produtos,
+   título à esquerda e link à direita */
 .cabecalho-catalogo {
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
+  justify-content: space-between;
   gap: 8px 20px;
+  max-width: 90%;
+  margin: 40px auto 1%;
+}
+
+.cabecalho-catalogo .titulo-cabecalho-cartao {
+  max-width: none;
+  margin: 0;
+}
+
+/* Login: o título fica na largura do cartão (460px), centralizado como ele */
+.cabecalho-login {
+  max-width: min(460px, 90%);
+}
+
+/* Botão do menu (≡) e o X do menu lateral: claros sobre a barra escura.
+   Os ícones do Bootstrap 6 são pintados com a cor do texto (currentColor). */
+.navbar .navbar-toggler,
+#navbarNav .btn-close {
+  color: #E0F2E9;
+}
+
+/* Tabelas largas (pedidos, relatório...): em tela estreita, rolam de lado dentro do cartão,
+   sem empurrar a página toda para fora da tela */
+.tabela-rolavel {
+  position: relative; /* rótulos escondidos (visually-hidden) ficam presos aqui dentro */
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -31,38 +31,40 @@
     </section>
 
     <div class="cartao-lista">
-        <table class="lista">
-            <thead>
-                <tr>
-                    <th scope="col">Pedido</th>
-                    <th scope="col">Data</th>
-                    <th scope="col">Canal</th>
-                    <th scope="col">Pagamento</th>
-                    <th scope="col">Valor</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Detalhes</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="pedido : ${pedidos.content}">
-                    <td th:text="${pedido.idPedido}">1</td>
-                    <td th:text="${#temporals.format(pedido.dataPedido, 'dd/MM/yyyy')}">10/01/2026</td>
-                    <td th:text="${pedido.canalVenda.nome}">E-commerce</td>
-                    <td th:text="${pedido.formaPagamento.nome}">Pix</td>
-                    <td th:text="|R$ ${#numbers.formatDecimal(pedido.valorTotal, 1, 'POINT', 2, 'COMMA')}|">R$ 159,80</td>
-                    <td>
-                        <span class="status" th:classappend="|status-${pedido.statusPedido}|"
-                              th:text="${pedido.statusPedido.nome}">Concluído</span>
-                    </td>
-                    <td class="acoes">
-                        <a class="action-btn" th:href="@{/minha-conta/pedidos/{id}(id=${pedido.idPedido})}">Ver</a>
-                    </td>
-                </tr>
-                <tr th:if="${pedidos.totalElements == 0}">
-                    <td colspan="7">Você ainda não tem pedidos.</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="tabela-rolavel">
+            <table class="lista">
+                <thead>
+                    <tr>
+                        <th scope="col">Pedido</th>
+                        <th scope="col">Data</th>
+                        <th scope="col">Canal</th>
+                        <th scope="col">Pagamento</th>
+                        <th scope="col">Valor</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Detalhes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="pedido : ${pedidos.content}">
+                        <td th:text="${pedido.idPedido}">1</td>
+                        <td th:text="${#temporals.format(pedido.dataPedido, 'dd/MM/yyyy')}">10/01/2026</td>
+                        <td th:text="${pedido.canalVenda.nome}">E-commerce</td>
+                        <td th:text="${pedido.formaPagamento.nome}">Pix</td>
+                        <td th:text="|R$ ${#numbers.formatDecimal(pedido.valorTotal, 1, 'POINT', 2, 'COMMA')}|">R$ 159,80</td>
+                        <td>
+                            <span class="status" th:classappend="|status-${pedido.statusPedido}|"
+                                  th:text="${pedido.statusPedido.nome}">Concluído</span>
+                        </td>
+                        <td class="acoes">
+                            <a class="action-btn" th:href="@{/minha-conta/pedidos/{id}(id=${pedido.idPedido})}">Ver</a>
+                        </td>
+                    </tr>
+                    <tr th:if="${pedidos.totalElements == 0}">
+                        <td colspan="7">Você ainda não tem pedidos.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <nav th:replace="~{fragments/paginacao :: paginacao(@{/minha-conta}, 'Páginas dos meus pedidos', '')}"></nav>

@@ -8,7 +8,7 @@
   ordem, combináveis, em GET (o link pode ser copiado). A paginação mantém os filtros. Período
   invertido mostra erro e é ignorado. Em Clientes, o botão **Pedidos** abre a lista já filtrada.
 - **RF09 – Relatório de receita e lucro** (`/admin/relatorio`, só ADMIN): sem pedidos cancelados,
-  por mês, canal e categoria, com período opcional, margem e barras proporcionais.
+  por mês, canal e categoria, com período opcional e margem.
 - **RNF01 – Restrições CHECK** no banco (preço, custo, estoques, quantidade, desconto 0 a 0,15, valor).
 - **RNF02 – Índices** nomeados em `pedido.data_pedido`, `pedido.status_pedido`, `item_pedido` e
   `produto(categoria, subcategoria)`.

@@ -14,39 +14,41 @@
     <th:block th:replace="~{fragments/mensagens :: alertas}"></th:block>
 
     <div class="cartao-lista">
-        <table class="lista">
-            <thead>
-                <tr>
-                    <th scope="col">Usuário</th>
-                    <th scope="col">Perfil</th>
-                    <th scope="col">Cliente vinculado</th>
-                    <th scope="col">Situação</th>
-                    <th scope="col">Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="usuario : ${usuarios}">
-                    <td th:text="${usuario.username}">admin</td>
-                    <td th:text="${usuario.perfil.descricao}">Administrador</td>
-                    <td th:text="${usuario.cliente != null} ? |${usuario.cliente.idCliente} – ${usuario.cliente.cidade}/${usuario.cliente.estado}| : '—'">—</td>
-                    <td>
-                        <span class="status status-ENTREGUE" th:if="${usuario.ativo}">Ativo</span>
-                        <span class="status status-CANCELADO" th:unless="${usuario.ativo}">Inativo</span>
-                    </td>
-                    <td class="acoes">
-                        <a class="action-btn" th:href="@{/admin/usuarios/{id}/editar(id=${usuario.id})}">Editar</a>
-                        <form class="form-inline" method="post"
-                              th:action="@{/admin/usuarios/{id}/excluir(id=${usuario.id})}"
-                              onsubmit="return confirm('Deseja realmente excluir este usuário?')">
-                            <button type="submit" class="action-btn botao-link">Excluir</button>
-                        </form>
-                    </td>
-                </tr>
-                <tr th:if="${#lists.isEmpty(usuarios)}">
-                    <td colspan="5">Nenhum usuário cadastrado.</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="tabela-rolavel">
+            <table class="lista">
+                <thead>
+                    <tr>
+                        <th scope="col">Usuário</th>
+                        <th scope="col">Perfil</th>
+                        <th scope="col">Cliente vinculado</th>
+                        <th scope="col">Situação</th>
+                        <th scope="col">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="usuario : ${usuarios}">
+                        <td th:text="${usuario.username}">admin</td>
+                        <td th:text="${usuario.perfil.descricao}">Administrador</td>
+                        <td th:text="${usuario.cliente != null} ? |${usuario.cliente.idCliente} – ${usuario.cliente.cidade}/${usuario.cliente.estado}| : '—'">—</td>
+                        <td>
+                            <span class="status status-ENTREGUE" th:if="${usuario.ativo}">Ativo</span>
+                            <span class="status status-CANCELADO" th:unless="${usuario.ativo}">Inativo</span>
+                        </td>
+                        <td class="acoes">
+                            <a class="action-btn" th:href="@{/admin/usuarios/{id}/editar(id=${usuario.id})}">Editar</a>
+                            <form class="form-inline" method="post"
+                                  th:action="@{/admin/usuarios/{id}/excluir(id=${usuario.id})}"
+                                  onsubmit="return confirm('Deseja realmente excluir este usuário?')">
+                                <button type="submit" class="action-btn botao-link">Excluir</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr th:if="${#lists.isEmpty(usuarios)}">
+                        <td colspan="5">Nenhum usuário cadastrado.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </main>
 </body>

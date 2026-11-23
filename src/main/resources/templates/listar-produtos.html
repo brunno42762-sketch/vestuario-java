@@ -19,45 +19,47 @@
     <th:block th:replace="~{fragments/mensagens :: alertas}"></th:block>
 
     <div class="cartao-lista">
-        <table class="lista">
-            <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Categoria</th>
-                    <th scope="col">Subcategoria</th>
-                    <th scope="col">Cor</th>
-                    <th scope="col">Marca</th>
-                    <th scope="col">Preço</th>
-                    <th scope="col">Estoque</th>
-                    <th scope="col" sec:authorize="hasRole('ADMIN')">Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="produto : ${produtos}">
-                    <td th:text="${produto.idProduto}">1042</td>
-                    <td th:text="${produto.categoria}">Camisetas</td>
-                    <td th:text="${produto.subcategoria}">Manga curta</td>
-                    <td th:text="${produto.cor}">Verde-musgo</td>
-                    <td th:text="${produto.marca}">Linha Sul</td>
-                    <td th:text="|R$ ${#numbers.formatDecimal(produto.precoUnitario, 1, 'POINT', 2, 'COMMA')}|">R$ 89,90</td>
-                    <td>
-                        <span th:text="${produto.estoqueAtual}">48</span>
-                        <span class="selo-repor" th:if="${produto.abaixoDoEstoqueMinimo}">repor</span>
-                    </td>
-                    <td class="acoes" sec:authorize="hasRole('ADMIN')">
-                        <a class="action-btn" th:href="@{/admin/produtos/{id}/editar(id=${produto.idProduto})}">Editar</a>
-                        <form class="form-inline" method="post"
-                              th:action="@{/admin/produtos/{id}/excluir(id=${produto.idProduto})}"
-                              onsubmit="return confirm('Excluir este produto?')">
-                            <button type="submit" class="action-btn botao-link">Remover</button>
-                        </form>
-                    </td>
-                </tr>
-                <tr th:if="${#lists.isEmpty(produtos)}">
-                    <td colspan="8">Nenhum produto cadastrado.</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="tabela-rolavel">
+            <table class="lista">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Categoria</th>
+                        <th scope="col">Subcategoria</th>
+                        <th scope="col">Cor</th>
+                        <th scope="col">Marca</th>
+                        <th scope="col">Preço</th>
+                        <th scope="col">Estoque</th>
+                        <th scope="col" sec:authorize="hasRole('ADMIN')">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="produto : ${produtos}">
+                        <td th:text="${produto.idProduto}">1042</td>
+                        <td th:text="${produto.categoria}">Camisetas</td>
+                        <td th:text="${produto.subcategoria}">Manga curta</td>
+                        <td th:text="${produto.cor}">Verde-musgo</td>
+                        <td th:text="${produto.marca}">Linha Sul</td>
+                        <td th:text="|R$ ${#numbers.formatDecimal(produto.precoUnitario, 1, 'POINT', 2, 'COMMA')}|">R$ 89,90</td>
+                        <td>
+                            <span th:text="${produto.estoqueAtual}">48</span>
+                            <span class="selo-repor" th:if="${produto.abaixoDoEstoqueMinimo}">repor</span>
+                        </td>
+                        <td class="acoes" sec:authorize="hasRole('ADMIN')">
+                            <a class="action-btn" th:href="@{/admin/produtos/{id}/editar(id=${produto.idProduto})}">Editar</a>
+                            <form class="form-inline" method="post"
+                                  th:action="@{/admin/produtos/{id}/excluir(id=${produto.idProduto})}"
+                                  onsubmit="return confirm('Excluir este produto?')">
+                                <button type="submit" class="action-btn botao-link">Remover</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr th:if="${#lists.isEmpty(produtos)}">
+                        <td colspan="8">Nenhum produto cadastrado.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </main>
 </body>

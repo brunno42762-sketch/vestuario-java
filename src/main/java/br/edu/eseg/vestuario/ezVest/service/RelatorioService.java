@@ -29,17 +29,8 @@ public class RelatorioService {
         }
     }
 
-    /** Uma tabela do relatório, com o maior valor (para o tamanho das barras). */
+    /** Uma tabela do relatório (por mês, por canal ou por categoria). */
     public record Tabela(List<Linha> linhas) {
-        public double getMaiorReceita() {
-            return linhas.stream().mapToDouble(Linha::receita).max().orElse(0);
-        }
-
-        /** Largura da barra de uma linha, em % da maior receita. */
-        public double largura(Linha l) {
-            double maior = getMaiorReceita();
-            return maior == 0 ? 0 : l.receita() / maior * 100;
-        }
     }
 
     public record Relatorio(Linha total, Tabela porMes, Tabela porCanal, Tabela porCategoria) {

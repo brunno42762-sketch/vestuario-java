@@ -19,44 +19,46 @@
     <th:block th:replace="~{fragments/mensagens :: alertas}"></th:block>
 
     <div class="cartao-lista">
-        <table class="lista">
-            <thead>
-                <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Faixa etária</th>
-                    <th scope="col">Gênero</th>
-                    <th scope="col">Cidade / UF</th>
-                    <th scope="col">Canal preferido</th>
-                    <th scope="col">Fidelidade</th>
-                    <th scope="col">Entrega</th>
-                    <th scope="col">Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="cliente : ${clientes}">
-                    <td th:text="${cliente.idCliente}">1</td>
-                    <td th:text="${cliente.faixaEtaria}">25-34</td>
-                    <td th:text="${cliente.genero}">Feminino</td>
-                    <td th:text="|${cliente.cidade} / ${cliente.estado}|">Curitiba / PR</td>
-                    <td th:text="${cliente.canalPreferido?.nome}">E-commerce</td>
-                    <td th:text="${cliente.clienteFidelidade} ? 'Sim' : 'Não'">Sim</td>
-                    <td th:text="${cliente.entrega != null} ? |${cliente.entrega.cidadeEntrega} / ${cliente.entrega.estadoEntrega}| : '—'">Curitiba / PR</td>
-                    <td class="acoes">
-                        <a class="action-btn" th:href="@{/admin/clientes/{id}/editar(id=${cliente.idCliente})}">Editar</a>
-                        <!-- Atalho para a lista de pedidos já filtrada por este cliente (RF08) -->
-                        <a class="action-btn" th:href="@{/admin/pedidos(cliente=${cliente.idCliente})}">Pedidos</a>
-                        <form class="form-inline" method="post" sec:authorize="hasRole('ADMIN')"
-                              th:action="@{/admin/clientes/{id}/excluir(id=${cliente.idCliente})}"
-                              onsubmit="return confirm('Excluir este cliente?')">
-                            <button type="submit" class="action-btn botao-link">Remover</button>
-                        </form>
-                    </td>
-                </tr>
-                <tr th:if="${#lists.isEmpty(clientes)}">
-                    <td colspan="8">Nenhum cliente cadastrado.</td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="tabela-rolavel">
+            <table class="lista">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Faixa etária</th>
+                        <th scope="col">Gênero</th>
+                        <th scope="col">Cidade / UF</th>
+                        <th scope="col">Canal preferido</th>
+                        <th scope="col">Fidelidade</th>
+                        <th scope="col">Entrega</th>
+                        <th scope="col">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="cliente : ${clientes}">
+                        <td th:text="${cliente.idCliente}">1</td>
+                        <td th:text="${cliente.faixaEtaria}">25-34</td>
+                        <td th:text="${cliente.genero}">Feminino</td>
+                        <td th:text="|${cliente.cidade} / ${cliente.estado}|">Curitiba / PR</td>
+                        <td th:text="${cliente.canalPreferido?.nome}">E-commerce</td>
+                        <td th:text="${cliente.clienteFidelidade} ? 'Sim' : 'Não'">Sim</td>
+                        <td th:text="${cliente.entrega != null} ? |${cliente.entrega.cidadeEntrega} / ${cliente.entrega.estadoEntrega}| : '—'">Curitiba / PR</td>
+                        <td class="acoes">
+                            <a class="action-btn" th:href="@{/admin/clientes/{id}/editar(id=${cliente.idCliente})}">Editar</a>
+                            <!-- Atalho para a lista de pedidos já filtrada por este cliente (RF08) -->
+                            <a class="action-btn" th:href="@{/admin/pedidos(cliente=${cliente.idCliente})}">Pedidos</a>
+                            <form class="form-inline" method="post" sec:authorize="hasRole('ADMIN')"
+                                  th:action="@{/admin/clientes/{id}/excluir(id=${cliente.idCliente})}"
+                                  onsubmit="return confirm('Excluir este cliente?')">
+                                <button type="submit" class="action-btn botao-link">Remover</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <tr th:if="${#lists.isEmpty(clientes)}">
+                        <td colspan="8">Nenhum cliente cadastrado.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </main>
 </body>
